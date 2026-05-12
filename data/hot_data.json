@@ -1,14 +1,14 @@
 {
-  "updateTime": "2026-05-12 18:02",
+  "updateTime": "2026-05-12 23:30",
   "topics": [
     {
       "rank": 1,
       "title": "宇树发布载人变形机甲 390万元起售",
       "category": "tech",
-      "summary": "5月12日，宇树科技发布GD01载人变形机甲，定价390万元起。为全球首款量产版载人机甲，可变形，民用交通工具，体重约500kg。",
+      "summary": "5月12日，宇树科技发布GD01载人变形机甲，定价390万元起。为全球首款量产版载人机甲，可变形，民用交通工具。",
       "heat": {
         "weibo": 5800.5,
-        "baidu": 7808840,
+        "baidu": 780.9,
         "douyin": 5200.3,
         "bilibili": 1200.8,
         "zhihu": 5233.1
@@ -23,88 +23,17 @@
         {
           "name": "百度",
           "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        },
-        {
-          "name": "知乎",
-          "url": "https://rebang.today/"
         }
       ]
     },
     {
       "rank": 2,
-      "title": "中美元首北京会晤 三个特殊时间点",
-      "category": "politics",
-      "summary": "应国家主席习近平邀请，美国总统特朗普将于5月13日至15日对中国进行国事访问。这是美国总统时隔9年再次访华。",
-      "heat": {
-        "weibo": 3200.5,
-        "baidu": 7903958,
-        "douyin": 2100.3,
-        "bilibili": 520.4,
-        "zhihu": 2950.2
-      },
-      "trend": "up",
-      "trendVal": 8,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 3,
-      "title": "日本爆发数十年来最大规模反战抗议",
-      "category": "politics",
-      "summary": "纽约时报报道，近期日本各地爆发大规模反战抗议，民众抗议首相高市早苗背离和平宪法，不要战争呼声日益强烈。",
-      "heat": {
-        "weibo": 2800.3,
-        "baidu": 7713686,
-        "douyin": 1900.5,
-        "bilibili": 850.3,
-        "zhihu": 2200.4
-      },
-      "trend": "up",
-      "trendVal": 12,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 4,
-      "title": "夫妻囤存储芯片 5个月涨320亿",
-      "category": "finance",
-      "summary": "借AI产业风口，深圳夫妻创办的存储模组企业德明利业绩暴涨。今年一季度狂赚33.46亿元，远超过去十年利润总和，市值逼近1500亿。",
-      "heat": {
-        "weibo": 3500.6,
-        "baidu": 7426358,
-        "douyin": 2800.4,
-        "bilibili": 620.3,
-        "zhihu": 3800.5
-      },
-      "trend": "hot",
-      "trendVal": 0,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://weibo.com/a/hot/realtime"
-        },
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 5,
       "title": "降噪耳机受害者出现",
       "category": "health",
       "summary": "降噪耳机话题冲上热搜，网友讨论耳机对听力的损伤。医生提醒：长期佩戴耳机，尤其是降噪耳机，可能导致听力下降。",
       "heat": {
         "weibo": 4200.5,
-        "baidu": 4500000,
+        "baidu": 450.0,
         "douyin": 3800.6,
         "bilibili": 1500.2,
         "zhihu": 7272.2
@@ -123,13 +52,80 @@
       ]
     },
     {
+      "rank": 3,
+      "title": "夫妻囤存储芯片 5个月涨320亿",
+      "category": "finance",
+      "summary": "借AI产业风口，深圳夫妻创办的存储模组企业德明利业绩暴涨。今年一季度狂赚33.46亿元，远超过去十年利润总和。",
+      "heat": {
+        "weibo": 3500.6,
+        "baidu": 742.6,
+        "douyin": 2800.4,
+        "bilibili": 620.3,
+        "zhihu": 3800.5
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "微博",
+          "url": "https://weibo.com/a/hot/realtime"
+        },
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "title": "中美元首北京会晤 三个特殊时间点",
+      "category": "politics",
+      "summary": "应国家主席习近平邀请，美国总统特朗普将于5月13日至15日对中国进行国事访问。这是美国总统时隔9年再次访华。",
+      "heat": {
+        "weibo": 3200.5,
+        "baidu": 790.4,
+        "douyin": 2100.3,
+        "bilibili": 520.4,
+        "zhihu": 2950.2
+      },
+      "trend": "up",
+      "trendVal": 8,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "title": "日本爆发数十年来最大规模反战抗议",
+      "category": "politics",
+      "summary": "近期日本各地爆发大规模反战抗议，民众抗议首相高市早苗背离和平宪法，不要战争呼声日益强烈。",
+      "heat": {
+        "weibo": 2800.3,
+        "baidu": 771.4,
+        "douyin": 1900.5,
+        "bilibili": 850.3,
+        "zhihu": 2200.4
+      },
+      "trend": "up",
+      "trendVal": 12,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ]
+    },
+    {
       "rank": 6,
       "title": "网红星宝突发癫痫离世 年仅17岁",
       "category": "social",
-      "summary": "网红星宝王金怡于5月8日不幸离世，年仅17岁。5月10日家人通过社交平台发布讣告，证实其因突发癫痫意外身亡。",
+      "summary": "网红星宝王金怡于5月8日不幸离世，年仅17岁。家人通过社交平台发布讣告，证实其因突发癫痫意外身亡。",
       "heat": {
         "weibo": 3800.5,
-        "baidu": 7328804,
+        "baidu": 732.9,
         "douyin": 2900.3,
         "bilibili": 720.6,
         "zhihu": 1800.4
@@ -150,7 +146,7 @@
       "summary": "可乐男孩薛枭如今已入职可口可乐。当年5·12汶川大地震，他被困废墟80小时，右臂截肢，获救时说叔叔我要喝冰可乐。",
       "heat": {
         "weibo": 3500.2,
-        "baidu": 7235683,
+        "baidu": 723.6,
         "douyin": 2600.4,
         "bilibili": 680.5,
         "zhihu": 2000.3
@@ -175,7 +171,7 @@
       "summary": "A股市场重回4200点，投资者关注国家队资金动向，分析哪些板块和个股获得重点买入。",
       "heat": {
         "weibo": 2800.4,
-        "baidu": 7135353,
+        "baidu": 713.5,
         "douyin": 1900.5,
         "bilibili": 450.2,
         "zhihu": 3200.5
@@ -193,10 +189,10 @@
       "rank": 9,
       "title": "湖人0-4遭雷霆横扫",
       "category": "sports",
-      "summary": "NBA季后赛湖人主场110-115不敌雷霆，遭遇系列赛横扫。詹姆斯贡献24分12篮板3助攻，职业生涯第4次季后赛被横扫。",
+      "summary": "NBA季后赛湖人主场110-115不敌雷霆，遭遇系列赛横扫。詹姆斯贡献24分12篮板3助攻。",
       "heat": {
         "weibo": 3200.5,
-        "baidu": 5131838,
+        "baidu": 513.2,
         "douyin": 2800.6,
         "bilibili": 1500.8,
         "zhihu": 2500.3
@@ -218,10 +214,10 @@
       "rank": 10,
       "title": "汶川地震67只搜救犬都已离世",
       "category": "social",
-      "summary": "汶川地震救援中英勇冲锋的67只功勋搜救犬，曾不畏艰险搜救被困生命，如今岁月流逝，这批无言英雄已全部离世。",
+      "summary": "汶川地震救援中英勇冲锋的67只功勋搜救犬，曾不畏艰险搜救被困生命，如今已全部离世。",
       "heat": {
         "weibo": 2800.3,
-        "baidu": 5407593,
+        "baidu": 540.8,
         "douyin": 2200.4,
         "bilibili": 580.3,
         "zhihu": 1600.2
