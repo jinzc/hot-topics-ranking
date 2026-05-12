@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -215,8 +214,8 @@
             "updateTime": "2026-05-12 17:03",
             "topics": [
                 {"title": "习近平同塔吉克斯坦总统拉赫蒙会谈", "category": "social", "summary": "5月12日，国家主席习近平在北京同塔吉克斯坦总统拉赫蒙举行会谈。", "heat": {"weibo": 0, "baidu": 790.4061, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 1},
-                {"title": ""超级心脏"爆单 订单已排到2028年", "category": "social", "summary": "近日，江苏镇江车间生产的船用中速发动机订单已排至2028年，这款国产"超级心脏"打破国外技术垄断。", "heat": {"weibo": 0, "baidu": 780.8557, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 2},
-                {"title": "武汉蒜鸟告了"蒜鸟"：损失超亿元", "category": "finance", "summary": "武汉方言谐音IP"蒜鸟"2024年9月诞生后迅速走红，2025年销量破百万件。随着IP爆火，大量企业擅自使用其元素。", "heat": {"weibo": 0, "baidu": 771.3961, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 3}
+                {"title": "超级心脏爆单 订单已排到2028年", "category": "social", "summary": "近日，江苏镇江车间生产的船用中速发动机订单已排至2028年，这款国产超级心脏打破国外技术垄断。", "heat": {"weibo": 0, "baidu": 780.8557, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 2},
+                {"title": "武汉蒜鸟告了蒜鸟：损失超亿元", "category": "finance", "summary": "武汉方言谐音IP蒜鸟2024年9月诞生后迅速走红，2025年销量破百万件。随着IP爆火，大量企业擅自使用其元素。", "heat": {"weibo": 0, "baidu": 771.3961, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 3}
             ]
         };
 
@@ -232,28 +231,44 @@
             zhihu: { name: '知乎热榜', icon: '🔷', color: '#0084ff' }
         };
 
+        // 获取 JSON 路径（兼容 GitHub Pages 子目录部署）
+        function getDataUrl() {
+            // 获取当前页面路径，确保 JSON 路径正确
+            const basePath = window.location.pathname.replace(/\/[^\/]*$/, '/');
+            return (basePath + 'data/hot_data.json').replace(/\/\//g, '/');
+        }
+
         // 加载数据（优先从外部 JSON）
         async function loadData() {
             const listContainer = document.getElementById('topics-list');
+            const timeEl = document.getElementById('update-time');
 
             try {
-                // 添加时间戳防止缓存
-                const response = await fetch('data/hot_data.json?t=' + Date.now());
-                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const dataUrl = getDataUrl() + '?t=' + Date.now();
+                console.log('Fetching:', dataUrl);
+
+                const response = await fetch(dataUrl);
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
 
                 const data = await response.json();
+                console.log('Data loaded, topics count:', data.topics ? data.topics.length : 0);
+
                 allTopics = data.topics || [];
 
                 // 更新最后更新时间
-                document.getElementById('update-time').textContent = 
-                    '最后更新：' + (data.updateTime || '未知');
+                timeEl.textContent = '最后更新：' + (data.updateTime || '未知');
 
-                console.log('✅ 从 data/hot_data.json 加载成功，共', allTopics.length, '条');
+                console.log('✅ 从 data/hot_data.json 加载成功');
             } catch (e) {
-                console.warn('⚠️ 外部数据加载失败，使用兜底数据:', e.message);
+                console.warn('⚠️ 外部数据加载失败:', e.message);
+                console.warn('使用兜底数据');
+
                 allTopics = FALLBACK_DATA.topics;
-                document.getElementById('update-time').textContent = 
-                    '最后更新：' + FALLBACK_DATA.updateTime + '（离线模式）';
+                timeEl.textContent = '最后更新：' + FALLBACK_DATA.updateTime + '（离线模式）';
             }
 
             renderPlatformStats();
@@ -319,7 +334,7 @@
                     }).join('');
 
                 return `
-                    <div class="topic-card" onclick="window.open('${topic.sources?.[0]?.url || '#'}', '_blank')">
+                    <div class="topic-card" onclick="window.open('${(topic.sources && topic.sources[0] && topic.sources[0].url) || '#'}', '_blank')">
                         <div class="topic-header">
                             <div class="rank ${isTop3 ? 'top3' : 'normal'}">${rank}</div>
                             <div class="topic-title">${topic.title}</div>
@@ -350,16 +365,6 @@
 
         // 每 5 分钟自动刷新数据（不刷新整个页面）
         setInterval(loadData, 300000);
-
-        // 每 30 秒更新一次"最后更新"时间显示
-        setInterval(() => {
-            const timeEl = document.getElementById('update-time');
-            const text = timeEl.textContent;
-            if (text.includes('最后更新')) {
-                // 保持原有文字，只刷新数据
-                loadData();
-            }
-        }, 30000);
     </script>
 </body>
 </html>
