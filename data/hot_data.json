@@ -1,134 +1,331 @@
 {
-  "updateTime": "2026-05-12 23:30",
+  "updateTime": "2026-05-12 17:03",
   "topics": [
     {
-      "rank": 1,
-      "title": "宇树发布载人变形机甲 390万元起售",
-      "category": "tech",
-      "summary": "5月12日，宇树科技发布GD01载人变形机甲，定价390万元起。为全球首款量产版载人机甲，可变形，民用交通工具。",
+      "title": "习近平同塔吉克斯坦总统拉赫蒙会谈",
+      "category": "social",
+      "summary": "习近平同塔吉克斯坦总统拉赫蒙会谈5月12日，国家主席习近平在北京同塔吉克斯坦总统拉赫蒙举行会谈。查看更多>5月12日，国家主席习近平在北京同塔吉克斯坦总统拉赫蒙举行会谈。查看更多>",
       "heat": {
-        "weibo": 5800.5,
-        "baidu": 780.9,
-        "douyin": 5200.3,
-        "bilibili": 1200.8,
-        "zhihu": 5233.1
+        "weibo": 0,
+        "baidu": 790.4061,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
       },
       "trend": "hot",
       "trendVal": 0,
       "sources": [
         {
-          "name": "微博",
-          "url": "https://weibo.com/a/hot/realtime"
-        },
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "title": "“超级心脏”爆单 订单已排到2028年",
+      "category": "social",
+      "summary": "“超级心脏”爆单 订单已排到2028年热近日，江苏镇江车间生产的船用中速发动机订单已排至2028年，这款国产“超级心脏”打破国外技术垄断。其研发、装配、应用依托...查看更多>近日，江苏镇江车间生产的",
+      "heat": {
+        "weibo": 0,
+        "baidu": 780.8557,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
         {
           "name": "百度",
           "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
         }
-      ]
+      ],
+      "rank": 2
     },
     {
-      "rank": 2,
+      "title": "武汉蒜鸟告了“蒜鸟”：损失超亿元",
+      "category": "finance",
+      "summary": "武汉蒜鸟告了“蒜鸟”：损失超亿元热武汉方言谐音IP“蒜鸟”2024年9月诞生后迅速走红，2025年销量破百万件。随着IP爆火，大量企业擅自使用其元素，引发...查看更多>武汉方言谐音IP“蒜鸟”202",
+      "heat": {
+        "weibo": 0,
+        "baidu": 771.3961,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "title": "这场“安全公开课”够硬核",
+      "category": "social",
+      "summary": "这场“安全公开课”够硬核今年5月12日是第18个全国防灾减灾日，国家防灾减灾救灾委员会办公室、应急管理部、中央广播电视总台、江西省人民政府在江西...查看更多>今年5月12日是第18个全国防灾减灾日，",
+      "heat": {
+        "weibo": 0,
+        "baidu": 761.8895,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "title": "4月汽车销量前十名仅剩1款油车",
+      "category": "social",
+      "summary": "4月汽车销量前十名仅剩1款油车热2026年4月全国乘用车零售销量前十名中仅‌吉利缤越‌一款燃油车（14,923辆），其余九席均为电动车，榜首吉利星愿销量...查看更多>2026年4月全国乘用车零售销量",
+      "heat": {
+        "weibo": 0,
+        "baidu": 752.117,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "title": "武契奇：钦佩中国人",
+      "category": "social",
+      "summary": "武契奇：钦佩中国人新近日，武契奇在采访中表示：中国比我们更勤奋、更专注，他们斗志昂扬。我钦佩，中国人的勤奋奉献。查看更多>近日，武契奇在采访中表示：中国比我们更勤奋、更专注，他们斗志昂扬。我钦佩，中国",
+      "heat": {
+        "weibo": 0,
+        "baidu": 742.5952,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "title": "网警依法打击“湖北人造大米”谣言",
+      "category": "social",
+      "summary": "网警依法打击“湖北人造大米”谣言近期，网民舒某在某平台发布“湖北人造大米生产线”的视频，吸引大量网民关注和讨论，视频谣称产品质量不合格，造成部分群众恐慌...查看更多>近期，网民舒某在某平台发布“湖北",
+      "heat": {
+        "weibo": 0,
+        "baidu": 733.2006,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "title": "独身男子离世存款被转走 民政局回应",
+      "category": "finance",
+      "summary": "独身男子离世存款被转走 民政局回应近日，南京一位老人照顾独身病侄，侄子离世后15万存款被转走的事件引发广泛关注。5月12日，针对网传“鼓楼区民政局转走15...查看更多>近日，南京一位老人照顾独身病侄",
+      "heat": {
+        "weibo": 0,
+        "baidu": 723.3853,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 8
+    },
+    {
+      "title": "小沈阳因减肥10天挂2次急诊",
+      "category": "entertainment",
+      "summary": "小沈阳因减肥10天挂2次急诊近日，小沈阳在准备演唱会期间，因减肥10天内挂两次急诊。温馨提醒：减肥切勿急于求成，坚持科学饮食搭配适度运动，健康减重才...查看更多>近日，小沈阳在准备演唱会期间，因减肥",
+      "heat": {
+        "weibo": 0,
+        "baidu": 713.9011,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "title": "55岁女子和邻居吵架被气死",
+      "category": "social",
+      "summary": "55岁女子和邻居吵架被气死5月11日，河南省周口市鹿邑县一名55岁女子与邻居因小事争执后情绪激动，引发脑干出血15毫升，经抢救无效死亡。事发前几日...查看更多>5月11日，河南省周口市鹿邑县一名55",
+      "heat": {
+        "weibo": 0,
+        "baidu": 704.0543,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "title": "不少车主感叹：停车位缩水了",
+      "category": "social",
+      "summary": "不少车主感叹：停车位缩水了热近日，不少车主反映停车越来越难，认为停车位“缩水”。调查发现，部分车位净宽仅2米左右，而新能源SUV、MPV车身普遍变宽...查看更多>近日，不少车主反映停车越来越难，认为",
+      "heat": {
+        "weibo": 0,
+        "baidu": 695.0716,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "title": "当地回应偷拍裙底男生已拟录公务员",
+      "category": "social",
+      "summary": "当地回应偷拍裙底男生已拟录公务员5月11日，网曝南京审计大学一研究生男子在学校内偷拍女生裙底。网贴还称，该男子已被国家税务总局江苏省税务局拟录用公务员，...查看更多>5月11日，网曝南京审计大学一研",
+      "heat": {
+        "weibo": 0,
+        "baidu": 685.8169,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 12
+    },
+    {
+      "title": "南京审计大学偷拍男子已被开除",
+      "category": "social",
+      "summary": "南京审计大学偷拍男子已被开除新近日，有网友在网络平台反映南京审计大学某学生涉嫌偷拍他人隐私。12日晚，南京审计大学发布情况通报：经查，我校学生顾某某在...查看更多>近日，有网友在网络平台反映南京审计",
+      "heat": {
+        "weibo": 0,
+        "baidu": 675.7343,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "title": "重庆一大桥底现巨大佛头？官方回应",
+      "category": "social",
+      "summary": "重庆一大桥底现巨大佛头？官方回应新5月11日，有网民发视频称，在重庆渝中区一大桥下的江边崖壁上，发现一处佛头塑像。重庆市渝中区文旅委工作人员告诉记者，曾组...查看更多>5月11日，有网民发视频称，在",
+      "heat": {
+        "weibo": 0,
+        "baidu": 665.553,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 14
+    },
+    {
       "title": "降噪耳机受害者出现",
-      "category": "health",
-      "summary": "降噪耳机话题冲上热搜，网友讨论耳机对听力的损伤。医生提醒：长期佩戴耳机，尤其是降噪耳机，可能导致听力下降。",
+      "category": "tech",
+      "summary": "降噪耳机受害者出现热近期，“降噪耳机受害者出现”引发热议。原本以为是隔绝喧嚣的好物，实则在悄悄透支听力，损耗大脑听觉、解码能力。长期高音量佩...查看更多>近期，“降噪耳机受害者出现”引发热议。原本以",
       "heat": {
-        "weibo": 4200.5,
-        "baidu": 450.0,
-        "douyin": 3800.6,
-        "bilibili": 1500.2,
-        "zhihu": 7272.2
-      },
-      "trend": "up",
-      "trendVal": 15,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://weibo.com/a/hot/realtime"
-        },
-        {
-          "name": "知乎",
-          "url": "https://rebang.today/"
-        }
-      ]
-    },
-    {
-      "rank": 3,
-      "title": "夫妻囤存储芯片 5个月涨320亿",
-      "category": "finance",
-      "summary": "借AI产业风口，深圳夫妻创办的存储模组企业德明利业绩暴涨。今年一季度狂赚33.46亿元，远超过去十年利润总和。",
-      "heat": {
-        "weibo": 3500.6,
-        "baidu": 742.6,
-        "douyin": 2800.4,
-        "bilibili": 620.3,
-        "zhihu": 3800.5
+        "weibo": 0,
+        "baidu": 656.7759,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
       },
       "trend": "hot",
       "trendVal": 0,
       "sources": [
         {
-          "name": "微博",
-          "url": "https://weibo.com/a/hot/realtime"
-        },
-        {
           "name": "百度",
           "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
         }
-      ]
+      ],
+      "rank": 15
     },
     {
-      "rank": 4,
-      "title": "中美元首北京会晤 三个特殊时间点",
-      "category": "politics",
-      "summary": "应国家主席习近平邀请，美国总统特朗普将于5月13日至15日对中国进行国事访问。这是美国总统时隔9年再次访华。",
-      "heat": {
-        "weibo": 3200.5,
-        "baidu": 790.4,
-        "douyin": 2100.3,
-        "bilibili": 520.4,
-        "zhihu": 2950.2
-      },
-      "trend": "up",
-      "trendVal": 8,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 5,
-      "title": "日本爆发数十年来最大规模反战抗议",
-      "category": "politics",
-      "summary": "近期日本各地爆发大规模反战抗议，民众抗议首相高市早苗背离和平宪法，不要战争呼声日益强烈。",
-      "heat": {
-        "weibo": 2800.3,
-        "baidu": 771.4,
-        "douyin": 1900.5,
-        "bilibili": 850.3,
-        "zhihu": 2200.4
-      },
-      "trend": "up",
-      "trendVal": 12,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 6,
-      "title": "网红星宝突发癫痫离世 年仅17岁",
+      "title": "宝宝头上有九个头旋",
       "category": "social",
-      "summary": "网红星宝王金怡于5月8日不幸离世，年仅17岁。家人通过社交平台发布讣告，证实其因突发癫痫意外身亡。",
+      "summary": "宝宝头上有九个头旋近日，浙江一位宝妈晒出头顶有九个头旋的宝宝照片引发关注。发型师：感觉我应该要学的还有很多。查看更多>近日，浙江一位宝妈晒出头顶有九个头旋的宝宝照片引发关注。发型师：感觉我应该要学的还",
       "heat": {
-        "weibo": 3800.5,
-        "baidu": 732.9,
-        "douyin": 2900.3,
-        "bilibili": 720.6,
-        "zhihu": 1800.4
+        "weibo": 0,
+        "baidu": 647.4132,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
       },
       "trend": "hot",
       "trendVal": 0,
@@ -137,99 +334,92 @@
           "name": "百度",
           "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
         }
-      ]
+      ],
+      "rank": 16
     },
     {
-      "rank": 7,
-      "title": "汶川地震的可乐男孩入职可口可乐",
+      "title": "印度游客在莫斯科喷泉水池洗衣服",
       "category": "social",
-      "summary": "可乐男孩薛枭如今已入职可口可乐。当年5·12汶川大地震，他被困废墟80小时，右臂截肢，获救时说叔叔我要喝冰可乐。",
+      "summary": "印度游客在莫斯科喷泉水池洗衣服近日，印度游客在莫斯科民族友谊喷泉水池中洗涤并晾晒衣物，引发当地民众围观。游客解释称此类行为在印度属常态。喷泉为镀金雕塑...查看更多>近日，印度游客在莫斯科民族友谊喷泉",
       "heat": {
-        "weibo": 3500.2,
-        "baidu": 723.6,
-        "douyin": 2600.4,
-        "bilibili": 680.5,
-        "zhihu": 2000.3
+        "weibo": 0,
+        "baidu": 637.1725,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
       },
       "trend": "hot",
       "trendVal": 0,
       "sources": [
         {
-          "name": "微博",
-          "url": "https://weibo.com/a/hot/realtime"
-        },
-        {
           "name": "百度",
           "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
         }
-      ]
+      ],
+      "rank": 17
     },
     {
-      "rank": 8,
-      "title": "A股重回4200点 国家队买了谁",
-      "category": "finance",
-      "summary": "A股市场重回4200点，投资者关注国家队资金动向，分析哪些板块和个股获得重点买入。",
-      "heat": {
-        "weibo": 2800.4,
-        "baidu": 713.5,
-        "douyin": 1900.5,
-        "bilibili": 450.2,
-        "zhihu": 3200.5
-      },
-      "trend": "up",
-      "trendVal": 10,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 9,
-      "title": "湖人0-4遭雷霆横扫",
-      "category": "sports",
-      "summary": "NBA季后赛湖人主场110-115不敌雷霆，遭遇系列赛横扫。詹姆斯贡献24分12篮板3助攻。",
-      "heat": {
-        "weibo": 3200.5,
-        "baidu": 513.2,
-        "douyin": 2800.6,
-        "bilibili": 1500.8,
-        "zhihu": 2500.3
-      },
-      "trend": "hot",
-      "trendVal": 0,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://weibo.com/a/hot/realtime"
-        },
-        {
-          "name": "百度",
-          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
-        }
-      ]
-    },
-    {
-      "rank": 10,
-      "title": "汶川地震67只搜救犬都已离世",
+      "title": "云南大理多地村庄现眼镜王蛇",
       "category": "social",
-      "summary": "汶川地震救援中英勇冲锋的67只功勋搜救犬，曾不畏艰险搜救被困生命，如今已全部离世。",
+      "summary": "云南大理多地村庄现眼镜王蛇近日，云南大理多地村庄惊现剧毒眼镜王蛇！眼镜王蛇号称“毒蛇之王”，属于国家二级重点保护野生动物。消防部门表示，所有剧毒眼...查看更多>近日，云南大理多地村庄惊现剧毒眼镜王蛇",
       "heat": {
-        "weibo": 2800.3,
-        "baidu": 540.8,
-        "douyin": 2200.4,
-        "bilibili": 580.3,
-        "zhihu": 1600.2
+        "weibo": 0,
+        "baidu": 627.784,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
       },
-      "trend": "up",
-      "trendVal": 8,
+      "trend": "hot",
+      "trendVal": 0,
       "sources": [
         {
           "name": "百度",
           "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
         }
-      ]
+      ],
+      "rank": 18
+    },
+    {
+      "title": "时隔18年 北京地下城免费开放",
+      "category": "social",
+      "summary": "时隔18年 北京地下城免费开放热北京地下城，这座始建于1969年的早期人防工程，在2008年关闭后，如今重修转型为北京人民防空历史文化馆。在北京市国防动...查看更多>北京地下城，这座始建于1969年",
+      "heat": {
+        "weibo": 0,
+        "baidu": 619.1789,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "title": "13岁女孩花光父亲18万积蓄买画稿",
+      "category": "social",
+      "summary": "13岁女孩花光父亲18万积蓄买画稿据报道，河南三门峡一名13岁女孩小童（化名）因沉迷二次元，半年内花光父亲18万元积蓄用于约稿，最贵单张画稿达5400元。...查看更多>据报道，河南三门峡一名13岁女",
+      "heat": {
+        "weibo": 0,
+        "baidu": 609.178,
+        "douyin": 0,
+        "bilibili": 0,
+        "zhihu": 0
+      },
+      "trend": "hot",
+      "trendVal": 0,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://top.baidu.com/board?tab=realtime&platform=pc"
+        }
+      ],
+      "rank": 20
     }
   ]
 }
