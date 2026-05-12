@@ -1,456 +1,365 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全网热点榜单 - 实时综合排行</title>
+    <meta http-equiv="refresh" content="300">
+    <title>全网热点榜单 - 实时综合排行📊</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            color: #e0e0e0;
+            padding: 20px;
         }
-        .header {
-            background: rgba(0,0,0,0.3);
-            backdrop-filter: blur(20px);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .header-content {
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+        }
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .update-time {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .update-time .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .platform-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-card .icon { font-size: 2em; margin-bottom: 10px; }
+        .stat-card .name { font-size: 0.9em; color: #666; margin-bottom: 5px; }
+        .stat-card .value { font-size: 1.5em; font-weight: bold; color: #333; }
+        .filters {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #fff;
+            color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .topics-list {
+            display: flex;
+            flex-direction: column;
             gap: 15px;
         }
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .update-time { color: #aaa; font-size: 14px; }
-        .update-time span { color: #48dbfb; font-weight: 600; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-
-        .platform-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .platform-tab {
-            padding: 8px 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.05);
-            color: #aaa;
+        .topic-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
             cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            white-space: nowrap;
         }
-        .platform-tab:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .platform-tab.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        .topic-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
-
-        .category-tabs {
+        .topic-header {
             display: flex;
-            gap: 8px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        .category-tab {
-            padding: 10px 22px;
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.05);
-            color: #aaa;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        .category-tab:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .category-tab.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
-        }
-
-        .hot-item {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .hot-item:hover {
-            background: rgba(255,255,255,0.08);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.15);
-        }
-        .hot-item::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 4px;
-            border-radius: 16px 0 0 16px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .hot-item:hover::before { opacity: 1; }
-        .hot-item.top1::before { background: linear-gradient(to bottom, #ffd700, #ff8c00); opacity: 1; }
-        .hot-item.top2::before { background: linear-gradient(to bottom, #c0c0c0, #a0a0a0); opacity: 1; }
-        .hot-item.top3::before { background: linear-gradient(to bottom, #cd7f32, #b87333); opacity: 1; }
-
-        .item-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 12px;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
         }
         .rank {
-            width: 36px; height: 36px;
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            font-size: 0.9em;
             flex-shrink: 0;
-            background: rgba(255,255,255,0.1);
-            color: #ccc;
         }
-        .rank.top1 { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a2e; }
-        .rank.top2 { background: linear-gradient(135deg, #e0e0e0, #a0a0a0); color: #1a1a2e; }
-        .rank.top3 { background: linear-gradient(135deg, #cd7f32, #b87333); color: #fff; }
-
-        .title-section { flex: 1; }
-        .title {
-            font-size: 17px;
-            font-weight: 600;
-            color: #fff;
-            line-height: 1.5;
-            margin-bottom: 6px;
-            text-decoration: none;
-            display: block;
+        .rank.top3 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .rank.normal { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .topic-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
         }
-        .title:hover { color: #a29bfe; }
-        .title .tag {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        .tag-politics { background: rgba(255,107,107,0.2); color: #ff6b6b; }
-        .tag-social { background: rgba(78,205,196,0.2); color: #4ecdc4; }
-        .tag-tech { background: rgba(254,202,87,0.2); color: #feca57; }
-        .tag-entertainment { background: rgba(255,159,243,0.2); color: #ff9ff3; }
-        .tag-sports { background: rgba(84,160,255,0.2); color: #54a0ff; }
-        .tag-life { background: rgba(72,219,251,0.2); color: #48dbfb; }
-        .tag-finance { background: rgba(255,165,0,0.2); color: #ffa500; }
-        .tag-health { background: rgba(152,251,152,0.2); color: #98fb98; }
-
-        .summary { font-size: 13px; color: #888; line-height: 1.6; }
-
-        .platform-heat {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .heat-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-        }
-        .heat-item .platform-name { color: #666; }
-        .heat-item .heat-value { font-weight: 700; font-family: 'SF Mono', monospace; }
-        .heat-item.weibo .heat-value { color: #ff6b6b; }
-        .heat-item.baidu .heat-value { color: #4ecdc4; }
-        .heat-item.douyin .heat-value { color: #feca57; }
-        .heat-item.bilibili .heat-value { color: #ff9ff3; }
-        .heat-item.zhihu .heat-value { color: #54a0ff; }
-
-        .total-heat {
-            margin-left: auto;
+        .topic-category {
             padding: 4px 12px;
-            background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2));
             border-radius: 12px;
-            border: 1px solid rgba(102,126,234,0.3);
+            font-size: 0.75em;
+            color: white;
+            background: #667eea;
         }
-        .total-heat .label { font-size: 11px; color: #888; margin-right: 4px; }
-        .total-heat .value { font-size: 14px; font-weight: 700; color: #a29bfe; }
-
-        .trend {
-            display: inline-flex;
-            align-items: center;
-            gap: 2px;
-            font-size: 12px;
-            margin-left: 8px;
+        .topic-summary {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        .trend.up { color: #ff6b6b; }
-        .trend.down { color: #4ecdc4; }
-        .trend.hot { color: #feca57; }
-
-        .source-links {
+        .topic-stats {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 15px;
             flex-wrap: wrap;
-        }
-        .source-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85em;
             color: #888;
-            font-size: 12px;
-            text-decoration: none;
-            transition: all 0.2s;
         }
-        .source-link:hover {
-            background: rgba(255,255,255,0.12);
-            color: #ccc;
-            border-color: rgba(255,255,255,0.2);
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
-        .source-link .icon { font-size: 10px; }
-
-        .footer {
+        .stat-item .platform-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            color: white;
+        }
+        .loading, .error {
             text-align: center;
-            padding: 40px 20px;
-            color: #555;
-            font-size: 13px;
+            padding: 40px;
+            color: white;
+            font-size: 1.2em;
         }
-        .footer a { color: #667eea; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-
-        @media (max-width: 768px) {
-            .header-content { flex-direction: column; text-align: center; }
-            .hot-item { padding: 16px; }
-            .title { font-size: 15px; }
-            .platform-heat { gap: 10px; }
-        }
+        .error { color: #ff6b6b; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">🔥 全网热点榜单</div>
-            <div class="update-time">数据更新时间：<span id="update-time">2026-05-12 23:30</span> | 每小时自动更新</div>
-        </div>
-    </div>
-
     <div class="container">
-        <div class="platform-tabs">
-            <div class="platform-tab active" data-platform="all">📊 综合排行</div>
-            <div class="platform-tab" data-platform="weibo">🔴 微博热搜</div>
-            <div class="platform-tab" data-platform="baidu">🔵 百度热搜</div>
-            <div class="platform-tab" data-platform="douyin">🟡 抖音热榜</div>
-            <div class="platform-tab" data-platform="bilibili">🟣 B站热搜</div>
-            <div class="platform-tab" data-platform="zhihu">🔷 知乎热榜</div>
+        <div class="header">
+            <h1>📊 全网热点榜单</h1>
+            <div class="update-time">
+                <span class="live-indicator"></span>
+                <span id="update-time">正在加载数据...</span>
+            </div>
         </div>
 
-        <div class="category-tabs">
-            <div class="category-tab active" data-category="all">📊 全部分类</div>
-            <div class="category-tab" data-category="politics">🏛️ 时政</div>
-            <div class="category-tab" data-category="social">📰 社会</div>
-            <div class="category-tab" data-category="tech">💻 科技</div>
-            <div class="category-tab" data-category="entertainment">🎬 娱乐</div>
-            <div class="category-tab" data-category="sports">⚽ 体育</div>
-            <div class="category-tab" data-category="life">🏠 生活</div>
-            <div class="category-tab" data-category="finance">💰 财经</div>
-            <div class="category-tab" data-category="health">🏥 健康</div>
+        <div class="platform-stats" id="platform-stats">
+            <!-- 动态生成 -->
         </div>
 
-        <div id="hot-list"></div>
+        <div class="filters">
+            <button class="filter-btn active" data-category="all">📊 全部分类</button>
+            <button class="filter-btn" data-category="politics">🏛️ 时政</button>
+            <button class="filter-btn" data-category="social">📰 社会</button>
+            <button class="filter-btn" data-category="tech">💻 科技</button>
+            <button class="filter-btn" data-category="entertainment">🎬 娱乐</button>
+            <button class="filter-btn" data-category="sports">⚽ 体育</button>
+            <button class="filter-btn" data-category="life">🏠 生活</button>
+            <button class="filter-btn" data-category="finance">💰 财经</button>
+            <button class="filter-btn" data-category="health">🏥 健康</button>
+        </div>
 
-        <div class="footer">
-            <p>数据来源：<a href="https://weibo.com/a/hot/realtime" target="_blank">微博热搜</a>、<a href="https://top.baidu.com/board?tab=realtime&platform=pc" target="_blank">百度热搜</a>、<a href="https://rebang.today/" target="_blank">今日热榜</a> 等平台</p>
-            <p style="margin-top:8px;">综合热度 = 各平台热度加权求和 | 每小时自动更新 | 点击来源链接可跳转原平台</p>
+        <div class="topics-list" id="topics-list">
+            <div class="loading">⏳ 正在加载热点数据...</div>
         </div>
     </div>
 
     <script>
-        // 数据直接内嵌 - 不依赖外部文件
-        const HOT_DATA = {"updateTime": "2026-05-12 23:30", "topics": [{"rank": 1, "title": "宇树发布载人变形机甲 390万元起售", "category": "tech", "summary": "5月12日，宇树科技发布GD01载人变形机甲，定价390万元起。为全球首款量产版载人机甲，可变形，民用交通工具。", "heat": {"weibo": 5800.5, "baidu": 780.9, "douyin": 5200.3, "bilibili": 1200.8, "zhihu": 5233.1}, "trend": "hot", "trendVal": 0, "sources": [{"name": "微博", "url": "https://weibo.com/a/hot/realtime"}, {"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 2, "title": "降噪耳机受害者出现", "category": "health", "summary": "降噪耳机话题冲上热搜，网友讨论耳机对听力的损伤。医生提醒：长期佩戴耳机，尤其是降噪耳机，可能导致听力下降。", "heat": {"weibo": 4200.5, "baidu": 450.0, "douyin": 3800.6, "bilibili": 1500.2, "zhihu": 7272.2}, "trend": "up", "trendVal": 15, "sources": [{"name": "微博", "url": "https://weibo.com/a/hot/realtime"}, {"name": "知乎", "url": "https://rebang.today/"}]}, {"rank": 3, "title": "夫妻囤存储芯片 5个月涨320亿", "category": "finance", "summary": "借AI产业风口，深圳夫妻创办的存储模组企业德明利业绩暴涨。今年一季度狂赚33.46亿元，远超过去十年利润总和。", "heat": {"weibo": 3500.6, "baidu": 742.6, "douyin": 2800.4, "bilibili": 620.3, "zhihu": 3800.5}, "trend": "hot", "trendVal": 0, "sources": [{"name": "微博", "url": "https://weibo.com/a/hot/realtime"}, {"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 4, "title": "中美元首北京会晤 三个特殊时间点", "category": "politics", "summary": "应国家主席习近平邀请，美国总统特朗普将于5月13日至15日对中国进行国事访问。这是美国总统时隔9年再次访华。", "heat": {"weibo": 3200.5, "baidu": 790.4, "douyin": 2100.3, "bilibili": 520.4, "zhihu": 2950.2}, "trend": "up", "trendVal": 8, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 5, "title": "日本爆发数十年来最大规模反战抗议", "category": "politics", "summary": "近期日本各地爆发大规模反战抗议，民众抗议首相高市早苗背离和平宪法，不要战争呼声日益强烈。", "heat": {"weibo": 2800.3, "baidu": 771.4, "douyin": 1900.5, "bilibili": 850.3, "zhihu": 2200.4}, "trend": "up", "trendVal": 12, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 6, "title": "网红星宝突发癫痫离世 年仅17岁", "category": "social", "summary": "网红星宝王金怡于5月8日不幸离世，年仅17岁。家人通过社交平台发布讣告，证实其因突发癫痫意外身亡。", "heat": {"weibo": 3800.5, "baidu": 732.9, "douyin": 2900.3, "bilibili": 720.6, "zhihu": 1800.4}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 7, "title": "汶川地震的可乐男孩入职可口可乐", "category": "social", "summary": "可乐男孩薛枭如今已入职可口可乐。当年5·12汶川大地震，他被困废墟80小时，右臂截肢，获救时说叔叔我要喝冰可乐。", "heat": {"weibo": 3500.2, "baidu": 723.6, "douyin": 2600.4, "bilibili": 680.5, "zhihu": 2000.3}, "trend": "hot", "trendVal": 0, "sources": [{"name": "微博", "url": "https://weibo.com/a/hot/realtime"}, {"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 8, "title": "A股重回4200点 国家队买了谁", "category": "finance", "summary": "A股市场重回4200点，投资者关注国家队资金动向，分析哪些板块和个股获得重点买入。", "heat": {"weibo": 2800.4, "baidu": 713.5, "douyin": 1900.5, "bilibili": 450.2, "zhihu": 3200.5}, "trend": "up", "trendVal": 10, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 9, "title": "湖人0-4遭雷霆横扫", "category": "sports", "summary": "NBA季后赛湖人主场110-115不敌雷霆，遭遇系列赛横扫。詹姆斯贡献24分12篮板3助攻。", "heat": {"weibo": 3200.5, "baidu": 513.2, "douyin": 2800.6, "bilibili": 1500.8, "zhihu": 2500.3}, "trend": "hot", "trendVal": 0, "sources": [{"name": "微博", "url": "https://weibo.com/a/hot/realtime"}, {"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}, {"rank": 10, "title": "汶川地震67只搜救犬都已离世", "category": "social", "summary": "汶川地震救援中英勇冲锋的67只功勋搜救犬，曾不畏艰险搜救被困生命，如今已全部离世。", "heat": {"weibo": 2800.3, "baidu": 540.8, "douyin": 2200.4, "bilibili": 580.3, "zhihu": 1600.2}, "trend": "up", "trendVal": 8, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}]}]};
-
-        const categoryNames = {
-            "politics": "时政",
-            "social": "社会",
-            "tech": "科技",
-            "entertainment": "娱乐",
-            "sports": "体育",
-            "life": "生活",
-            "finance": "财经",
-            "health": "健康"
+        // 兜底数据（当外部 JSON 加载失败时使用）
+        const FALLBACK_DATA = {
+            "updateTime": "2026-05-12 17:03",
+            "topics": [
+                {"title": "习近平同塔吉克斯坦总统拉赫蒙会谈", "category": "social", "summary": "5月12日，国家主席习近平在北京同塔吉克斯坦总统拉赫蒙举行会谈。", "heat": {"weibo": 0, "baidu": 790.4061, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 1},
+                {"title": ""超级心脏"爆单 订单已排到2028年", "category": "social", "summary": "近日，江苏镇江车间生产的船用中速发动机订单已排至2028年，这款国产"超级心脏"打破国外技术垄断。", "heat": {"weibo": 0, "baidu": 780.8557, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 2},
+                {"title": "武汉蒜鸟告了"蒜鸟"：损失超亿元", "category": "finance", "summary": "武汉方言谐音IP"蒜鸟"2024年9月诞生后迅速走红，2025年销量破百万件。随着IP爆火，大量企业擅自使用其元素。", "heat": {"weibo": 0, "baidu": 771.3961, "douyin": 0, "bilibili": 0, "zhihu": 0}, "trend": "hot", "trendVal": 0, "sources": [{"name": "百度", "url": "https://top.baidu.com/board?tab=realtime&platform=pc"}], "rank": 3}
+            ]
         };
 
-        const platformNames = {
-            "weibo": "微博",
-            "baidu": "百度",
-            "douyin": "抖音",
-            "bilibili": "B站",
-            "zhihu": "知乎"
-        };
-
-        let allTopics = HOT_DATA.topics || [];
-        let currentPlatform = 'all';
+        let allTopics = [];
         let currentCategory = 'all';
 
-        // 按平台排序
-        function sortByPlatform(topics, platform) {
-            if (platform === 'all') {
-                return [...topics].sort((a, b) => {
-                    const totalA = Object.values(a.heat || {}).reduce((sum, v) => sum + (v || 0), 0);
-                    const totalB = Object.values(b.heat || {}).reduce((sum, v) => sum + (v || 0), 0);
-                    return totalB - totalA;
-                });
-            } else {
-                return [...topics]
-                    .filter(t => (t.heat || {})[platform] > 0)
-                    .sort((a, b) => (b.heat || {})[platform] - (a.heat || {})[platform]);
+        // 平台配置
+        const platforms = {
+            weibo: { name: '微博热搜', icon: '🔴', color: '#e6162d' },
+            baidu: { name: '百度热搜', icon: '🔵', color: '#2932e1' },
+            douyin: { name: '抖音热榜', icon: '🟡', color: '#000000' },
+            bilibili: { name: 'B站热搜', icon: '🟣', color: '#00a1d6' },
+            zhihu: { name: '知乎热榜', icon: '🔷', color: '#0084ff' }
+        };
+
+        // 加载数据（优先从外部 JSON）
+        async function loadData() {
+            const listContainer = document.getElementById('topics-list');
+
+            try {
+                // 添加时间戳防止缓存
+                const response = await fetch('data/hot_data.json?t=' + Date.now());
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+
+                const data = await response.json();
+                allTopics = data.topics || [];
+
+                // 更新最后更新时间
+                document.getElementById('update-time').textContent = 
+                    '最后更新：' + (data.updateTime || '未知');
+
+                console.log('✅ 从 data/hot_data.json 加载成功，共', allTopics.length, '条');
+            } catch (e) {
+                console.warn('⚠️ 外部数据加载失败，使用兜底数据:', e.message);
+                allTopics = FALLBACK_DATA.topics;
+                document.getElementById('update-time').textContent = 
+                    '最后更新：' + FALLBACK_DATA.updateTime + '（离线模式）';
             }
+
+            renderPlatformStats();
+            renderTopics();
         }
 
-        function renderTopics(topics) {
-            const container = document.getElementById('hot-list');
-            if (!topics || topics.length === 0) {
-                container.innerHTML = '<div style="text-align:center;padding:40px;color:#888;"><p>暂无数据</p></div>';
+        // 渲染平台统计
+        function renderPlatformStats() {
+            const container = document.getElementById('platform-stats');
+            const stats = {};
+
+            // 计算各平台总热度
+            allTopics.forEach(topic => {
+                Object.entries(topic.heat || {}).forEach(([platform, value]) => {
+                    if (value > 0) {
+                        stats[platform] = (stats[platform] || 0) + value;
+                    }
+                });
+            });
+
+            container.innerHTML = Object.entries(platforms).map(([key, config]) => {
+                const value = stats[key] || 0;
+                const displayValue = value > 10000 ? (value / 10000).toFixed(1) + '万' : value.toFixed(1);
+                return `
+                    <div class="stat-card">
+                        <div class="icon">${config.icon}</div>
+                        <div class="name">${config.name}</div>
+                        <div class="value">${displayValue}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // 渲染话题列表
+        function renderTopics() {
+            const container = document.getElementById('topics-list');
+
+            let filtered = allTopics;
+            if (currentCategory !== 'all') {
+                filtered = allTopics.filter(t => t.category === currentCategory);
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="loading">该分类暂无数据</div>';
                 return;
             }
 
-            let html = '';
-            topics.forEach((topic, index) => {
-                const totalHeat = Object.values(topic.heat || {}).reduce((a, b) => a + (b || 0), 0);
+            container.innerHTML = filtered.map((topic, index) => {
+                const rank = topic.rank || (index + 1);
+                const isTop3 = rank <= 3;
 
-                let topClass = '', rankClass = '';
-                if (index === 0) { topClass = 'top1'; rankClass = 'top1'; }
-                else if (index === 1) { topClass = 'top2'; rankClass = 'top2'; }
-                else if (index === 2) { topClass = 'top3'; rankClass = 'top3'; }
+                // 计算综合热度
+                const totalHeat = Object.values(topic.heat || {}).reduce((a, b) => a + b, 0);
+                const heatDisplay = totalHeat > 10000 ? (totalHeat / 10000).toFixed(1) + '万' : totalHeat.toFixed(1);
 
-                let trendHtml = '';
-                if (topic.trend === 'up') trendHtml = `<span class="trend up">▲ ${topic.trendVal}</span>`;
-                else if (topic.trend === 'down') trendHtml = `<span class="trend down">▼ ${topic.trendVal}</span>`;
-                else if (topic.trend === 'hot') trendHtml = '<span class="trend hot">🔥 爆</span>';
+                // 各平台热度显示
+                const heatStats = Object.entries(topic.heat || {})
+                    .filter(([_, val]) => val > 0)
+                    .map(([platform, val]) => {
+                        const config = platforms[platform] || { icon: '●', color: '#999' };
+                        const display = val > 10000 ? (val / 10000).toFixed(1) + '万' : val.toFixed(1);
+                        return `<span class="stat-item"><span class="platform-icon" style="background:${config.color}">${config.icon}</span>${display}</span>`;
+                    }).join('');
 
-                const catName = categoryNames[topic.category] || topic.category;
-
-                let sourcesHtml = '';
-                (topic.sources || []).forEach(src => {
-                    sourcesHtml += `<a href="${src.url}" target="_blank" class="source-link"><span class="icon">🔗</span> ${src.name}</a>`;
-                });
-
-                let heatHtml = '';
-                Object.entries(topic.heat || {}).forEach(([platform, value]) => {
-                    if (value > 0) {
-                        heatHtml += `
-                            <div class="heat-item ${platform}">
-                                <span class="platform-name">${platformNames[platform]}</span>
-                                <span class="heat-value">${value}万</span>
-                            </div>`;
-                    }
-                });
-
-                html += `
-                    <div class="hot-item ${topClass}" data-category="${topic.category}">
-                        <div class="item-header">
-                            <div class="rank ${rankClass}">${index + 1}</div>
-                            <div class="title-section">
-                                <div class="title">
-                                    <span class="tag tag-${topic.category}">${catName}</span>
-                                    ${topic.title}
-                                    ${trendHtml}
-                                </div>
-                                <div class="summary">${topic.summary || ''}</div>
-                            </div>
+                return `
+                    <div class="topic-card" onclick="window.open('${topic.sources?.[0]?.url || '#'}', '_blank')">
+                        <div class="topic-header">
+                            <div class="rank ${isTop3 ? 'top3' : 'normal'}">${rank}</div>
+                            <div class="topic-title">${topic.title}</div>
+                            <span class="topic-category">${topic.category}</span>
                         </div>
-                        <div class="platform-heat">
-                            ${heatHtml}
-                            <div class="total-heat">
-                                <span class="label">综合热度</span>
-                                <span class="value">${totalHeat.toFixed(1)}万</span>
-                            </div>
-                        </div>
-                        <div class="source-links">
-                            <span style="color:#666;font-size:12px;margin-right:4px;">来源：</span>
-                            ${sourcesHtml}
+                        <div class="topic-summary">${topic.summary || ''}</div>
+                        <div class="topic-stats">
+                            <span class="stat-item">🔥 综合热度：${heatDisplay}</span>
+                            ${heatStats}
                         </div>
                     </div>
                 `;
-            });
-
-            container.innerHTML = html;
+            }).join('');
         }
 
-        function applyFilters() {
-            let filtered = allTopics;
-
-            if (currentCategory !== 'all') {
-                filtered = filtered.filter(t => t.category === currentCategory);
-            }
-
-            filtered = sortByPlatform(filtered, currentPlatform);
-
-            renderTopics(filtered);
-        }
-
-        // 平台切换
-        document.querySelectorAll('.platform-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                currentPlatform = this.dataset.platform;
-                applyFilters();
-            });
-        });
-
-        // 分类切换
-        document.querySelectorAll('.category-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                currentCategory = this.dataset.category;
-                applyFilters();
+        // 分类筛选
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                renderTopics();
             });
         });
 
         // 初始化
-        applyFilters();
+        loadData();
+
+        // 每 5 分钟自动刷新数据（不刷新整个页面）
+        setInterval(loadData, 300000);
+
+        // 每 30 秒更新一次"最后更新"时间显示
+        setInterval(() => {
+            const timeEl = document.getElementById('update-time');
+            const text = timeEl.textContent;
+            if (text.includes('最后更新')) {
+                // 保持原有文字，只刷新数据
+                loadData();
+            }
+        }, 30000);
     </script>
 </body>
 </html>
