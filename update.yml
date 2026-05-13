@@ -2,34 +2,60 @@ name: Update Hot Topics
 
 on:
   schedule:
-    # 每小时运行一次（UTC时间）
-    - cron: '0 * * * *'
-  # 允许手动触发
-  workflow_dispatch:
+    - cron: '0 * * * *'  # 每小时运行一次
+  workflow_dispatch:  # 支持手动触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Install dependencies
-      run: |
-        pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
 
-    - name: Run update script
-      run: python scripts/update_hot_topics.py
+      - name: Run update script
+        id: update
+        run: python scripts/update_hot_topics.py
+        continue-on-error: false  # 脚本失败时停止
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add data/hot_data.json
-        git diff --cached --quiet || (git commit -m "Update hot topics data - $(date +'%Y-%m-%d %H:%M')" && git push)
+      - name: Commit and push changes
+        id: commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/hot_data.json
+          git diff --cached --quiet || (git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')" && git push)
+          # 输出是否有变更
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Pages rebuild
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          # 创建一个空提交触发 Pages 重新构建
+          git commit --allow-empty -m "Trigger Pages rebuild - $(date +'%Y-%m-%d %H:%M')"
+          git push
+
+      - name: Upload artifact (backup)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hot-data-backup
+          path: data/hot_data.json
+          retention-days: 7
