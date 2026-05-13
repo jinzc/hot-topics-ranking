@@ -7,6 +7,11 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write       # 用于 push 代码
+  pages: write        # 用于 Pages 部署
+  id-token: write     # 用于 OIDC 认证（deploy-pages 需要）
+
 concurrency:
   group: "pages"
   cancel-in-progress: false
