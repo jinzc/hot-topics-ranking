@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -34,13 +36,15 @@ jobs:
       - name: Update data
         run: python scripts/update_hot_topics.py
 
-      - name: Commit changes
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add data/hot_data.json
           git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')" || git commit --allow-empty -m "Update timestamp - $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git push https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
