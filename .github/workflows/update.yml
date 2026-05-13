@@ -2,50 +2,55 @@ name: Update Hot Topics
 
 on:
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
-  push:
+    - cron: '0 * * * *'  # 每小时整点
+  workflow_dispatch:     # 手动触发
+  push:                  # 每次 push 都触发
     branches: [main]
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    paths-ignore:        # 但忽略某些文件的 push
+      - 'README.md'
+      - '.github/workflows/**'
 
 concurrency:
-  group: "pages"
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install deps
-        run: pip install requests beautifulsoup4
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
 
-      - name: Update data
+      - name: Run update script
+        id: update
         run: python scripts/update_hot_topics.py
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/hot_data.json
+          git diff --cached --quiet && git commit --allow-empty -m "Update timestamp - $(date +'%Y-%m-%d %H:%M')" || git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')"
+          git push
 
-  deploy:
-    needs: update
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Upload artifact backup
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hot-data-backup
+          path: data/hot_data.json
+          retention-days: 7
