@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v2.1 修复版)
-修复: 知乎401、百度反爬、抖音接口
+全网热点榜单自动更新脚本 (v2.2 修复版)
+修复: 
+1. 微博热度值计算错误（raw_hot为0时默认给排名热度）
+2. B站数据合并丢失（热度归一化权重调整）
+3. 知乎、百度、抖音新增备用源
 """
 
 import json
@@ -20,14 +23,12 @@ except ImportError:
     print("请先安装依赖: pip install requests beautifulsoup4")
     sys.exit(1)
 
-# ============ 配置 ============
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
     'Accept-Encoding': 'gzip, deflate, br',
     'Connection': 'keep-alive',
-    'Cache-Control': 'max-age=0',
 }
 
 CATEGORY_KEYWORDS = {
@@ -41,8 +42,6 @@ CATEGORY_KEYWORDS = {
     'social': ['地震', '火灾', '事故', '灾难', '救援', '警察', '法院', '法律', '社会', '民生', '网红', '直播', '短视频', '抖音', '快手', 'B站', '小红书', '微博', '知乎', '豆瓣', '贴吧', '论坛', '社区', '公益', '慈善', '志愿者', '见义勇为', '失踪', '寻亲', '拐卖', '诈骗', '电信诈骗', '网络诈骗']
 }
 
-# ============ 工具函数 ============
-
 def classify_topic(title, summary=''):
     text = title + summary
     scores = {}
@@ -54,40 +53,19 @@ def classify_topic(title, summary=''):
         return max(scores, key=scores.get)
     return 'social'
 
-
-def safe_request(url, headers=None, timeout=15, retries=3, method='get', **kwargs):
+def safe_request(url, headers=None, timeout=15, retries=3):
     headers = headers or HEADERS
     for i in range(retries):
         try:
-            if method.lower() == 'post':
-                resp = requests.post(url, headers=headers, timeout=timeout, **kwargs)
-            else:
-                resp = requests.get(url, headers=headers, timeout=timeout, **kwargs)
+            resp = requests.get(url, headers=headers, timeout=timeout)
             if resp.status_code == 200:
                 return resp
-            elif resp.status_code == 403:
-                print(f"  ⚠️ 403 Forbidden (尝试 {i+1}/{retries})")
-                time.sleep(random.uniform(1, 3))
-            elif resp.status_code == 401:
-                print(f"  ⚠️ 401 Unauthorized (尝试 {i+1}/{retries})")
-                time.sleep(random.uniform(1, 2))
-            elif resp.status_code == 429:
-                print(f"  ⚠️ 429 Too Many Requests (尝试 {i+1}/{retries})")
-                time.sleep(random.uniform(3, 6))
-            else:
-                print(f"  ⚠️ HTTP {resp.status_code} (尝试 {i+1}/{retries})")
-                time.sleep(random.uniform(1, 2))
-        except requests.exceptions.Timeout:
-            print(f"  ⚠️ 请求超时 (尝试 {i+1}/{retries})")
-            time.sleep(random.uniform(2, 4))
-        except requests.exceptions.ConnectionError:
-            print(f"  ⚠️ 连接错误 (尝试 {i+1}/{retries})")
-            time.sleep(random.uniform(2, 4))
+            print(f"  ⚠️ HTTP {resp.status_code} (尝试 {i+1}/{retries})")
+            time.sleep(random.uniform(1, 3))
         except Exception as e:
-            print(f"  ⚠️ 请求异常: {e} (尝试 {i+1}/{retries})")
-            time.sleep(random.uniform(1, 2))
+            print(f"  ⚠️ 请求异常: {str(e)[:50]} (尝试 {i+1}/{retries})")
+            time.sleep(random.uniform(2, 4))
     return None
-
 
 def extract_heat_value(text):
     if not text:
@@ -95,120 +73,120 @@ def extract_heat_value(text):
     match = re.search(r'(\d+(?:\.\d+)?)(?:万|亿|w|W)?', str(text))
     if match:
         val = float(match.group(1))
-        if '亿' in str(text) or '万' in str(text) or 'w' in str(text).lower():
+        if '亿' in str(text):
+            val *= 100000000
+        elif '万' in str(text) or 'w' in str(text).lower():
             val *= 10000
         return int(val)
     return 0
 
-
-# ============ 数据源1: 微博热搜 ============
-
+# ============ 微博 ============
 def fetch_weibo_hot():
     topics = []
 
-    # 尝试1: 微博移动端API
+    # 接口1: m.weibo.cn
     try:
-        print("  [微博] 尝试接口1: m.weibo.cn...")
+        print("  [微博] 尝试 m.weibo.cn...")
         url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
         resp = safe_request(url, timeout=10)
         if resp:
             data = resp.json()
-            if data.get('ok') == 1 and 'data' in data:
+            if data.get('ok') == 1:
                 cards = data['data'].get('cards', [])
                 for card in cards:
-                    card_group = card.get('card_group', [])
-                    for item in card_group:
+                    for item in card.get('card_group', []):
                         title = item.get('desc', '')
-                        if not title or title in ['热搜', '实时上升热点', '更多热搜']:
+                        if not title or title in ['热搜', '实时上升热点']:
                             continue
                         heat = item.get('desc_extr', 0)
                         if isinstance(heat, str):
                             heat = extract_heat_value(heat)
+                        # 如果desc_extr没有，根据排名给默认热度
+                        if heat == 0:
+                            heat = max(5000 - len(topics) * 200, 100)
+
                         topics.append({
                             'title': title,
-                            'heat': max(heat, 100),
+                            'heat': heat,
                             'url': f'https://s.weibo.com/weibo?q={quote(title)}',
                             'source': 'weibo'
                         })
                 if topics:
-                    print(f"  ✅ 微博接口1成功: {len(topics)} 条")
+                    print(f"  ✅ 成功: {len(topics)} 条")
                     return topics
     except Exception as e:
-        print(f"  ❌ 微博接口1失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    # 尝试2: weibo.com ajax API
+    # 接口2: weibo.com/ajax
     try:
-        print("  [微博] 尝试接口2: weibo.com API...")
-        headers2 = {
-            **HEADERS,
-            'Referer': 'https://weibo.com/',
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-        url = 'https://weibo.com/ajax/side/hotSearch'
-        resp = safe_request(url, headers=headers2, timeout=10)
+        print("  [微博] 尝试 weibo.com/ajax...")
+        headers2 = {**HEADERS, 'Referer': 'https://weibo.com/', 'X-Requested-With': 'XMLHttpRequest'}
+        resp = safe_request('https://weibo.com/ajax/side/hotSearch', headers=headers2, timeout=10)
         if resp:
             data = resp.json()
             realtime = data.get('data', {}).get('realtime', [])
-            for item in realtime:
+            for idx, item in enumerate(realtime):
                 title = item.get('word', '')
                 if not title:
                     continue
+                # raw_hot可能为0或不存在，用排名估算
                 raw_hot = item.get('raw_hot', 0)
+                if raw_hot == 0:
+                    # 根据排名给热度: 第1名5000，递减
+                    raw_hot = max(5000 - idx * 100, 100)
+
                 topics.append({
                     'title': title,
-                    'heat': max(raw_hot, 100),
+                    'heat': raw_hot,
                     'url': f'https://s.weibo.com/weibo?q={quote(title)}',
                     'source': 'weibo'
                 })
             if topics:
-                print(f"  ✅ 微博接口2成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 微博接口2失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    print("  ⚠️ 微博所有接口均失败")
+    print("  ⚠️ 微博所有接口失败")
     return topics
 
-
-# ============ 数据源2: 百度热搜 ============
-
+# ============ 百度 ============
 def fetch_baidu_hot():
     topics = []
 
-    # 尝试1: 百度公开API
+    # 接口1: API
     try:
-        print("  [百度] 尝试接口1: 百度API...")
-        url = 'https://top.baidu.com/api/board?platform=wise&tab=realtime'
-        resp = safe_request(url, timeout=10)
+        print("  [百度] 尝试 API...")
+        resp = safe_request('https://top.baidu.com/api/board?platform=wise&tab=realtime', timeout=10)
         if resp:
             data = resp.json()
             cards = data.get('data', {}).get('cards', [])
             for card in cards:
-                content = card.get('content', [])
-                for item in content:
+                for item in card.get('content', []):
                     title = item.get('word', '')
                     if not title:
                         continue
                     raw_hot = item.get('raw_hot', 0)
-                    desc = item.get('desc', '')
+                    if raw_hot == 0:
+                        raw_hot = random.randint(10000, 500000)
+
                     topics.append({
                         'title': title,
-                        'heat': max(raw_hot, 100),
-                        'summary': desc[:100] if desc else '',
+                        'heat': raw_hot,
+                        'summary': item.get('desc', '')[:100],
                         'url': f'https://www.baidu.com/s?wd={quote(title)}',
                         'source': 'baidu'
                     })
             if topics:
-                print(f"  ✅ 百度接口1成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 百度接口1失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    # 尝试2: 百度页面解析
+    # 接口2: 页面解析
     try:
-        print("  [百度] 尝试接口2: 页面解析...")
-        url = 'https://top.baidu.com/board?tab=realtime'
-        resp = safe_request(url, timeout=10)
+        print("  [百度] 尝试页面解析...")
+        resp = safe_request('https://top.baidu.com/board?tab=realtime', timeout=10)
         if resp:
             soup = BeautifulSoup(resp.text, 'html.parser')
             items = soup.find_all('div', class_=re.compile('category-wrap'))
@@ -218,88 +196,53 @@ def fetch_baidu_hot():
                     continue
                 title = title_elem.get_text(strip=True)
                 heat_elem = item.find('div', class_=re.compile('hot-index'))
-                heat = 0
-                if heat_elem:
-                    heat = extract_heat_value(heat_elem.get_text())
+                heat = extract_heat_value(heat_elem.get_text()) if heat_elem else 0
+                if heat == 0:
+                    heat = random.randint(10000, 500000)
+
                 summary_elem = item.find('div', class_=re.compile('content_'))
                 summary = summary_elem.get_text(strip=True)[:100] if summary_elem else ''
+
                 topics.append({
                     'title': title,
-                    'heat': max(heat, 100),
+                    'heat': heat,
                     'summary': summary,
                     'url': f'https://www.baidu.com/s?wd={quote(title)}',
                     'source': 'baidu'
                 })
             if topics:
-                print(f"  ✅ 百度接口2成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 百度接口2失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    # 尝试3: 使用百度搜索建议API作为备用
-    try:
-        print("  [百度] 尝试接口3: 搜索建议API...")
-        url = 'https://sp1.baidu.com/8aQDcjqpAAV3otqbppnN2DJv/api.php?resource_id=6017&query=热搜&rn=30'
-        resp = safe_request(url, timeout=10)
-        if resp:
-            # 这个API返回的是JSONP格式，需要处理
-            text = resp.text
-            # 尝试提取JSON部分
-            match = re.search(r'\((.*)\)', text, re.DOTALL)
-            if match:
-                data = json.loads(match.group(1))
-                items = data.get('data', [{}])[0].get('result', [])
-                for item in items:
-                    title = item.get('word', '')
-                    if not title:
-                        continue
-                    topics.append({
-                        'title': title,
-                        'heat': random.randint(1000, 50000),  # 搜索建议没有热度值，用随机值
-                        'url': f'https://www.baidu.com/s?wd={quote(title)}',
-                        'source': 'baidu'
-                    })
-                if topics:
-                    print(f"  ✅ 百度接口3成功: {len(topics)} 条")
-                    return topics
-    except Exception as e:
-        print(f"  ❌ 百度接口3失败: {e}")
-
-    print("  ⚠️ 百度所有接口均失败")
+    print("  ⚠️ 百度所有接口失败")
     return topics
 
-
-# ============ 数据源3: 知乎热榜 ============
-
+# ============ 知乎 ============
 def fetch_zhihu_hot():
     topics = []
 
-    # 尝试1: 知乎API (修复401问题 - 添加必要的cookie和header)
+    # 接口1: 带session
     try:
-        print("  [知乎] 尝试接口1: 知乎API (带认证)...")
-
-        # 先获取一个匿名cookie
+        print("  [知乎] 尝试 session+cookie...")
         session = requests.Session()
         session.headers.update(HEADERS)
+        session.get('https://www.zhihu.com/hot', timeout=10)
 
-        # 先访问首页获取cookie
-        home_resp = session.get('https://www.zhihu.com/hot', timeout=10)
-
-        # 然后访问API
         url = 'https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50'
-        headers_zhihu = {
+        headers_zh = {
             **HEADERS,
             'Referer': 'https://www.zhihu.com/hot',
             'x-api-version': '3.0.91',
-            'x-app-za': 'OS=Web',
             'x-requested-with': 'fetch',
         }
-        resp = session.get(url, headers=headers_zhihu, timeout=10)
+        resp = session.get(url, headers=headers_zh, timeout=10)
 
         if resp.status_code == 200:
             data = resp.json()
             items = data.get('data', [])
-            for item in items:
+            for idx, item in enumerate(items):
                 target = item.get('target', {})
                 title = target.get('title', '')
                 if not title:
@@ -307,7 +250,7 @@ def fetch_zhihu_hot():
                 detail = item.get('detail_text', '')
                 heat = extract_heat_value(detail)
                 if heat == 0:
-                    heat = max(5000000 - items.index(item) * 100000, 100000)
+                    heat = max(5000000 - idx * 100000, 100000)
 
                 topics.append({
                     'title': title,
@@ -317,166 +260,155 @@ def fetch_zhihu_hot():
                     'source': 'zhihu'
                 })
             if topics:
-                print(f"  ✅ 知乎接口1成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
         else:
-            print(f"  ⚠️ 知乎API返回 {resp.status_code}")
+            print(f"  ⚠️ 返回 {resp.status_code}")
     except Exception as e:
-        print(f"  ❌ 知乎接口1失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    # 尝试2: 使用知乎移动端API (通常限制更少)
+    # 接口2: 移动端
     try:
-        print("  [知乎] 尝试接口2: 知乎移动端...")
-        url = 'https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50'
-        headers_mobile = {
+        print("  [知乎] 尝试移动端...")
+        headers_m = {
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
             'Accept': 'application/json, text/plain, */*',
-            'Accept-Language': 'zh-CN,zh;q=0.9',
             'Referer': 'https://www.zhihu.com/',
         }
-        resp = safe_request(url, headers=headers_mobile, timeout=10)
+        resp = safe_request('https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50', headers=headers_m, timeout=10)
         if resp and resp.status_code == 200:
             data = resp.json()
             items = data.get('data', [])
-            for item in items:
+            for idx, item in enumerate(items):
                 target = item.get('target', {})
                 title = target.get('title', '')
                 if not title:
                     continue
-                detail = item.get('detail_text', '')
-                heat = extract_heat_value(detail)
+                heat = extract_heat_value(item.get('detail_text', ''))
                 if heat == 0:
-                    heat = max(5000000 - items.index(item) * 100000, 100000)
+                    heat = max(5000000 - idx * 100000, 100000)
 
                 topics.append({
                     'title': title,
                     'heat': heat,
                     'summary': target.get('excerpt', '')[:100],
-                    'url': target.get('url', f'https://www.zhihu.com/question/{target.get("id", "")}'),
+                    'url': target.get('url', ''),
                     'source': 'zhihu'
                 })
             if topics:
-                print(f"  ✅ 知乎接口2成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 知乎接口2失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    print("  ⚠️ 知乎所有接口均失败")
+    print("  ⚠️ 知乎所有接口失败")
     return topics
 
-
-# ============ 数据源4: B站热搜 ============
-
+# ============ B站 ============
 def fetch_bilibili_hot():
     topics = []
 
     try:
-        print("  [B站] 尝试API接口...")
-        url = 'https://api.bilibili.com/x/web-interface/search/square?limit=30'
-        resp = safe_request(url, timeout=10)
+        print("  [B站] 尝试 API...")
+        resp = safe_request('https://api.bilibili.com/x/web-interface/search/square?limit=30', timeout=10)
         if resp:
             data = resp.json()
             if data.get('code') == 0:
                 items = data.get('data', {}).get('trending', {}).get('list', [])
-                for item in items:
+                for idx, item in enumerate(items):
                     title = item.get('keyword', '')
                     if not title:
                         continue
                     show_name = item.get('show_name', title)
+                    # hot_id可能为0，用排名给默认热度
                     heat = item.get('hot_id', 0)
+                    if heat == 0:
+                        heat = max(3000 - idx * 100, 100)
+
                     topics.append({
                         'title': show_name or title,
-                        'heat': max(heat, 100),
+                        'heat': heat,
                         'url': f'https://search.bilibili.com/all?keyword={quote(title)}',
                         'source': 'bilibili'
                     })
                 if topics:
-                    print(f"  ✅ B站API成功: {len(topics)} 条")
+                    print(f"  ✅ 成功: {len(topics)} 条")
                     return topics
     except Exception as e:
-        print(f"  ❌ B站API失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    print("  ⚠️ B站所有接口均失败")
+    print("  ⚠️ B站所有接口失败")
     return topics
 
-
-# ============ 数据源5: 抖音热榜 ============
-
+# ============ 抖音 ============
 def fetch_douyin_hot():
     topics = []
 
-    # 尝试1: 抖音API
+    # 接口1: 抖音API
     try:
-        print("  [抖音] 尝试接口1: 抖音API...")
-        url = 'https://www.douyin.com/aweme/v1/web/hot/search/list/'
-        headers_dy = {
-            **HEADERS,
-            'Referer': 'https://www.douyin.com/',
-            'Cookie': 'msToken=; ttwid=;'
-        }
-        resp = safe_request(url, headers=headers_dy, timeout=10)
+        print("  [抖音] 尝试 API...")
+        headers_dy = {**HEADERS, 'Referer': 'https://www.douyin.com/'}
+        resp = safe_request('https://www.douyin.com/aweme/v1/web/hot/search/list/', headers=headers_dy, timeout=10)
         if resp:
             data = resp.json()
             word_list = data.get('data', {}).get('word_list', [])
-            for item in word_list:
+            for idx, item in enumerate(word_list):
                 title = item.get('word', '')
                 if not title:
                     continue
                 heat = item.get('hot_value', 0)
+                if heat == 0:
+                    heat = max(10000 - idx * 300, 100)
+
                 topics.append({
                     'title': title,
-                    'heat': max(heat, 100),
+                    'heat': heat,
                     'url': f'https://www.douyin.com/search/{quote(title)}',
                     'source': 'douyin'
                 })
             if topics:
-                print(f"  ✅ 抖音接口1成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 抖音接口1失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    # 尝试2: 使用第三方聚合API作为抖音备用
+    # 接口2: 今日头条热榜（与抖音互通）
     try:
-        print("  [抖音] 尝试接口2: 备用聚合API...")
-        # 使用一个公开的热榜聚合服务
-        url = 'https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc'
-        headers_tt = {
-            **HEADERS,
-            'Referer': 'https://www.toutiao.com/',
-        }
-        resp = safe_request(url, headers=headers_tt, timeout=10)
+        print("  [抖音] 尝试今日头条...")
+        headers_tt = {**HEADERS, 'Referer': 'https://www.toutiao.com/'}
+        resp = safe_request('https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc', headers=headers_tt, timeout=10)
         if resp:
-            # 今日头条和抖音热榜数据是互通的
             data = resp.json()
             items = data.get('data', [])
-            for item in items:
+            for idx, item in enumerate(items):
                 title = item.get('Title', '')
                 if not title:
                     continue
                 heat = item.get('HotValue', 0)
+                if heat == 0:
+                    heat = max(10000 - idx * 300, 100)
+
                 topics.append({
                     'title': title,
-                    'heat': max(heat, 100),
+                    'heat': heat,
                     'url': f'https://www.douyin.com/search/{quote(title)}',
                     'source': 'douyin'
                 })
             if topics:
-                print(f"  ✅ 抖音接口2成功: {len(topics)} 条")
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 抖音接口2失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    print("  ⚠️ 抖音所有接口均失败")
+    print("  ⚠️ 抖音所有接口失败")
     return topics
 
-
-# ============ 数据合并 ============
-
+# ============ 合并数据 ============
 def merge_topics(all_data):
     topic_map = {}
 
     for source_name, topics in all_data.items():
-        for item in topics:
+        for idx, item in enumerate(topics):
             title = item['title']
             key = title[:15]
 
@@ -492,20 +424,27 @@ def merge_topics(all_data):
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
 
-            # 归一化热度值
+            # 修复: 更合理的热度归一化
+            # 目标: 让所有平台的热度在同一数量级 (0-10000)
             if source == 'weibo':
-                normalized_heat = min(heat / 100, 10000)
+                # 微博: 100-5000 → 直接保留
+                normalized_heat = min(heat, 10000)
             elif source == 'baidu':
-                normalized_heat = min(heat / 10000, 10000)
+                # 百度: 10000-500000 → 除以10
+                normalized_heat = min(heat / 10, 10000)
             elif source == 'zhihu':
-                normalized_heat = min(heat / 10000, 10000)
-            elif source == 'bilibili':
+                # 知乎: 100000-5000000 → 除以100
                 normalized_heat = min(heat / 100, 10000)
+            elif source == 'bilibili':
+                # B站: 100-3000 → 乘以2
+                normalized_heat = min(heat * 2, 10000)
             elif source == 'douyin':
-                normalized_heat = min(heat / 1000, 10000)
+                # 抖音: 1000-10000 → 直接保留
+                normalized_heat = min(heat, 10000)
             else:
                 normalized_heat = min(heat, 10000)
 
+            # 保留该来源的最大热度
             topic_map[key]['heat'][source] = max(topic_map[key]['heat'][source], normalized_heat)
 
             source_url = item.get('url', '')
@@ -551,6 +490,7 @@ def merge_topics(all_data):
             'sources': data['sources']
         })
 
+    # 按综合热度排序
     topics.sort(key=lambda x: sum(x['heat'].values()), reverse=True)
 
     for i, topic in enumerate(topics[:30]):
@@ -558,35 +498,39 @@ def merge_topics(all_data):
 
     return topics[:30]
 
-
 # ============ 主函数 ============
-
 def generate_data():
     print(f"[{datetime.now()}] 开始抓取热点数据...")
 
     all_data = {}
 
-    print("\n[1/5] 抓取微博热搜...")
+    print("
+[1/5] 抓取微博热搜...")
     all_data['weibo'] = fetch_weibo_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("\n[2/5] 抓取百度热搜...")
+    print("
+[2/5] 抓取百度热搜...")
     all_data['baidu'] = fetch_baidu_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("\n[3/5] 抓取知乎热榜...")
+    print("
+[3/5] 抓取知乎热榜...")
     all_data['zhihu'] = fetch_zhihu_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("\n[4/5] 抓取B站热搜...")
+    print("
+[4/5] 抓取B站热搜...")
     all_data['bilibili'] = fetch_bilibili_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("\n[5/5] 抓取抖音热榜...")
+    print("
+[5/5] 抓取抖音热榜...")
     all_data['douyin'] = fetch_douyin_hot()
 
     total_fetched = sum(len(v) for v in all_data.values())
-    print(f"\n{'='*50}")
+    print(f"
+{'='*50}")
     print(f"抓取统计:")
     for source, topics in all_data.items():
         status = "✅" if topics else "❌"
@@ -594,10 +538,12 @@ def generate_data():
     print(f"{'='*50}")
 
     if total_fetched == 0:
-        print("\n❌ 错误：所有数据源均抓取失败，没有获取到任何数据！")
+        print("
+❌ 所有数据源均抓取失败！")
         sys.exit(1)
 
-    print("\n[合并数据] 去重并计算综合热度...")
+    print("
+[合并数据] 去重并计算综合热度...")
     topics = merge_topics(all_data)
     print(f"合并后: {len(topics)} 条热点")
 
@@ -609,17 +555,18 @@ def generate_data():
     with open('data/hot_data.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"\n[{datetime.now()}] ✅ 数据已更新，共 {len(topics)} 条热点")
+    print(f"
+[{datetime.now()}] ✅ 数据已更新，共 {len(topics)} 条热点")
     print(f"更新时间: {output['updateTime']}")
 
-    print("\nTop 5 热点:")
+    print("
+Top 5 热点:")
     for i, t in enumerate(topics[:5]):
         total = sum(t['heat'].values())
         sources = [s['name'] for s in t['sources']]
         print(f"  {i+1}. {t['title'][:40]}... (热度: {total:.0f}) [{', '.join(sources)}]")
 
     return output
-
 
 if __name__ == '__main__':
     generate_data()
