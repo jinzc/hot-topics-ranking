@@ -2,8 +2,13 @@ name: Update Hot Topics
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小时运行一次
+    - cron: '0 * * * *'  # 每小时整点运行
   workflow_dispatch:  # 支持手动触发
+
+# 防止任务冲突，确保不会同时运行多个实例
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -29,30 +34,37 @@ jobs:
       - name: Run update script
         id: update
         run: python scripts/update_hot_topics.py
-        continue-on-error: false  # 脚本失败时停止
 
-      - name: Commit and push changes
-        id: commit
+      - name: Check if data changed
+        id: check
+        run: |
+          git add data/hot_data.json
+          if git diff --cached --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "数据无变化，跳过提交"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "数据有更新"
+          fi
+
+      - name: Commit and push data
+        if: steps.check.outputs.changed == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/hot_data.json
-          git diff --cached --quiet || (git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')" && git push)
-          # 输出是否有变更
-          if git diff --cached --quiet; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Trigger Pages rebuild
-        if: steps.commit.outputs.changed == 'true'
-        run: |
-          # 创建一个空提交触发 Pages 重新构建
-          git commit --allow-empty -m "Trigger Pages rebuild - $(date +'%Y-%m-%d %H:%M')"
+          git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')"
           git push
 
-      - name: Upload artifact (backup)
+      - name: Trigger Pages rebuild
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          # 通过修改时间戳文件强制触发 Pages 重建
+          date > .last_update_time
+          git add .last_update_time
+          git commit -m "Trigger Pages rebuild - $(date +'%Y-%m-%d %H:%M')" || true
+          git push || true
+
+      - name: Upload artifact backup
         if: always()
         uses: actions/upload-artifact@v4
         with:
