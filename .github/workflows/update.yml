@@ -2,55 +2,54 @@ name: Update Hot Topics
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小时整点
-  workflow_dispatch:     # 手动触发
-  push:                  # 每次 push 都触发
+    - cron: '0 * * * *'
+  workflow_dispatch:
+  push:
     branches: [main]
-    paths-ignore:        # 但忽略某些文件的 push
-      - 'README.md'
-      - '.github/workflows/**'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          pip install requests beautifulsoup4
+      - name: Install deps
+        run: pip install requests beautifulsoup4
 
-      - name: Run update script
-        id: update
+      - name: Update data
         run: python scripts/update_hot_topics.py
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add data/hot_data.json
-          git diff --cached --quiet && git commit --allow-empty -m "Update timestamp - $(date +'%Y-%m-%d %H:%M')" || git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')"
+          git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')" || git commit --allow-empty -m "Update timestamp - $(date +'%Y-%m-%d %H:%M')"
           git push
 
-      - name: Upload artifact backup
-        if: always()
-        uses: actions/upload-artifact@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: hot-data-backup
-          path: data/hot_data.json
-          retention-days: 7
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
