@@ -220,27 +220,39 @@
             <div class="loading">正在加载热点数据...</div>
         </div>
     </div>
-    <button class="refresh-btn" onclick="location.reload(true)" title="强制刷新">🔄</button>
+    <button class="refresh-btn" onclick="forceRefresh()" title="强制刷新">🔄</button>
 
     <script>
         let allTopics = [];
         let currentPlatform = 'all';
         let currentCategory = 'all';
 
+        // 关键修改: 使用 GitHub raw API 获取数据，绕过 Pages CDN 缓存
         async function loadData() {
             const topicsList = document.getElementById('topicsList');
             topicsList.innerHTML = '<div class="loading">正在加载热点数据...</div>';
 
             try {
-                // 使用随机数防止所有缓存
-                const nocache = Math.random().toString(36).substring(7);
-                const response = await fetch(`data/hot_data.json?nocache=${nocache}`, {
-                    cache: 'no-store',
-                    headers: {
-                        'Cache-Control': 'no-cache, no-store, must-revalidate',
-                        'Pragma': 'no-cache'
-                    }
-                });
+                // 方案1: 先尝试从 GitHub raw 获取（绕过 CDN）
+                const githubRawUrl = 'https://raw.githubusercontent.com/jinzc/hot-topics-ranking/main/data/hot_data.json';
+                const nocache = '?t=' + new Date().getTime();
+
+                let response;
+                try {
+                    response = await fetch(githubRawUrl + nocache, {
+                        cache: 'no-store',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache'
+                        }
+                    });
+                } catch (e) {
+                    // 如果 GitHub raw 失败，回退到本地
+                    console.log('GitHub raw failed, falling back to local');
+                    response = await fetch('data/hot_data.json' + nocache, {
+                        cache: 'no-store'
+                    });
+                }
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -259,10 +271,22 @@
                     <div class="error">
                         <p>加载数据失败，请稍后重试</p>
                         <p style="font-size: 0.8em; margin-top: 10px;">${error.message}</p>
-                        <button onclick="location.reload(true)" style="margin-top: 15px; padding: 8px 20px; border-radius: 20px; border: none; background: #667eea; color: white; cursor: pointer;">强制刷新</button>
+                        <button onclick="forceRefresh()" style="margin-top: 15px; padding: 8px 20px; border-radius: 20px; border: none; background: #667eea; color: white; cursor: pointer;">强制刷新</button>
                     </div>
                 `;
             }
+        }
+
+        // 强制刷新 - 清除所有缓存
+        function forceRefresh() {
+            // 清除浏览器缓存
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            // 强制从服务器重新加载
+            location.reload(true);
         }
 
         function renderTopics() {
