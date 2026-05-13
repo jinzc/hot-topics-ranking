@@ -8,9 +8,9 @@ on:
     branches: [main]
 
 permissions:
-  contents: write       # 用于 push 代码
-  pages: write        # 用于 Pages 部署
-  id-token: write     # 用于 OIDC 认证（deploy-pages 需要）
+  contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: "pages"
@@ -22,8 +22,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -36,15 +34,16 @@ jobs:
       - name: Update data
         run: python scripts/update_hot_topics.py
 
-      - name: Commit and push changes
+      - name: Commit via GitHub API
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add data/hot_data.json
-          git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')" || git commit --allow-empty -m "Update timestamp - $(date +'%Y-%m-%d %H:%M')"
-          git push https://${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
+          # 读取文件内容并 base64 编码
+          CONTENT=$(base64 -w 0 data/hot_data.json)
+          # 获取当前文件的 SHA
+          SHA=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN"             https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json | jq -r '.sha')
+          # 通过 API 更新文件
+          curl -X PUT             -H "Authorization: Bearer $GITHUB_TOKEN"             -H "Accept: application/vnd.github+json"             https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json             -d "{"message":"Update hot topics - $(date +'%Y-%m-%d %H:%M')","content":"$CONTENT","sha":"$SHA"}"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
