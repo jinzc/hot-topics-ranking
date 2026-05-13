@@ -1,5 +1,5 @@
 {
-  "updateTime": "2026-05-13 08:07",
+  "updateTime": "2026-05-13 08:24",
   "topics": [
     {
       "rank": 1,
@@ -14,7 +14,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 4,
       "sources": [
         {
           "name": "B站",
@@ -35,7 +35,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 8,
       "sources": [
         {
           "name": "B站",
@@ -56,7 +56,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 9,
       "sources": [
         {
           "name": "B站",
@@ -77,7 +77,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
@@ -87,9 +87,9 @@
     },
     {
       "rank": 5,
-      "title": "NIP Zhuo入驻B站",
+      "title": "程十安改名姜乘澜复更",
       "category": "social",
-      "summary": "NIP Zhuo入驻B站",
+      "summary": "程十安改名姜乘澜复更",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -98,19 +98,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=NIP%20Zhuo%E5%85%A5%E9%A9%BBB%E7%AB%99"
+          "url": "https://search.bilibili.com/all?keyword=%E7%A8%8B%E5%8D%81%E5%AE%89%E6%94%B9%E5%90%8D%E5%A7%9C%E4%B9%98%E6%BE%9C%E5%A4%8D%E6%9B%B4"
         }
       ]
     },
     {
       "rank": 6,
-      "title": "豆包 机票退款",
-      "category": "life",
-      "summary": "豆包 机票退款",
+      "title": "欢迎特朗普访问中国",
+      "category": "politics",
+      "summary": "欢迎特朗普访问中国",
       "heat": {
         "weibo": 5000,
         "baidu": 0,
@@ -119,11 +119,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 2,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E8%B1%86%E5%8C%85%20%E6%9C%BA%E7%A5%A8%E9%80%80%E6%AC%BE"
+          "url": "https://s.weibo.com/weibo?q=%E6%AC%A2%E8%BF%8E%E7%89%B9%E6%9C%97%E6%99%AE%E8%AE%BF%E9%97%AE%E4%B8%AD%E5%9B%BD"
         }
       ]
     },
@@ -140,7 +140,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 3,
       "sources": [
         {
           "name": "B站",
@@ -150,9 +150,9 @@
     },
     {
       "rank": 8,
-      "title": "特朗普访华",
-      "category": "politics",
-      "summary": "特朗普访华",
+      "title": "歌手2026 舞美",
+      "category": "social",
+      "summary": "歌手2026 舞美",
       "heat": {
         "weibo": 4900,
         "baidu": 0,
@@ -165,7 +165,7 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E8%AE%BF%E5%8D%8E"
+          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B2026%20%E8%88%9E%E7%BE%8E"
         }
       ]
     },
@@ -182,7 +182,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 9,
       "sources": [
         {
           "name": "微博",
@@ -192,6 +192,69 @@
     },
     {
       "rank": 10,
+      "title": "NIP Zhuo入驻B站",
+      "category": "social",
+      "summary": "NIP Zhuo入驻B站",
+      "heat": {
+        "weibo": 0,
+        "baidu": 0,
+        "zhihu": 0,
+        "bilibili": 4800,
+        "douyin": 0
+      },
+      "trend": "up",
+      "trendVal": 10,
+      "sources": [
+        {
+          "name": "B站",
+          "url": "https://search.bilibili.com/all?keyword=NIP%20Zhuo%E5%85%A5%E9%A9%BBB%E7%AB%99"
+        }
+      ]
+    },
+    {
+      "rank": 11,
+      "title": "上京东领心动礼",
+      "category": "social",
+      "summary": "上京东领心动礼",
+      "heat": {
+        "weibo": 4700,
+        "baidu": 0,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "trend": "up",
+      "trendVal": 6,
+      "sources": [
+        {
+          "name": "微博",
+          "url": "https://s.weibo.com/weibo?q=%E4%B8%8A%E4%BA%AC%E4%B8%9C%E9%A2%86%E5%BF%83%E5%8A%A8%E7%A4%BC"
+        }
+      ]
+    },
+    {
+      "rank": 12,
+      "title": "豆包 机票退款",
+      "category": "life",
+      "summary": "豆包 机票退款",
+      "heat": {
+        "weibo": 4600,
+        "baidu": 0,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "trend": "up",
+      "trendVal": 9,
+      "sources": [
+        {
+          "name": "微博",
+          "url": "https://s.weibo.com/weibo?q=%E8%B1%86%E5%8C%85%20%E6%9C%BA%E7%A5%A8%E9%80%80%E6%AC%BE"
+        }
+      ]
+    },
+    {
+      "rank": 13,
       "title": "莲花池村民钓鱼大赛",
       "category": "life",
       "summary": "莲花池村民钓鱼大赛",
@@ -199,7 +262,7 @@
         "weibo": 0,
         "baidu": 0,
         "zhihu": 0,
-        "bilibili": 4800,
+        "bilibili": 4600,
         "douyin": 0
       },
       "trend": "up",
@@ -212,73 +275,10 @@
       ]
     },
     {
-      "rank": 11,
-      "title": "520送礼上淘宝现货叠券7.3折起",
-      "category": "social",
-      "summary": "520送礼上淘宝现货叠券7.3折起",
-      "heat": {
-        "weibo": 4700,
-        "baidu": 0,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "trend": "up",
-      "trendVal": 1,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=520%E9%80%81%E7%A4%BC%E4%B8%8A%E6%B7%98%E5%AE%9D%E7%8E%B0%E8%B4%A7%E5%8F%A0%E5%88%B87.3%E6%8A%98%E8%B5%B7"
-        }
-      ]
-    },
-    {
-      "rank": 12,
-      "title": "开花店真的要有审美",
-      "category": "social",
-      "summary": "开花店真的要有审美",
-      "heat": {
-        "weibo": 4600,
-        "baidu": 0,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "trend": "up",
-      "trendVal": 6,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%BC%80%E8%8A%B1%E5%BA%97%E7%9C%9F%E7%9A%84%E8%A6%81%E6%9C%89%E5%AE%A1%E7%BE%8E"
-        }
-      ]
-    },
-    {
-      "rank": 13,
-      "title": "程十安改名姜乘澜复更",
-      "category": "social",
-      "summary": "程十安改名姜乘澜复更",
-      "heat": {
-        "weibo": 0,
-        "baidu": 0,
-        "zhihu": 0,
-        "bilibili": 4600,
-        "douyin": 0
-      },
-      "trend": "up",
-      "trendVal": 4,
-      "sources": [
-        {
-          "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E7%A8%8B%E5%8D%81%E5%AE%89%E6%94%B9%E5%90%8D%E5%A7%9C%E4%B9%98%E6%BE%9C%E5%A4%8D%E6%9B%B4"
-        }
-      ]
-    },
-    {
       "rank": 14,
-      "title": "豆包收费 大模型将告别免费时代",
-      "category": "tech",
-      "summary": "豆包收费 大模型将告别免费时代",
+      "title": "程十安改名姜乘澜回归",
+      "category": "social",
+      "summary": "程十安改名姜乘澜回归",
       "heat": {
         "weibo": 4500,
         "baidu": 0,
@@ -287,19 +287,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E8%B1%86%E5%8C%85%E6%94%B6%E8%B4%B9%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B0%86%E5%91%8A%E5%88%AB%E5%85%8D%E8%B4%B9%E6%97%B6%E4%BB%A3"
+          "url": "https://s.weibo.com/weibo?q=%E7%A8%8B%E5%8D%81%E5%AE%89%E6%94%B9%E5%90%8D%E5%A7%9C%E4%B9%98%E6%BE%9C%E5%9B%9E%E5%BD%92"
         }
       ]
     },
     {
       "rank": 15,
-      "title": "歌手2026 舞美",
+      "title": "曝知名男歌手音乐节假唱",
       "category": "social",
-      "summary": "歌手2026 舞美",
+      "summary": "曝知名男歌手音乐节假唱",
       "heat": {
         "weibo": 4400,
         "baidu": 0,
@@ -308,19 +308,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 3,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B2026%20%E8%88%9E%E7%BE%8E"
+          "url": "https://s.weibo.com/weibo?q=%E6%9B%9D%E7%9F%A5%E5%90%8D%E7%94%B7%E6%AD%8C%E6%89%8B%E9%9F%B3%E4%B9%90%E8%8A%82%E5%81%87%E5%94%B1"
         }
       ]
     },
     {
       "rank": 16,
-      "title": "小蜜蜂不敌BB跌入败者组",
-      "category": "social",
-      "summary": "小蜜蜂不敌BB跌入败者组",
+      "title": "给阿嬷的情书实时票房",
+      "category": "entertainment",
+      "summary": "给阿嬷的情书实时票房",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -329,19 +329,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E5%B0%8F%E8%9C%9C%E8%9C%82%E4%B8%8D%E6%95%8CBB%E8%B7%8C%E5%85%A5%E8%B4%A5%E8%80%85%E7%BB%84"
+          "url": "https://search.bilibili.com/all?keyword=%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E5%AE%9E%E6%97%B6%E7%A5%A8%E6%88%BF"
         }
       ]
     },
     {
       "rank": 17,
-      "title": "今日辟谣",
+      "title": "CBE全球美妆新品",
       "category": "social",
-      "summary": "今日辟谣",
+      "summary": "CBE全球美妆新品",
       "heat": {
         "weibo": 4300,
         "baidu": 0,
@@ -350,19 +350,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 8,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E4%BB%8A%E6%97%A5%E8%BE%9F%E8%B0%A3"
+          "url": "https://s.weibo.com/weibo?q=CBE%E5%85%A8%E7%90%83%E7%BE%8E%E5%A6%86%E6%96%B0%E5%93%81"
         }
       ]
     },
     {
       "rank": 18,
-      "title": "金曲奖入围名单",
-      "category": "social",
-      "summary": "金曲奖入围名单",
+      "title": "豆包收费 大模型将告别免费时代",
+      "category": "tech",
+      "summary": "豆包收费 大模型将告别免费时代",
       "heat": {
         "weibo": 4200,
         "baidu": 0,
@@ -375,7 +375,7 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E9%87%91%E6%9B%B2%E5%A5%96%E5%85%A5%E5%9B%B4%E5%90%8D%E5%8D%95"
+          "url": "https://s.weibo.com/weibo?q=%E8%B1%86%E5%8C%85%E6%94%B6%E8%B4%B9%20%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%B0%86%E5%91%8A%E5%88%AB%E5%85%8D%E8%B4%B9%E6%97%B6%E4%BB%A3"
         }
       ]
     },
@@ -392,7 +392,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 8,
       "sources": [
         {
           "name": "B站",
@@ -402,32 +402,11 @@
     },
     {
       "rank": 20,
-      "title": "公瑾爆蛋",
-      "category": "social",
-      "summary": "公瑾爆蛋",
-      "heat": {
-        "weibo": 4100,
-        "baidu": 0,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "trend": "up",
-      "trendVal": 1,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%85%AC%E7%91%BE%E7%88%86%E8%9B%8B"
-        }
-      ]
-    },
-    {
-      "rank": 21,
       "title": "李小冉知道自己笑起来像森碟",
       "category": "social",
       "summary": "李小冉知道自己笑起来像森碟",
       "heat": {
-        "weibo": 4000,
+        "weibo": 4100,
         "baidu": 0,
         "zhihu": 0,
         "bilibili": 0,
@@ -439,6 +418,27 @@
         {
           "name": "微博",
           "url": "https://s.weibo.com/weibo?q=%E6%9D%8E%E5%B0%8F%E5%86%89%E7%9F%A5%E9%81%93%E8%87%AA%E5%B7%B1%E7%AC%91%E8%B5%B7%E6%9D%A5%E5%83%8F%E6%A3%AE%E7%A2%9F"
+        }
+      ]
+    },
+    {
+      "rank": 21,
+      "title": "公瑾爆蛋",
+      "category": "social",
+      "summary": "公瑾爆蛋",
+      "heat": {
+        "weibo": 4000,
+        "baidu": 0,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "trend": "up",
+      "trendVal": 10,
+      "sources": [
+        {
+          "name": "微博",
+          "url": "https://s.weibo.com/weibo?q=%E5%85%AC%E7%91%BE%E7%88%86%E8%9B%8B"
         }
       ]
     },
@@ -455,7 +455,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 5,
       "sources": [
         {
           "name": "B站",
@@ -476,7 +476,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
@@ -497,7 +497,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 7,
       "sources": [
         {
           "name": "微博",
@@ -518,7 +518,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 7,
       "sources": [
         {
           "name": "B站",
@@ -528,9 +528,9 @@
     },
     {
       "rank": 26,
-      "title": "吴京 什么李心洁谁",
-      "category": "social",
-      "summary": "吴京 什么李心洁谁",
+      "title": "特朗普访华",
+      "category": "politics",
+      "summary": "特朗普访华",
       "heat": {
         "weibo": 3700,
         "baidu": 0,
@@ -539,19 +539,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%90%B4%E4%BA%AC%20%E4%BB%80%E4%B9%88%E6%9D%8E%E5%BF%83%E6%B4%81%E8%B0%81"
+          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E8%AE%BF%E5%8D%8E"
         }
       ]
     },
     {
       "rank": 27,
-      "title": "特朗普回应访华团高管名单",
-      "category": "politics",
-      "summary": "特朗普回应访华团高管名单",
+      "title": "金曲奖入围名单",
+      "category": "social",
+      "summary": "金曲奖入围名单",
       "heat": {
         "weibo": 3600,
         "baidu": 0,
@@ -564,15 +564,15 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E5%9B%9E%E5%BA%94%E8%AE%BF%E5%8D%8E%E5%9B%A2%E9%AB%98%E7%AE%A1%E5%90%8D%E5%8D%95"
+          "url": "https://s.weibo.com/weibo?q=%E9%87%91%E6%9B%B2%E5%A5%96%E5%85%A5%E5%9B%B4%E5%90%8D%E5%8D%95"
         }
       ]
     },
     {
       "rank": 28,
-      "title": "成都AG超玩会战胜重庆狼队赛后数据",
+      "title": "小蜜蜂不敌BB跌入败者组",
       "category": "social",
-      "summary": "成都AG超玩会战胜重庆狼队赛后数据",
+      "summary": "小蜜蜂不敌BB跌入败者组",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -581,42 +581,21 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 8,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E6%88%90%E9%83%BDAG%E8%B6%85%E7%8E%A9%E4%BC%9A%E6%88%98%E8%83%9C%E9%87%8D%E5%BA%86%E7%8B%BC%E9%98%9F%E8%B5%9B%E5%90%8E%E6%95%B0%E6%8D%AE"
+          "url": "https://search.bilibili.com/all?keyword=%E5%B0%8F%E8%9C%9C%E8%9C%82%E4%B8%8D%E6%95%8CBB%E8%B7%8C%E5%85%A5%E8%B4%A5%E8%80%85%E7%BB%84"
         }
       ]
     },
     {
       "rank": 29,
-      "title": "孙怡捂鼻子下班",
+      "title": "多位国乒名将祝福孙铭阳",
       "category": "social",
-      "summary": "孙怡捂鼻子下班",
+      "summary": "多位国乒名将祝福孙铭阳",
       "heat": {
         "weibo": 3500,
-        "baidu": 0,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "trend": "up",
-      "trendVal": 2,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%AD%99%E6%80%A1%E6%8D%82%E9%BC%BB%E5%AD%90%E4%B8%8B%E7%8F%AD"
-        }
-      ]
-    },
-    {
-      "rank": 30,
-      "title": "张碧晨咋这么瘦了",
-      "category": "social",
-      "summary": "张碧晨咋这么瘦了",
-      "heat": {
-        "weibo": 3400,
         "baidu": 0,
         "zhihu": 0,
         "bilibili": 0,
@@ -627,7 +606,28 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E7%A2%A7%E6%99%A8%E5%92%8B%E8%BF%99%E4%B9%88%E7%98%A6%E4%BA%86"
+          "url": "https://s.weibo.com/weibo?q=%E5%A4%9A%E4%BD%8D%E5%9B%BD%E4%B9%92%E5%90%8D%E5%B0%86%E7%A5%9D%E7%A6%8F%E5%AD%99%E9%93%AD%E9%98%B3"
+        }
+      ]
+    },
+    {
+      "rank": 30,
+      "title": "520前我心动了",
+      "category": "social",
+      "summary": "520前我心动了",
+      "heat": {
+        "weibo": 3400,
+        "baidu": 0,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "trend": "up",
+      "trendVal": 3,
+      "sources": [
+        {
+          "name": "微博",
+          "url": "https://s.weibo.com/weibo?q=520%E5%89%8D%E6%88%91%E5%BF%83%E5%8A%A8%E4%BA%86"
         }
       ]
     }
