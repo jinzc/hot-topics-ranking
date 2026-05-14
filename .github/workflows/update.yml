@@ -38,10 +38,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 读取文件内容并 base64 编码
-          CONTENT=$(base64 -w 0 data/hot_data.json)
+          # 读取文件内容并 base64 编码（修复：使用 tr 去掉换行）
+          CONTENT=$(base64 data/hot_data.json | tr -d '\n')
           # 获取当前文件的 SHA
-          SHA=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN"             https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json | jq -r '.sha')
+          SHA=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json | jq -r '.sha')
           # 通过 API 更新文件
           curl -X PUT             -H "Authorization: Bearer $GITHUB_TOKEN"             -H "Accept: application/vnd.github+json"             https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json             -d "{"message":"Update hot topics - $(date +'%Y-%m-%d %H:%M')","content":"$CONTENT","sha":"$SHA"}"
 
