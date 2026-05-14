@@ -2,7 +2,10 @@ name: Update Hot Topics
 
 on:
   schedule:
-    - cron: '17 * * * *'  # 每小时的第17分钟，避开整点高负载
+    # 7:00-23:00 每小时更新（17次）
+    - cron: '0 7-23 * * *'
+    # 凌晨 6:00 统一更新一次（覆盖 23:00-6:00 时段）
+    - cron: '0 6 * * *'
   workflow_dispatch:
   push:
     branches: [main]
