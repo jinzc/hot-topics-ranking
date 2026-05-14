@@ -2,7 +2,7 @@ name: Update Hot Topics
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '17 * * * *'  # 每小时的第17分钟，避开整点高负载
   workflow_dispatch:
   push:
     branches: [main]
