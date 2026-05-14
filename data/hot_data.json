@@ -1,5 +1,5 @@
 {
-  "updateTime": "2026-05-14 08:47",
+  "updateTime": "2026-05-14 09:07",
   "topics": [
     {
       "rank": 1,
@@ -14,7 +14,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 10,
       "sources": [
         {
           "name": "B站",
@@ -35,7 +35,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 4,
       "sources": [
         {
           "name": "B站",
@@ -56,7 +56,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 2,
       "sources": [
         {
           "name": "B站",
@@ -66,9 +66,9 @@
     },
     {
       "rank": 4,
-      "title": "详细解读美国公布的UFO文件",
+      "title": "LGD vs LNG LPL第二赛段",
       "category": "social",
-      "summary": "详细解读美国公布的UFO文件",
+      "summary": "LGD vs LNG LPL第二赛段",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -77,19 +77,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB%E7%BE%8E%E5%9B%BD%E5%85%AC%E5%B8%83%E7%9A%84UFO%E6%96%87%E4%BB%B6"
+          "url": "https://search.bilibili.com/all?keyword=LGD%20LNG"
         }
       ]
     },
     {
       "rank": 5,
-      "title": "中美两国会有更美好的未来",
-      "category": "politics",
-      "summary": "中美两国会有更美好的未来",
+      "title": "详细解读美国公布的UFO文件",
+      "category": "social",
+      "summary": "详细解读美国公布的UFO文件",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -98,11 +98,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E4%B8%AD%E7%BE%8E%E4%B8%A4%E5%9B%BD%E4%BC%9A%E6%9C%89%E6%9B%B4%E7%BE%8E%E5%A5%BD%E7%9A%84%E6%9C%AA%E6%9D%A5"
+          "url": "https://search.bilibili.com/all?keyword=%E8%AF%A6%E7%BB%86%E8%A7%A3%E8%AF%BB%E7%BE%8E%E5%9B%BD%E5%85%AC%E5%B8%83%E7%9A%84UFO%E6%96%87%E4%BB%B6"
         }
       ]
     },
@@ -119,7 +119,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 9,
       "sources": [
         {
           "name": "微博",
@@ -140,7 +140,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 2,
       "sources": [
         {
           "name": "B站",
@@ -161,7 +161,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 7,
       "sources": [
         {
           "name": "微博",
@@ -182,7 +182,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 5,
       "sources": [
         {
           "name": "微博",
@@ -192,9 +192,9 @@
     },
     {
       "rank": 10,
-      "title": "阿嬷的橄榄好吃吗",
-      "category": "social",
-      "summary": "阿嬷的橄榄好吃吗",
+      "title": "中美两国会有更美好的未来",
+      "category": "politics",
+      "summary": "中美两国会有更美好的未来",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -203,11 +203,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 7,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E9%98%BF%E5%AC%B7%E7%9A%84%E6%A9%84%E6%A6%84%E5%A5%BD%E5%90%83%E5%90%97"
+          "url": "https://search.bilibili.com/all?keyword=%E4%B8%AD%E7%BE%8E%E4%B8%A4%E5%9B%BD%E4%BC%9A%E6%9C%89%E6%9B%B4%E7%BE%8E%E5%A5%BD%E7%9A%84%E6%9C%AA%E6%9D%A5"
         }
       ]
     },
@@ -224,7 +224,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 3,
       "sources": [
         {
           "name": "微博",
@@ -234,9 +234,9 @@
     },
     {
       "rank": 12,
-      "title": "歌手",
+      "title": "歌手2026定档官宣",
       "category": "social",
-      "summary": "歌手",
+      "summary": "歌手2026定档官宣",
       "heat": {
         "weibo": 4600,
         "baidu": 0,
@@ -245,19 +245,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 10,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B"
+          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B2026%E5%AE%9A%E6%A1%A3%E5%AE%98%E5%AE%A3"
         }
       ]
     },
     {
       "rank": 13,
-      "title": "骑士加时战胜活塞拿下赛点",
+      "title": "阿嬷的橄榄好吃吗",
       "category": "social",
-      "summary": "骑士加时战胜活塞拿下赛点",
+      "summary": "阿嬷的橄榄好吃吗",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -266,19 +266,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 10,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E9%AA%91%E5%A3%AB%E5%8A%A0%E6%97%B6%E6%88%98%E8%83%9C%E6%B4%BB%E5%A1%9E%E6%8B%BF%E4%B8%8B%E8%B5%9B%E7%82%B9"
+          "url": "https://search.bilibili.com/all?keyword=%E9%98%BF%E5%AC%B7%E7%9A%84%E6%A9%84%E6%A6%84%E5%A5%BD%E5%90%83%E5%90%97"
         }
       ]
     },
     {
       "rank": 14,
-      "title": "刘海为什么不能叫张海",
-      "category": "social",
-      "summary": "刘海为什么不能叫张海",
+      "title": "韩国股市暴涨超200%散户癫狂",
+      "category": "finance",
+      "summary": "韩国股市暴涨超200%散户癫狂",
       "heat": {
         "weibo": 4500,
         "baidu": 0,
@@ -287,19 +287,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 1,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%88%98%E6%B5%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%8F%AB%E5%BC%A0%E6%B5%B7"
+          "url": "https://s.weibo.com/weibo?q=%E9%9F%A9%E5%9B%BD%E8%82%A1%E5%B8%82%E6%9A%B4%E6%B6%A8%E8%B6%85200%25%E6%95%A3%E6%88%B7%E7%99%AB%E7%8B%82"
         }
       ]
     },
     {
       "rank": 15,
-      "title": "优酷雨霖铃杨洋版展昭江湖除恶",
+      "title": "歌手",
       "category": "social",
-      "summary": "优酷雨霖铃杨洋版展昭江湖除恶",
+      "summary": "歌手",
       "heat": {
         "weibo": 4400,
         "baidu": 0,
@@ -308,19 +308,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 7,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E4%BC%98%E9%85%B7%E9%9B%A8%E9%9C%96%E9%93%83%E6%9D%A8%E6%B4%8B%E7%89%88%E5%B1%95%E6%98%AD%E6%B1%9F%E6%B9%96%E9%99%A4%E6%81%B6"
+          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B"
         }
       ]
     },
     {
       "rank": 16,
-      "title": "详解朱雀二号全系",
+      "title": "骑士加时战胜活塞拿下赛点",
       "category": "social",
-      "summary": "详解朱雀二号全系",
+      "summary": "骑士加时战胜活塞拿下赛点",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -329,19 +329,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 6,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=%E8%AF%A6%E8%A7%A3%E6%9C%B1%E9%9B%80%E4%BA%8C%E5%8F%B7%E5%85%A8%E7%B3%BB"
+          "url": "https://search.bilibili.com/all?keyword=%E9%AA%91%E5%A3%AB%E5%8A%A0%E6%97%B6%E6%88%98%E8%83%9C%E6%B4%BB%E5%A1%9E%E6%8B%BF%E4%B8%8B%E8%B5%9B%E7%82%B9"
         }
       ]
     },
     {
       "rank": 17,
-      "title": "爸爸当家",
+      "title": "刘海为什么不能叫张海",
       "category": "social",
-      "summary": "爸爸当家",
+      "summary": "刘海为什么不能叫张海",
       "heat": {
         "weibo": 4300,
         "baidu": 0,
@@ -354,7 +354,7 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%88%B8%E7%88%B8%E5%BD%93%E5%AE%B6"
+          "url": "https://s.weibo.com/weibo?q=%E5%88%98%E6%B5%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%8F%AB%E5%BC%A0%E6%B5%B7"
         }
       ]
     },
@@ -371,7 +371,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 2,
       "sources": [
         {
           "name": "微博",
@@ -392,7 +392,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 6,
       "sources": [
         {
           "name": "B站",
@@ -423,9 +423,9 @@
     },
     {
       "rank": 21,
-      "title": "中美经贸团队达成积极成果",
+      "title": "特朗普说二三把手我都不让他们来",
       "category": "politics",
-      "summary": "中美经贸团队达成积极成果",
+      "summary": "特朗普说二三把手我都不让他们来",
       "heat": {
         "weibo": 4000,
         "baidu": 0,
@@ -434,11 +434,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 7,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E4%B8%AD%E7%BE%8E%E7%BB%8F%E8%B4%B8%E5%9B%A2%E9%98%9F%E8%BE%BE%E6%88%90%E7%A7%AF%E6%9E%81%E6%88%90%E6%9E%9C"
+          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E8%AF%B4%E4%BA%8C%E4%B8%89%E6%8A%8A%E6%89%8B%E6%88%91%E9%83%BD%E4%B8%8D%E8%AE%A9%E4%BB%96%E4%BB%AC%E6%9D%A5"
         }
       ]
     },
@@ -455,7 +455,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
@@ -465,9 +465,9 @@
     },
     {
       "rank": 23,
-      "title": "特朗普说二三把手我都不让他们来",
-      "category": "politics",
-      "summary": "特朗普说二三把手我都不让他们来",
+      "title": "爸爸当家",
+      "category": "social",
+      "summary": "爸爸当家",
       "heat": {
         "weibo": 3900,
         "baidu": 0,
@@ -476,19 +476,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 7,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E8%AF%B4%E4%BA%8C%E4%B8%89%E6%8A%8A%E6%89%8B%E6%88%91%E9%83%BD%E4%B8%8D%E8%AE%A9%E4%BB%96%E4%BB%AC%E6%9D%A5"
+          "url": "https://s.weibo.com/weibo?q=%E7%88%B8%E7%88%B8%E5%BD%93%E5%AE%B6"
         }
       ]
     },
     {
       "rank": 24,
-      "title": "鹿晗寸头",
-      "category": "social",
-      "summary": "鹿晗寸头",
+      "title": "特朗普感叹大美中国",
+      "category": "politics",
+      "summary": "特朗普感叹大美中国",
       "heat": {
         "weibo": 3800,
         "baidu": 0,
@@ -497,11 +497,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 6,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E9%B9%BF%E6%99%97%E5%AF%B8%E5%A4%B4"
+          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E6%84%9F%E5%8F%B9%E5%A4%A7%E7%BE%8E%E4%B8%AD%E5%9B%BD"
         }
       ]
     },
@@ -518,7 +518,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 6,
       "sources": [
         {
           "name": "B站",
@@ -528,9 +528,9 @@
     },
     {
       "rank": 26,
-      "title": "特朗普感叹大美中国",
-      "category": "politics",
-      "summary": "特朗普感叹大美中国",
+      "title": "鹿晗寸头",
+      "category": "social",
+      "summary": "鹿晗寸头",
       "heat": {
         "weibo": 3700,
         "baidu": 0,
@@ -539,11 +539,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E6%84%9F%E5%8F%B9%E5%A4%A7%E7%BE%8E%E4%B8%AD%E5%9B%BD"
+          "url": "https://s.weibo.com/weibo?q=%E9%B9%BF%E6%99%97%E5%AF%B8%E5%A4%B4"
         }
       ]
     },
@@ -560,7 +560,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 7,
       "sources": [
         {
           "name": "微博",
@@ -570,9 +570,9 @@
     },
     {
       "rank": 28,
-      "title": "GEN战队CEO质问机制改动",
+      "title": "十余名美商界代表进入会谈现场",
       "category": "social",
-      "summary": "GEN战队CEO质问机制改动",
+      "summary": "十余名美商界代表进入会谈现场",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -581,11 +581,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 4,
       "sources": [
         {
           "name": "B站",
-          "url": "https://search.bilibili.com/all?keyword=GEN%E6%88%98%E9%98%9FCEO%E8%B4%A8%E9%97%AE%E6%9C%BA%E5%88%B6%E6%94%B9%E5%8A%A8"
+          "url": "https://search.bilibili.com/all?keyword=%E5%8D%81%E4%BD%99%E5%90%8D%E7%BE%8E%E5%95%86%E7%95%8C%E4%BB%A3%E8%A1%A8%E8%BF%9B%E5%85%A5%E4%BC%9A%E8%B0%88%E7%8E%B0%E5%9C%BA"
         }
       ]
     },
@@ -602,7 +602,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 10,
       "sources": [
         {
           "name": "微博",
@@ -623,7 +623,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 2,
       "sources": [
         {
           "name": "微博",
