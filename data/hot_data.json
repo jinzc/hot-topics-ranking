@@ -1,5 +1,5 @@
 {
-  "updateTime": "2026-05-14 08:46",
+  "updateTime": "2026-05-14 08:47",
   "topics": [
     {
       "rank": 1,
@@ -14,7 +14,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 4,
       "sources": [
         {
           "name": "B站",
@@ -35,7 +35,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 3,
       "sources": [
         {
           "name": "B站",
@@ -56,7 +56,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
@@ -77,7 +77,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 2,
       "sources": [
         {
           "name": "B站",
@@ -98,7 +98,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 4,
       "sources": [
         {
           "name": "B站",
@@ -119,7 +119,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
@@ -140,7 +140,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 5,
       "sources": [
         {
           "name": "B站",
@@ -161,7 +161,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
@@ -182,7 +182,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 2,
       "sources": [
         {
           "name": "微博",
@@ -213,9 +213,9 @@
     },
     {
       "rank": 11,
-      "title": "618上天猫抢华为大额券再叠补贴",
-      "category": "tech",
-      "summary": "618上天猫抢华为大额券再叠补贴",
+      "title": "白鹿演唱会票价加起来是十年",
+      "category": "entertainment",
+      "summary": "白鹿演唱会票价加起来是十年",
       "heat": {
         "weibo": 4700,
         "baidu": 0,
@@ -224,19 +224,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 10,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=618%E4%B8%8A%E5%A4%A9%E7%8C%AB%E6%8A%A2%E5%8D%8E%E4%B8%BA%E5%A4%A7%E9%A2%9D%E5%88%B8%E5%86%8D%E5%8F%A0%E8%A1%A5%E8%B4%B4"
+          "url": "https://s.weibo.com/weibo?q=%E7%99%BD%E9%B9%BF%E6%BC%94%E5%94%B1%E4%BC%9A%E7%A5%A8%E4%BB%B7%E5%8A%A0%E8%B5%B7%E6%9D%A5%E6%98%AF%E5%8D%81%E5%B9%B4"
         }
       ]
     },
     {
       "rank": 12,
-      "title": "白鹿演唱会票价加起来是十年",
-      "category": "entertainment",
-      "summary": "白鹿演唱会票价加起来是十年",
+      "title": "歌手",
+      "category": "social",
+      "summary": "歌手",
       "heat": {
         "weibo": 4600,
         "baidu": 0,
@@ -245,11 +245,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 8,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%99%BD%E9%B9%BF%E6%BC%94%E5%94%B1%E4%BC%9A%E7%A5%A8%E4%BB%B7%E5%8A%A0%E8%B5%B7%E6%9D%A5%E6%98%AF%E5%8D%81%E5%B9%B4"
+          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B"
         }
       ]
     },
@@ -266,7 +266,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 9,
       "sources": [
         {
           "name": "B站",
@@ -276,32 +276,11 @@
     },
     {
       "rank": 14,
-      "title": "歌手",
-      "category": "social",
-      "summary": "歌手",
-      "heat": {
-        "weibo": 4500,
-        "baidu": 0,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "trend": "up",
-      "trendVal": 9,
-      "sources": [
-        {
-          "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E6%AD%8C%E6%89%8B"
-        }
-      ]
-    },
-    {
-      "rank": 15,
       "title": "刘海为什么不能叫张海",
       "category": "social",
       "summary": "刘海为什么不能叫张海",
       "heat": {
-        "weibo": 4400,
+        "weibo": 4500,
         "baidu": 0,
         "zhihu": 0,
         "bilibili": 0,
@@ -313,6 +292,27 @@
         {
           "name": "微博",
           "url": "https://s.weibo.com/weibo?q=%E5%88%98%E6%B5%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%8F%AB%E5%BC%A0%E6%B5%B7"
+        }
+      ]
+    },
+    {
+      "rank": 15,
+      "title": "优酷雨霖铃杨洋版展昭江湖除恶",
+      "category": "social",
+      "summary": "优酷雨霖铃杨洋版展昭江湖除恶",
+      "heat": {
+        "weibo": 4400,
+        "baidu": 0,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "trend": "up",
+      "trendVal": 9,
+      "sources": [
+        {
+          "name": "微博",
+          "url": "https://s.weibo.com/weibo?q=%E4%BC%98%E9%85%B7%E9%9B%A8%E9%9C%96%E9%93%83%E6%9D%A8%E6%B4%8B%E7%89%88%E5%B1%95%E6%98%AD%E6%B1%9F%E6%B9%96%E9%99%A4%E6%81%B6"
         }
       ]
     },
@@ -329,7 +329,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 3,
       "sources": [
         {
           "name": "B站",
@@ -339,9 +339,9 @@
     },
     {
       "rank": 17,
-      "title": "张艺兴君佩全球首位品牌代言人",
+      "title": "爸爸当家",
       "category": "social",
-      "summary": "张艺兴君佩全球首位品牌代言人",
+      "summary": "爸爸当家",
       "heat": {
         "weibo": 4300,
         "baidu": 0,
@@ -354,15 +354,15 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E8%89%BA%E5%85%B4%E5%90%9B%E4%BD%A9%E5%85%A8%E7%90%83%E9%A6%96%E4%BD%8D%E5%93%81%E7%89%8C%E4%BB%A3%E8%A8%80%E4%BA%BA"
+          "url": "https://s.weibo.com/weibo?q=%E7%88%B8%E7%88%B8%E5%BD%93%E5%AE%B6"
         }
       ]
     },
     {
       "rank": 18,
-      "title": "爸爸当家",
+      "title": "腾讯成立800人团队适配鸿蒙",
       "category": "social",
-      "summary": "爸爸当家",
+      "summary": "腾讯成立800人团队适配鸿蒙",
       "heat": {
         "weibo": 4200,
         "baidu": 0,
@@ -371,11 +371,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 4,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%88%B8%E7%88%B8%E5%BD%93%E5%AE%B6"
+          "url": "https://s.weibo.com/weibo?q=%E8%85%BE%E8%AE%AF%E6%88%90%E7%AB%8B800%E4%BA%BA%E5%9B%A2%E9%98%9F%E9%80%82%E9%85%8D%E9%B8%BF%E8%92%99"
         }
       ]
     },
@@ -392,7 +392,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 1,
       "sources": [
         {
           "name": "B站",
@@ -402,9 +402,9 @@
     },
     {
       "rank": 20,
-      "title": "腾讯成立800人团队适配鸿蒙",
-      "category": "social",
-      "summary": "腾讯成立800人团队适配鸿蒙",
+      "title": "世界杯",
+      "category": "sports",
+      "summary": "世界杯",
       "heat": {
         "weibo": 4100,
         "baidu": 0,
@@ -417,15 +417,15 @@
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E8%85%BE%E8%AE%AF%E6%88%90%E7%AB%8B800%E4%BA%BA%E5%9B%A2%E9%98%9F%E9%80%82%E9%85%8D%E9%B8%BF%E8%92%99"
+          "url": "https://s.weibo.com/weibo?q=%E4%B8%96%E7%95%8C%E6%9D%AF"
         }
       ]
     },
     {
       "rank": 21,
-      "title": "世界杯",
-      "category": "sports",
-      "summary": "世界杯",
+      "title": "中美经贸团队达成积极成果",
+      "category": "politics",
+      "summary": "中美经贸团队达成积极成果",
       "heat": {
         "weibo": 4000,
         "baidu": 0,
@@ -434,11 +434,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 5,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E4%B8%96%E7%95%8C%E6%9D%AF"
+          "url": "https://s.weibo.com/weibo?q=%E4%B8%AD%E7%BE%8E%E7%BB%8F%E8%B4%B8%E5%9B%A2%E9%98%9F%E8%BE%BE%E6%88%90%E7%A7%AF%E6%9E%81%E6%88%90%E6%9E%9C"
         }
       ]
     },
@@ -455,7 +455,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 5,
       "sources": [
         {
           "name": "B站",
@@ -465,9 +465,9 @@
     },
     {
       "rank": 23,
-      "title": "中美经贸团队达成积极成果",
+      "title": "特朗普说二三把手我都不让他们来",
       "category": "politics",
-      "summary": "中美经贸团队达成积极成果",
+      "summary": "特朗普说二三把手我都不让他们来",
       "heat": {
         "weibo": 3900,
         "baidu": 0,
@@ -476,19 +476,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 8,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E4%B8%AD%E7%BE%8E%E7%BB%8F%E8%B4%B8%E5%9B%A2%E9%98%9F%E8%BE%BE%E6%88%90%E7%A7%AF%E6%9E%81%E6%88%90%E6%9E%9C"
+          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E8%AF%B4%E4%BA%8C%E4%B8%89%E6%8A%8A%E6%89%8B%E6%88%91%E9%83%BD%E4%B8%8D%E8%AE%A9%E4%BB%96%E4%BB%AC%E6%9D%A5"
         }
       ]
     },
     {
       "rank": 24,
-      "title": "特朗普说二三把手我都不让他们来",
-      "category": "politics",
-      "summary": "特朗普说二三把手我都不让他们来",
+      "title": "鹿晗寸头",
+      "category": "social",
+      "summary": "鹿晗寸头",
       "heat": {
         "weibo": 3800,
         "baidu": 0,
@@ -497,11 +497,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 8,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E8%AF%B4%E4%BA%8C%E4%B8%89%E6%8A%8A%E6%89%8B%E6%88%91%E9%83%BD%E4%B8%8D%E8%AE%A9%E4%BB%96%E4%BB%AC%E6%9D%A5"
+          "url": "https://s.weibo.com/weibo?q=%E9%B9%BF%E6%99%97%E5%AF%B8%E5%A4%B4"
         }
       ]
     },
@@ -518,7 +518,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 2,
       "sources": [
         {
           "name": "B站",
@@ -528,9 +528,9 @@
     },
     {
       "rank": 26,
-      "title": "鹿晗寸头",
-      "category": "social",
-      "summary": "鹿晗寸头",
+      "title": "特朗普感叹大美中国",
+      "category": "politics",
+      "summary": "特朗普感叹大美中国",
       "heat": {
         "weibo": 3700,
         "baidu": 0,
@@ -539,19 +539,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 8,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E9%B9%BF%E6%99%97%E5%AF%B8%E5%A4%B4"
+          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E6%84%9F%E5%8F%B9%E5%A4%A7%E7%BE%8E%E4%B8%AD%E5%9B%BD"
         }
       ]
     },
     {
       "rank": 27,
-      "title": "特朗普感叹大美中国",
-      "category": "politics",
-      "summary": "特朗普感叹大美中国",
+      "title": "爱喝粥和爱喝咖啡的人都沉默了",
+      "category": "social",
+      "summary": "爱喝粥和爱喝咖啡的人都沉默了",
       "heat": {
         "weibo": 3600,
         "baidu": 0,
@@ -560,11 +560,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 1,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%89%B9%E6%9C%97%E6%99%AE%E6%84%9F%E5%8F%B9%E5%A4%A7%E7%BE%8E%E4%B8%AD%E5%9B%BD"
+          "url": "https://s.weibo.com/weibo?q=%E7%88%B1%E5%96%9D%E7%B2%A5%E5%92%8C%E7%88%B1%E5%96%9D%E5%92%96%E5%95%A1%E7%9A%84%E4%BA%BA%E9%83%BD%E6%B2%89%E9%BB%98%E4%BA%86"
         }
       ]
     },
@@ -591,9 +591,9 @@
     },
     {
       "rank": 29,
-      "title": "爱喝粥和爱喝咖啡的人都沉默了",
-      "category": "social",
-      "summary": "爱喝粥和爱喝咖啡的人都沉默了",
+      "title": "台湾问题处理好了中美关系就能稳定",
+      "category": "politics",
+      "summary": "台湾问题处理好了中美关系就能稳定",
       "heat": {
         "weibo": 3500,
         "baidu": 0,
@@ -602,19 +602,19 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 1,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E7%88%B1%E5%96%9D%E7%B2%A5%E5%92%8C%E7%88%B1%E5%96%9D%E5%92%96%E5%95%A1%E7%9A%84%E4%BA%BA%E9%83%BD%E6%B2%89%E9%BB%98%E4%BA%86"
+          "url": "https://s.weibo.com/weibo?q=%E5%8F%B0%E6%B9%BE%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A5%BD%E4%BA%86%E4%B8%AD%E7%BE%8E%E5%85%B3%E7%B3%BB%E5%B0%B1%E8%83%BD%E7%A8%B3%E5%AE%9A"
         }
       ]
     },
     {
       "rank": 30,
-      "title": "台湾问题处理好了中美关系就能稳定",
-      "category": "politics",
-      "summary": "台湾问题处理好了中美关系就能稳定",
+      "title": "薯片透明包装",
+      "category": "social",
+      "summary": "薯片透明包装",
       "heat": {
         "weibo": 3400,
         "baidu": 0,
@@ -623,11 +623,11 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 5,
       "sources": [
         {
           "name": "微博",
-          "url": "https://s.weibo.com/weibo?q=%E5%8F%B0%E6%B9%BE%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86%E5%A5%BD%E4%BA%86%E4%B8%AD%E7%BE%8E%E5%85%B3%E7%B3%BB%E5%B0%B1%E8%83%BD%E7%A8%B3%E5%AE%9A"
+          "url": "https://s.weibo.com/weibo?q=%E8%96%AF%E7%89%87%E9%80%8F%E6%98%8E%E5%8C%85%E8%A3%85"
         }
       ]
     }
