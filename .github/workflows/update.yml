@@ -34,16 +34,55 @@ jobs:
       - name: Update data
         run: python scripts/update_hot_topics.py
 
-      - name: Commit via GitHub API
+      - name: Commit via GitHub API using Python
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 读取文件内容并 base64 编码（修复：使用 tr 去掉换行）
-          CONTENT=$(base64 data/hot_data.json | tr -d '\n')
+          python3 << 'EOF'
+          import base64
+          import json
+          import os
+          import urllib.request
+
+          repo = "${{ github.repository }}"
+          token = os.environ['GITHUB_TOKEN']
+
+          # 读取文件内容
+          with open('data/hot_data.json', 'rb') as f:
+              content = base64.b64encode(f.read()).decode('utf-8')
+
           # 获取当前文件的 SHA
-          SHA=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json | jq -r '.sha')
-          # 通过 API 更新文件
-          curl -X PUT             -H "Authorization: Bearer $GITHUB_TOKEN"             -H "Accept: application/vnd.github+json"             https://api.github.com/repos/${{ github.repository }}/contents/data/hot_data.json             -d "{"message":"Update hot topics - $(date +'%Y-%m-%d %H:%M')","content":"$CONTENT","sha":"$SHA"}"
+          req = urllib.request.Request(
+              f'https://api.github.com/repos/{repo}/contents/data/hot_data.json',
+              headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'}
+          )
+          resp = urllib.request.urlopen(req)
+          data = json.loads(resp.read().decode())
+          sha = data['sha']
+
+          # 更新文件
+          import datetime
+          now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
+
+          payload = json.dumps({
+              'message': f'Update hot topics - {now}',
+              'content': content,
+              'sha': sha
+          }).encode('utf-8')
+
+          req = urllib.request.Request(
+              f'https://api.github.com/repos/{repo}/contents/data/hot_data.json',
+              data=payload,
+              headers={
+                  'Authorization': f'Bearer {token}',
+                  'Accept': 'application/vnd.github+json',
+                  'Content-Type': 'application/json'
+              },
+              method='PUT'
+          )
+          resp = urllib.request.urlopen(req)
+          print(f"File updated: {resp.status}")
+          EOF
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
