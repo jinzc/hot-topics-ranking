@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v3.1 修复版)
-修复: 百度、知乎、抖音使用第三方API，微博和B站保持原有逻辑
+全网热点榜单自动更新脚本 (v3.2 修复版)
+修复: heat 类型错误，百度成功，知乎抖音继续尝试
 """
 
 import json
@@ -75,6 +75,14 @@ def extract_heat_value(text):
         elif '万' in str(text) or 'w' in str(text).lower():
             val *= 10000
         return int(val)
+    return 0
+
+# 确保 heat 是数值类型
+def ensure_numeric_heat(heat):
+    if isinstance(heat, str):
+        return extract_heat_value(heat)
+    if isinstance(heat, (int, float)):
+        return int(heat)
     return 0
 
 # ============ 微博 ============
@@ -157,6 +165,8 @@ def fetch_baidu_hot():
                     if not title:
                         continue
                     hot = item.get('hot', 0)
+                    # 确保 heat 是数值
+                    hot = ensure_numeric_heat(hot)
                     if hot == 0:
                         hot = random.randint(10000, 500000)
 
@@ -187,6 +197,7 @@ def fetch_baidu_hot():
                     if not title:
                         continue
                     raw_hot = item.get('raw_hot', 0)
+                    raw_hot = ensure_numeric_heat(raw_hot)
                     if raw_hot == 0:
                         raw_hot = random.randint(10000, 500000)
 
@@ -224,6 +235,7 @@ def fetch_zhihu_hot():
                     if not title:
                         continue
                     hot = item.get('hot', 0)
+                    hot = ensure_numeric_heat(hot)
                     if hot == 0:
                         hot = random.randint(100000, 5000000)
 
@@ -295,6 +307,7 @@ def fetch_bilibili_hot():
                         continue
                     show_name = item.get('show_name', title)
                     heat = item.get('hot_id', 0)
+                    heat = ensure_numeric_heat(heat)
                     if heat == 0:
                         heat = max(3000 - idx * 100, 100)
                     topics.append({
@@ -330,6 +343,7 @@ def fetch_douyin_hot():
                     if not title:
                         continue
                     hot = item.get('hot', 0)
+                    hot = ensure_numeric_heat(hot)
                     if hot == 0:
                         hot = random.randint(1000, 10000)
 
@@ -358,6 +372,7 @@ def fetch_douyin_hot():
                 if not title:
                     continue
                 heat = item.get('hot_value', 0)
+                heat = ensure_numeric_heat(heat)
                 if heat == 0:
                     heat = max(10000 - idx * 300, 100)
                 topics.append({
@@ -385,6 +400,7 @@ def fetch_douyin_hot():
                 if not title:
                     continue
                 heat = item.get('HotValue', 0)
+                heat = ensure_numeric_heat(heat)
                 if heat == 0:
                     heat = max(10000 - idx * 300, 100)
                 topics.append({
@@ -419,6 +435,9 @@ def merge_topics(all_data):
                 }
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
+            # 关键修复：确保 heat 是数值类型
+            heat = ensure_numeric_heat(heat)
+
             if source == 'weibo':
                 normalized_heat = min(heat, 10000)
             elif source == 'baidu':
