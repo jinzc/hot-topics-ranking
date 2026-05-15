@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v2.2 修复版)
-修复: 
-1. 微博热度值计算错误（raw_hot为0时默认给排名热度）
-2. B站数据合并丢失（热度归一化权重调整）
-3. 知乎、百度、抖音新增备用源
+全网热点榜单自动更新脚本 (v3.0 北京时间版)
 """
 
 import json
@@ -13,7 +9,7 @@ import re
 import sys
 import time
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import quote
 
 try:
@@ -83,8 +79,6 @@ def extract_heat_value(text):
 # ============ 微博 ============
 def fetch_weibo_hot():
     topics = []
-
-    # 接口1: m.weibo.cn
     try:
         print("  [微博] 尝试 m.weibo.cn...")
         url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
@@ -101,10 +95,8 @@ def fetch_weibo_hot():
                         heat = item.get('desc_extr', 0)
                         if isinstance(heat, str):
                             heat = extract_heat_value(heat)
-                        # 如果desc_extr没有，根据排名给默认热度
                         if heat == 0:
                             heat = max(5000 - len(topics) * 200, 100)
-
                         topics.append({
                             'title': title,
                             'heat': heat,
@@ -117,7 +109,6 @@ def fetch_weibo_hot():
     except Exception as e:
         print(f"  ❌ 失败: {e}")
 
-    # 接口2: weibo.com/ajax
     try:
         print("  [微博] 尝试 weibo.com/ajax...")
         headers2 = {**HEADERS, 'Referer': 'https://weibo.com/', 'X-Requested-With': 'XMLHttpRequest'}
@@ -129,12 +120,9 @@ def fetch_weibo_hot():
                 title = item.get('word', '')
                 if not title:
                     continue
-                # raw_hot可能为0或不存在，用排名估算
                 raw_hot = item.get('raw_hot', 0)
                 if raw_hot == 0:
-                    # 根据排名给热度: 第1名5000，递减
                     raw_hot = max(5000 - idx * 100, 100)
-
                 topics.append({
                     'title': title,
                     'heat': raw_hot,
@@ -153,8 +141,6 @@ def fetch_weibo_hot():
 # ============ 百度 ============
 def fetch_baidu_hot():
     topics = []
-
-    # 接口1: API
     try:
         print("  [百度] 尝试 API...")
         resp = safe_request('https://top.baidu.com/api/board?platform=wise&tab=realtime', timeout=10)
@@ -169,7 +155,6 @@ def fetch_baidu_hot():
                     raw_hot = item.get('raw_hot', 0)
                     if raw_hot == 0:
                         raw_hot = random.randint(10000, 500000)
-
                     topics.append({
                         'title': title,
                         'heat': raw_hot,
@@ -183,7 +168,6 @@ def fetch_baidu_hot():
     except Exception as e:
         print(f"  ❌ 失败: {e}")
 
-    # 接口2: 页面解析
     try:
         print("  [百度] 尝试页面解析...")
         resp = safe_request('https://top.baidu.com/board?tab=realtime', timeout=10)
@@ -199,10 +183,8 @@ def fetch_baidu_hot():
                 heat = extract_heat_value(heat_elem.get_text()) if heat_elem else 0
                 if heat == 0:
                     heat = random.randint(10000, 500000)
-
                 summary_elem = item.find('div', class_=re.compile('content_'))
                 summary = summary_elem.get_text(strip=True)[:100] if summary_elem else ''
-
                 topics.append({
                     'title': title,
                     'heat': heat,
@@ -222,23 +204,14 @@ def fetch_baidu_hot():
 # ============ 知乎 ============
 def fetch_zhihu_hot():
     topics = []
-
-    # 接口1: 带session
     try:
         print("  [知乎] 尝试 session+cookie...")
         session = requests.Session()
         session.headers.update(HEADERS)
         session.get('https://www.zhihu.com/hot', timeout=10)
-
         url = 'https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50'
-        headers_zh = {
-            **HEADERS,
-            'Referer': 'https://www.zhihu.com/hot',
-            'x-api-version': '3.0.91',
-            'x-requested-with': 'fetch',
-        }
+        headers_zh = {**HEADERS, 'Referer': 'https://www.zhihu.com/hot', 'x-api-version': '3.0.91', 'x-requested-with': 'fetch'}
         resp = session.get(url, headers=headers_zh, timeout=10)
-
         if resp.status_code == 200:
             data = resp.json()
             items = data.get('data', [])
@@ -251,7 +224,6 @@ def fetch_zhihu_hot():
                 heat = extract_heat_value(detail)
                 if heat == 0:
                     heat = max(5000000 - idx * 100000, 100000)
-
                 topics.append({
                     'title': title,
                     'heat': heat,
@@ -267,7 +239,6 @@ def fetch_zhihu_hot():
     except Exception as e:
         print(f"  ❌ 失败: {e}")
 
-    # 接口2: 移动端
     try:
         print("  [知乎] 尝试移动端...")
         headers_m = {
@@ -287,7 +258,6 @@ def fetch_zhihu_hot():
                 heat = extract_heat_value(item.get('detail_text', ''))
                 if heat == 0:
                     heat = max(5000000 - idx * 100000, 100000)
-
                 topics.append({
                     'title': title,
                     'heat': heat,
@@ -307,7 +277,6 @@ def fetch_zhihu_hot():
 # ============ B站 ============
 def fetch_bilibili_hot():
     topics = []
-
     try:
         print("  [B站] 尝试 API...")
         resp = safe_request('https://api.bilibili.com/x/web-interface/search/square?limit=30', timeout=10)
@@ -320,11 +289,9 @@ def fetch_bilibili_hot():
                     if not title:
                         continue
                     show_name = item.get('show_name', title)
-                    # hot_id可能为0，用排名给默认热度
                     heat = item.get('hot_id', 0)
                     if heat == 0:
                         heat = max(3000 - idx * 100, 100)
-
                     topics.append({
                         'title': show_name or title,
                         'heat': heat,
@@ -343,8 +310,6 @@ def fetch_bilibili_hot():
 # ============ 抖音 ============
 def fetch_douyin_hot():
     topics = []
-
-    # 接口1: 抖音API
     try:
         print("  [抖音] 尝试 API...")
         headers_dy = {**HEADERS, 'Referer': 'https://www.douyin.com/'}
@@ -359,7 +324,6 @@ def fetch_douyin_hot():
                 heat = item.get('hot_value', 0)
                 if heat == 0:
                     heat = max(10000 - idx * 300, 100)
-
                 topics.append({
                     'title': title,
                     'heat': heat,
@@ -372,7 +336,6 @@ def fetch_douyin_hot():
     except Exception as e:
         print(f"  ❌ 失败: {e}")
 
-    # 接口2: 今日头条热榜（与抖音互通）
     try:
         print("  [抖音] 尝试今日头条...")
         headers_tt = {**HEADERS, 'Referer': 'https://www.toutiao.com/'}
@@ -387,7 +350,6 @@ def fetch_douyin_hot():
                 heat = item.get('HotValue', 0)
                 if heat == 0:
                     heat = max(10000 - idx * 300, 100)
-
                 topics.append({
                     'title': title,
                     'heat': heat,
@@ -406,12 +368,10 @@ def fetch_douyin_hot():
 # ============ 合并数据 ============
 def merge_topics(all_data):
     topic_map = {}
-
     for source_name, topics in all_data.items():
         for idx, item in enumerate(topics):
             title = item['title']
             key = title[:15]
-
             if key not in topic_map:
                 topic_map[key] = {
                     'title': title,
@@ -420,45 +380,28 @@ def merge_topics(all_data):
                     'summary': item.get('summary', ''),
                     'categories': []
                 }
-
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
-
-            # 修复: 更合理的热度归一化
-            # 目标: 让所有平台的热度在同一数量级 (0-10000)
             if source == 'weibo':
-                # 微博: 100-5000 → 直接保留
                 normalized_heat = min(heat, 10000)
             elif source == 'baidu':
-                # 百度: 10000-500000 → 除以10
                 normalized_heat = min(heat / 10, 10000)
             elif source == 'zhihu':
-                # 知乎: 100000-5000000 → 除以100
                 normalized_heat = min(heat / 100, 10000)
             elif source == 'bilibili':
-                # B站: 100-3000 → 乘以2
                 normalized_heat = min(heat * 2, 10000)
             elif source == 'douyin':
-                # 抖音: 1000-10000 → 直接保留
                 normalized_heat = min(heat, 10000)
             else:
                 normalized_heat = min(heat, 10000)
-
-            # 保留该来源的最大热度
             topic_map[key]['heat'][source] = max(topic_map[key]['heat'][source], normalized_heat)
-
             source_url = item.get('url', '')
             existing = [s['name'] for s in topic_map[key]['sources']]
             source_display = {'weibo': '微博', 'baidu': '百度', 'zhihu': '知乎', 'bilibili': 'B站', 'douyin': '抖音'}.get(source, source)
             if source_display not in existing:
-                topic_map[key]['sources'].append({
-                    'name': source_display,
-                    'url': source_url
-                })
-
+                topic_map[key]['sources'].append({'name': source_display, 'url': source_url})
             if item.get('summary') and len(item['summary']) > len(topic_map[key]['summary']):
                 topic_map[key]['summary'] = item['summary']
-
             cat = classify_topic(title, topic_map[key]['summary'])
             topic_map[key]['categories'].append(cat)
 
@@ -467,7 +410,6 @@ def merge_topics(all_data):
         total_heat = sum(data['heat'].values())
         categories = data['categories']
         category = max(set(categories), key=categories.count) if categories else 'social'
-
         source_count = len(data['sources'])
         if source_count >= 3:
             trend = 'hot'
@@ -478,7 +420,6 @@ def merge_topics(all_data):
         else:
             trend = 'up'
             trend_val = random.randint(1, 10)
-
         topics.append({
             'rank': 0,
             'title': data['title'],
@@ -489,68 +430,54 @@ def merge_topics(all_data):
             'trendVal': trend_val,
             'sources': data['sources']
         })
-
-    # 按综合热度排序
     topics.sort(key=lambda x: sum(x['heat'].values()), reverse=True)
-
     for i, topic in enumerate(topics[:30]):
         topic['rank'] = i + 1
-
     return topics[:30]
 
 # ============ 主函数 ============
 def generate_data():
-    print(f"[{datetime.now()}] 开始抓取热点数据...")
+    # 使用北京时间 (UTC+8)
+    utc_now = datetime.utcnow()
+    beijing_now = utc_now + timedelta(hours=8)
+
+    print(f"[{beijing_now}] 开始抓取热点数据...")
 
     all_data = {}
-
-    print("
-[1/5] 抓取微博热搜...")
+    print("[1/5] 抓取微博热搜...")
     all_data['weibo'] = fetch_weibo_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("
-[2/5] 抓取百度热搜...")
+    print("[2/5] 抓取百度热搜...")
     all_data['baidu'] = fetch_baidu_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("
-[3/5] 抓取知乎热榜...")
+    print("[3/5] 抓取知乎热榜...")
     all_data['zhihu'] = fetch_zhihu_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("
-[4/5] 抓取B站热搜...")
+    print("[4/5] 抓取B站热搜...")
     all_data['bilibili'] = fetch_bilibili_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("
-[5/5] 抓取抖音热榜...")
+    print("[5/5] 抓取抖音热榜...")
     all_data['douyin'] = fetch_douyin_hot()
 
     total_fetched = sum(len(v) for v in all_data.values())
-    print(f"
-{'='*50}")
-    print(f"抓取统计:")
+    print("=" * 50)
+    print("抓取统计:")
     for source, topics in all_data.items():
         status = "✅" if topics else "❌"
         print(f"  {status} {source}: {len(topics)} 条")
-    print(f"{'='*50}")
+    print("=" * 50)
 
     if total_fetched == 0:
-        print("
-❌ 所有数据源均抓取失败！")
+        print("所有数据源均抓取失败！")
         sys.exit(1)
 
-    print("
-[合并数据] 去重并计算综合热度...")
+    print("合并数据，去重并计算综合热度...")
     topics = merge_topics(all_data)
     print(f"合并后: {len(topics)} 条热点")
-
-    # 使用北京时间 (UTC+8)
-    from datetime import timedelta
-    utc_now = datetime.utcnow()
-    beijing_now = utc_now + timedelta(hours=8)
 
     output = {
         'updateTime': beijing_now.strftime('%Y-%m-%d %H:%M'),
@@ -560,12 +487,10 @@ def generate_data():
     with open('data/hot_data.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"
-[{datetime.now()}] ✅ 数据已更新，共 {len(topics)} 条热点")
+    print(f"[{beijing_now}] 数据已更新，共 {len(topics)} 条热点")
     print(f"更新时间: {output['updateTime']}")
 
-    print("
-Top 5 热点:")
+    print("Top 5 热点:")
     for i, t in enumerate(topics[:5]):
         total = sum(t['heat'].values())
         sources = [s['name'] for s in t['sources']]
