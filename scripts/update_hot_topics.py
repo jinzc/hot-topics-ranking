@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v5.2 最终修复版)
-修复: JSON解析问题，Rebang API返回字符串而不是字典
+全网热点榜单自动更新脚本 (v7.0 NewsNow参考版)
+参考: https://github.com/ourongxing/newsnow
+使用 NewsNow 的数据源实现方式
 """
 
 import json
 import sys
 import time
 import random
+import re
 from datetime import datetime, timedelta
 from urllib.parse import quote
 
@@ -19,10 +21,9 @@ except ImportError:
     sys.exit(1)
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'Accept': 'application/json, text/plain, */*',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Accept-Language': 'zh-CN,zh;q=0.9',
-    'Referer': 'https://rebang.today/',
 }
 
 CATEGORY_KEYWORDS = {
@@ -61,107 +62,275 @@ def safe_request(url, headers=None, timeout=15, retries=3):
             time.sleep(random.uniform(2, 4))
     return None
 
-def parse_json_response(resp):
-    """解析响应，处理字符串JSON的情况"""
-    try:
-        data = resp.json()
-        # 如果返回的是字符串，再次解析
-        if isinstance(data, str):
-            data = json.loads(data)
-        return data
-    except Exception as e:
-        print(f"  ❌ JSON解析失败: {e}")
-        return None
-
-def fetch_rebang_data(platform):
-    """从 Rebang.Today 获取数据"""
+# ============ 微博 (参考 NewsNow) ============
+def fetch_weibo_hot():
     topics = []
     try:
-        print(f"  [{platform}] 尝试 Rebang.Today API...")
-        url = f'https://api.rebang.today/v1/items?tab={platform}&date_type=now&version=1'
-        resp = safe_request(url, timeout=15)
+        print("  [微博] 尝试 NewsNow 方式...")
+        baseurl = "https://s.weibo.com"
+        url = f"{baseurl}/top/summary?cate=realtimehot"
+        headers = {
+            **HEADERS,
+            'Cookie': 'SUB=_2AkMWIuNSf8NxqwJRmP8dy2rhaoV2ygrEieKgfhKJJRMxHRl-yT9jqk86tRB6PaLNvQZR6zYUcYVT1zSjoSreQHidcUq7',
+            'referer': url,
+        }
+        resp = safe_request(url, headers=headers, timeout=10)
         if resp:
-            data = parse_json_response(resp)
-            if data is None:
+            # 使用正则提取数据
+            html = resp.text
+            # 提取标题和链接
+            pattern = r'<td class="td-02">\s*<a href="([^"]+)"[^>]*>([^<]+)</a>'
+            matches = re.findall(pattern, html)
+            for idx, (href, title) in enumerate(matches[:30]):
+                if 'javascript:void(0)' in href:
+                    continue
+                title = title.strip()
+                if not title:
+                    continue
+                heat = max(5000 - idx * 150, 100)
+                topics.append({
+                    'title': title,
+                    'heat': heat,
+                    'url': f"{baseurl}{href}" if href.startswith('/') else href,
+                    'source': 'weibo'
+                })
+            if topics:
+                print(f"  ✅ 成功: {len(topics)} 条")
                 return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
 
-            # 检查数据结构
-            if isinstance(data, dict) and 'data' in data:
-                data_inner = data['data']
-                if isinstance(data_inner, dict) and 'list' in data_inner:
-                    items = data_inner['list']
-                    for idx, item in enumerate(items[:30]):
-                        title = item.get('title', '')
-                        if not title:
+    # 备用: m.weibo.cn
+    try:
+        print("  [微博] 尝试 m.weibo.cn...")
+        url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('ok') == 1:
+                cards = data['data'].get('cards', [])
+                for card in cards:
+                    for item in card.get('card_group', []):
+                        title = item.get('desc', '')
+                        if not title or title in ['热搜', '实时上升热点']:
                             continue
-                        # Rebang 返回的热度值
-                        hot = item.get('hot', 0)
-                        if isinstance(hot, str):
-                            import re
-                            match = re.search(r'(\d+(?:\.\d+)?)', hot)
+                        heat = item.get('desc_extr', 0)
+                        if isinstance(heat, str):
+                            match = re.search(r'(\d+(?:\.\d+)?)', heat)
                             if match:
-                                hot = float(match.group(1))
-                                if '万' in hot or 'w' in hot.lower():
-                                    hot *= 10000
-                                elif '亿' in hot:
-                                    hot *= 100000000
+                                heat = float(match.group(1))
+                                if '万' in heat:
+                                    heat *= 10000
                             else:
-                                hot = 0
-
-                        if hot == 0:
-                            hot = max(10000 - idx * 300, 100)
-
+                                heat = 0
+                        if heat == 0:
+                            heat = max(5000 - len(topics) * 200, 100)
                         topics.append({
                             'title': title,
-                            'heat': int(hot),
-                            'url': item.get('www_url', item.get('url', '')),
-                            'source': platform
+                            'heat': int(heat),
+                            'url': f'https://s.weibo.com/weibo?q={quote(title)}',
+                            'source': 'weibo'
                         })
-                    if topics:
-                        print(f"  ✅ Rebang成功: {len(topics)} 条")
-                        return topics
-                else:
-                    print(f"  ⚠️ 数据结构不正确: {type(data_inner)}")
-            else:
-                print(f"  ⚠️ 返回数据格式不正确: {type(data)}")
+                if topics:
+                    print(f"  ✅ 成功: {len(topics)} 条")
+                    return topics
     except Exception as e:
-        print(f"  ❌ Rebang失败: {e}")
+        print(f"  ❌ 失败: {e}")
 
-    return topics
-
-# ============ 各平台抓取 ============
-def fetch_weibo_hot():
-    topics = fetch_rebang_data('weibo')
-    if topics:
-        return topics
     print("  ⚠️ 微博所有接口失败")
     return topics
 
-def fetch_baidu_hot():
-    topics = fetch_rebang_data('baidu')
-    if topics:
-        return topics
-    print("  ⚠️ 百度所有接口失败")
-    return topics
-
+# ============ 知乎 (参考 NewsNow) ============
 def fetch_zhihu_hot():
-    topics = fetch_rebang_data('zhihu')
-    if topics:
-        return topics
+    topics = []
+    try:
+        print("  [知乎] 尝试 NewsNow 方式...")
+        url = "https://www.zhihu.com/api/v3/feed/topstory/hot-list-web?limit=20&desktop=true"
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            items = data.get('data', [])
+            for idx, item in enumerate(items):
+                target = item.get('target', {})
+                title_area = target.get('title_area', {})
+                title = title_area.get('text', '')
+                if not title:
+                    continue
+                link = target.get('link', {})
+                url_zhihu = link.get('url', '')
+                metrics = target.get('metrics_area', {})
+                heat_text = metrics.get('text', '')
+                # 提取热度值
+                heat = 0
+                match = re.search(r'(\d+(?:\.\d+)?)', heat_text)
+                if match:
+                    heat = float(match.group(1))
+                    if '万' in heat_text:
+                        heat *= 10000
+                if heat == 0:
+                    heat = max(5000000 - idx * 250000, 100000)
+
+                topics.append({
+                    'title': title,
+                    'heat': int(heat),
+                    'url': url_zhihu,
+                    'source': 'zhihu'
+                })
+            if topics:
+                print(f"  ✅ 成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
     print("  ⚠️ 知乎所有接口失败")
     return topics
 
+# ============ B站 (参考 NewsNow) ============
 def fetch_bilibili_hot():
-    topics = fetch_rebang_data('bilibili')
-    if topics:
-        return topics
+    topics = []
+    try:
+        print("  [B站] 尝试 NewsNow 方式 (热搜)...")
+        url = "https://s.search.bilibili.com/main/hotword?limit=30"
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 0:
+                items = data.get('list', [])
+                for idx, item in enumerate(items):
+                    title = item.get('show_name', '') or item.get('keyword', '')
+                    if not title:
+                        continue
+                    heat = item.get('hot_id', 0)
+                    if isinstance(heat, str):
+                        match = re.search(r'(\d+(?:\.\d+)?)', heat)
+                        if match:
+                            heat = float(match.group(1))
+                        else:
+                            heat = 0
+                    if heat == 0:
+                        heat = max(3000 - idx * 100, 100)
+                    topics.append({
+                        'title': title,
+                        'heat': int(heat),
+                        'url': f'https://search.bilibili.com/all?keyword={quote(item.get("keyword", title))}',
+                        'source': 'bilibili'
+                    })
+                if topics:
+                    print(f"  ✅ 成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
+    # 备用: 热门视频
+    try:
+        print("  [B站] 尝试热门视频...")
+        url = "https://api.bilibili.com/x/web-interface/popular"
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 0:
+                items = data.get('data', {}).get('list', [])
+                for idx, item in enumerate(items[:30]):
+                    title = item.get('title', '')
+                    if not title:
+                        continue
+                    stat = item.get('stat', {})
+                    view = stat.get('view', 0)
+                    heat = view if view > 0 else max(5000 - idx * 150, 100)
+                    topics.append({
+                        'title': title,
+                        'heat': int(heat),
+                        'url': f'https://www.bilibili.com/video/{item.get("bvid", "")}',
+                        'source': 'bilibili'
+                    })
+                if topics:
+                    print(f"  ✅ 成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
     print("  ⚠️ B站所有接口失败")
     return topics
 
+# ============ 百度 ============
+def fetch_baidu_hot():
+    topics = []
+    try:
+        print("  [百度] 尝试第三方API...")
+        url = 'https://v2.xxapi.cn/api/baiduhot'
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 200 and 'data' in data:
+                items = data['data']
+                for item in items[:30]:
+                    title = item.get('title', '')
+                    if not title:
+                        continue
+                    hot = item.get('hot', 0)
+                    if isinstance(hot, str):
+                        match = re.search(r'(\d+(?:\.\d+)?)', hot)
+                        if match:
+                            hot = float(match.group(1))
+                            if '万' in hot or 'w' in hot.lower():
+                                hot *= 10000
+                            elif '亿' in hot:
+                                hot *= 100000000
+                        else:
+                            hot = 0
+                    if hot == 0:
+                        hot = random.randint(10000, 500000)
+                    topics.append({
+                        'title': title,
+                        'heat': int(hot),
+                        'summary': item.get('desc', '')[:100],
+                        'url': item.get('url', f'https://www.baidu.com/s?wd={quote(title)}'),
+                        'source': 'baidu'
+                    })
+                if topics:
+                    print(f"  ✅ 成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
+    print("  ⚠️ 百度所有接口失败")
+    return topics
+
+# ============ 抖音 ============
 def fetch_douyin_hot():
-    topics = fetch_rebang_data('douyin')
-    if topics:
-        return topics
+    topics = []
+    try:
+        print("  [抖音] 尝试官方API...")
+        headers_dy = {**HEADERS, 'Referer': 'https://www.douyin.com/'}
+        resp = safe_request('https://www.douyin.com/aweme/v1/web/hot/search/list/', headers=headers_dy, timeout=10)
+        if resp:
+            data = resp.json()
+            word_list = data.get('data', {}).get('word_list', [])
+            for idx, item in enumerate(word_list):
+                title = item.get('word', '')
+                if not title:
+                    continue
+                heat = item.get('hot_value', 0)
+                if isinstance(heat, str):
+                    match = re.search(r'(\d+(?:\.\d+)?)', heat)
+                    if match:
+                        heat = float(match.group(1))
+                    else:
+                        heat = 0
+                if heat == 0:
+                    heat = max(10000 - idx * 300, 100)
+                topics.append({
+                    'title': title,
+                    'heat': int(heat),
+                    'url': f'https://www.douyin.com/search/{quote(title)}',
+                    'source': 'douyin'
+                })
+            if topics:
+                print(f"  ✅ 成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
     print("  ⚠️ 抖音所有接口失败")
     return topics
 
@@ -183,7 +352,6 @@ def merge_topics(all_data):
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
             if isinstance(heat, str):
-                import re
                 match = re.search(r'(\d+(?:\.\d+)?)', heat)
                 if match:
                     heat = float(match.group(1))
@@ -285,7 +453,6 @@ def generate_data():
 
     if total_fetched == 0:
         print("所有数据源均抓取失败！")
-        # 使用空数据，不退出
         all_data = {
             'weibo': [],
             'baidu': [],
@@ -298,7 +465,6 @@ def generate_data():
     topics = merge_topics(all_data)
     print(f"合并后: {len(topics)} 条热点")
 
-    # 统计各平台覆盖情况
     platform_counts = {'weibo': 0, 'baidu': 0, 'zhihu': 0, 'bilibili': 0, 'douyin': 0}
     for topic in topics:
         for source in topic['sources']:
