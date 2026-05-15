@@ -2,22 +2,12 @@ name: Update Hot Topics
 
 on:
   schedule:
-    - cron: '0 * * * *'  # 每小时整点运行
-  workflow_dispatch:  # 支持手动触发
-
-# 防止任务冲突，确保不会同时运行多个实例
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
+    - cron: '0 * * * *'  # 每小时运行一次
+  workflow_dispatch:      # 支持手动触发
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,46 +18,19 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4
 
       - name: Run update script
-        id: update
         run: python scripts/update_hot_topics.py
 
-      - name: Check if data changed
-        id: check
-        run: |
-          git add data/hot_data.json
-          if git diff --cached --quiet; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "数据无变化，跳过提交"
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "数据有更新"
-          fi
-
-      - name: Commit and push data
-        if: steps.check.outputs.changed == 'true'
+      - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Update hot topics - $(date +'%Y-%m-%d %H:%M')"
-          git push
-
-      - name: Trigger Pages rebuild
-        if: steps.check.outputs.changed == 'true'
-        run: |
-          # 通过修改时间戳文件强制触发 Pages 重建
-          date > .last_update_time
-          git add .last_update_time
-          git commit -m "Trigger Pages rebuild - $(date +'%Y-%m-%d %H:%M')" || true
-          git push || true
-
-      - name: Upload artifact backup
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: hot-data-backup
-          path: data/hot_data.json
-          retention-days: 7
+          git add data/hot_data.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update hot topics: $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
