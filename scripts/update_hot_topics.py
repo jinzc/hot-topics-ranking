@@ -357,7 +357,7 @@ def fetch_weibo_hot():
         print(" [微博] 尝试GitHub数据源...")
         from datetime import datetime
         today = datetime.utcnow().strftime('%Y-%m-%d')
-        url = f'https://raw.githubusercontent.com/arandomguyhere/weibo-daily-hot-search/main/raw/{today}.json'
+        url = f'https://raw.githubusercontent.com/aweimeow/weibo-rss/master/json/{today}.json'
         resp = safe_request(url, timeout=8, retries=1)
         if resp and resp.status_code == 200:
             try:
@@ -809,7 +809,7 @@ def generate_data():
     }
 
     with open('data/hot_data.json', 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascil=False, indent=2)
+        json.dump(output, f, ensure_ascii=False, indent=2)
 
     print(f"[{beijing_now}] 数据已更新")
     print(f"更新时间: {output['updateTime']}")
