@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v3.2 修复版)
-修复: heat 类型错误，百度成功，知乎抖音继续尝试
+全网热点榜单自动更新脚本 (v3.3 稳定版)
+修复: B站、知乎、抖音使用稳定第三方API
 """
 
 import json
@@ -77,7 +77,6 @@ def extract_heat_value(text):
         return int(val)
     return 0
 
-# 确保 heat 是数值类型
 def ensure_numeric_heat(heat):
     if isinstance(heat, str):
         return extract_heat_value(heat)
@@ -150,8 +149,6 @@ def fetch_weibo_hot():
 # ============ 百度 ============
 def fetch_baidu_hot():
     topics = []
-
-    # 尝试1: 使用第三方聚合API
     try:
         print("  [百度] 尝试第三方API...")
         url = 'https://v2.xxapi.cn/api/baiduhot'
@@ -165,11 +162,9 @@ def fetch_baidu_hot():
                     if not title:
                         continue
                     hot = item.get('hot', 0)
-                    # 确保 heat 是数值
                     hot = ensure_numeric_heat(hot)
                     if hot == 0:
                         hot = random.randint(10000, 500000)
-
                     topics.append({
                         'title': title,
                         'heat': hot,
@@ -183,7 +178,6 @@ def fetch_baidu_hot():
     except Exception as e:
         print(f"  ❌ 第三方API失败: {e}")
 
-    # 尝试2: 使用百度官方API
     try:
         print("  [百度] 尝试官方API...")
         url = 'https://top.baidu.com/api/board?platform=wise&tab=realtime'
@@ -200,7 +194,6 @@ def fetch_baidu_hot():
                     raw_hot = ensure_numeric_heat(raw_hot)
                     if raw_hot == 0:
                         raw_hot = random.randint(10000, 500000)
-
                     topics.append({
                         'title': title,
                         'heat': raw_hot,
@@ -221,9 +214,40 @@ def fetch_baidu_hot():
 def fetch_zhihu_hot():
     topics = []
 
-    # 尝试1: 使用第三方聚合API
+    # 尝试1: zlinblog API
     try:
-        print("  [知乎] 尝试第三方API...")
+        print("  [知乎] 尝试 zlinblog API...")
+        url = 'https://api.zlinblog.cn/hot/v1b1/zhihu'
+        headers_api = {**HEADERS, 'X-Licence': '3yVabcd1234d597'}
+        resp = safe_request(url, headers=headers_api, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 200 and 'data' in data:
+                items = data['data']
+                for item in items[:30]:
+                    title = item.get('title', '')
+                    if not title:
+                        continue
+                    hot = item.get('heat', 0)
+                    hot = ensure_numeric_heat(hot)
+                    if hot == 0:
+                        hot = random.randint(100000, 5000000)
+                    topics.append({
+                        'title': title,
+                        'heat': hot,
+                        'summary': item.get('desc', '')[:100],
+                        'url': item.get('link', f'https://www.zhihu.com/search?q={quote(title)}'),
+                        'source': 'zhihu'
+                    })
+                if topics:
+                    print(f"  ✅ zlinblog API成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ zlinblog API失败: {e}")
+
+    # 尝试2: xxapi
+    try:
+        print("  [知乎] 尝试 xxapi...")
         url = 'https://v2.xxapi.cn/api/zhihuhot'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -238,7 +262,6 @@ def fetch_zhihu_hot():
                     hot = ensure_numeric_heat(hot)
                     if hot == 0:
                         hot = random.randint(100000, 5000000)
-
                     topics.append({
                         'title': title,
                         'heat': hot,
@@ -247,12 +270,12 @@ def fetch_zhihu_hot():
                         'source': 'zhihu'
                     })
                 if topics:
-                    print(f"  ✅ 第三方API成功: {len(topics)} 条")
+                    print(f"  ✅ xxapi成功: {len(topics)} 条")
                     return topics
     except Exception as e:
-        print(f"  ❌ 第三方API失败: {e}")
+        print(f"  ❌ xxapi失败: {e}")
 
-    # 尝试2: 知乎官方API
+    # 尝试3: 知乎官方API
     try:
         print("  [知乎] 尝试官方API...")
         session = requests.Session()
@@ -294,8 +317,62 @@ def fetch_zhihu_hot():
 # ============ B站 ============
 def fetch_bilibili_hot():
     topics = []
+
+    # 尝试1: aa1.cn API
     try:
-        print("  [B站] 尝试 API...")
+        print("  [B站] 尝试 aa1.cn API...")
+        url = 'https://v.api.aa1.cn/api/bilibili-rs/'
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 200 and 'data' in data:
+                items = data['data']
+                for idx, item in enumerate(items[:30]):
+                    title = item.get('keyword', '')
+                    if not title:
+                        continue
+                    heat = random.randint(1000, 3000)  # 该API没有热度值
+                    topics.append({
+                        'title': title,
+                        'heat': heat,
+                        'url': f'https://search.bilibili.com/all?keyword={quote(title)}',
+                        'source': 'bilibili'
+                    })
+                if topics:
+                    print(f"  ✅ aa1.cn API成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ aa1.cn API失败: {e}")
+
+    # 尝试2: bzweb API
+    try:
+        print("  [B站] 尝试 bzweb API...")
+        url = 'https://bzapi.bzweb.xyz/api/public/bili/rank?limit=30'
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 200 and 'data' in data:
+                items = data['data']
+                for idx, item in enumerate(items[:30]):
+                    title = item.get('show_name', '') or item.get('keyword', '')
+                    if not title:
+                        continue
+                    heat = random.randint(1000, 3000)
+                    topics.append({
+                        'title': title,
+                        'heat': heat,
+                        'url': f'https://search.bilibili.com/all?keyword={quote(item.get("keyword", title))}',
+                        'source': 'bilibili'
+                    })
+                if topics:
+                    print(f"  ✅ bzweb API成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ bzweb API失败: {e}")
+
+    # 尝试3: 官方API
+    try:
+        print("  [B站] 尝试官方API...")
         resp = safe_request('https://api.bilibili.com/x/web-interface/search/square?limit=30', timeout=10)
         if resp:
             data = resp.json()
@@ -317,10 +394,10 @@ def fetch_bilibili_hot():
                         'source': 'bilibili'
                     })
                 if topics:
-                    print(f"  ✅ 成功: {len(topics)} 条")
+                    print(f"  ✅ 官方API成功: {len(topics)} 条")
                     return topics
     except Exception as e:
-        print(f"  ❌ 失败: {e}")
+        print(f"  ❌ 官方API失败: {e}")
 
     print("  ⚠️ B站所有接口失败")
     return topics
@@ -329,9 +406,39 @@ def fetch_bilibili_hot():
 def fetch_douyin_hot():
     topics = []
 
-    # 尝试1: 使用第三方聚合API
+    # 尝试1: zlinblog API
     try:
-        print("  [抖音] 尝试第三方API...")
+        print("  [抖音] 尝试 zlinblog API...")
+        url = 'https://api.zlinblog.cn/hot/v1b1/douyin/hot'
+        headers_api = {**HEADERS, 'X-Licence': '3yVabcd1234d597'}
+        resp = safe_request(url, headers=headers_api, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 200 and 'data' in data:
+                items = data['data']
+                for item in items[:30]:
+                    title = item.get('title', '')
+                    if not title:
+                        continue
+                    hot = item.get('heat', 0)
+                    hot = ensure_numeric_heat(hot)
+                    if hot == 0:
+                        hot = random.randint(1000, 10000)
+                    topics.append({
+                        'title': title,
+                        'heat': hot,
+                        'url': item.get('link', f'https://www.douyin.com/search/{quote(title)}'),
+                        'source': 'douyin'
+                    })
+                if topics:
+                    print(f"  ✅ zlinblog API成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ zlinblog API失败: {e}")
+
+    # 尝试2: xxapi
+    try:
+        print("  [抖音] 尝试 xxapi...")
         url = 'https://v2.xxapi.cn/api/douyinhot'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -346,7 +453,6 @@ def fetch_douyin_hot():
                     hot = ensure_numeric_heat(hot)
                     if hot == 0:
                         hot = random.randint(1000, 10000)
-
                     topics.append({
                         'title': title,
                         'heat': hot,
@@ -354,12 +460,12 @@ def fetch_douyin_hot():
                         'source': 'douyin'
                     })
                 if topics:
-                    print(f"  ✅ 第三方API成功: {len(topics)} 条")
+                    print(f"  ✅ xxapi成功: {len(topics)} 条")
                     return topics
     except Exception as e:
-        print(f"  ❌ 第三方API失败: {e}")
+        print(f"  ❌ xxapi失败: {e}")
 
-    # 尝试2: 抖音官方API
+    # 尝试3: 官方API
     try:
         print("  [抖音] 尝试官方API...")
         headers_dy = {**HEADERS, 'Referer': 'https://www.douyin.com/'}
@@ -387,34 +493,6 @@ def fetch_douyin_hot():
     except Exception as e:
         print(f"  ❌ 官方API失败: {e}")
 
-    # 尝试3: 今日头条热榜（与抖音互通）
-    try:
-        print("  [抖音] 尝试今日头条...")
-        headers_tt = {**HEADERS, 'Referer': 'https://www.toutiao.com/'}
-        resp = safe_request('https://www.toutiao.com/hot-event/hot-board/?origin=toutiao_pc', headers=headers_tt, timeout=10)
-        if resp:
-            data = resp.json()
-            items = data.get('data', [])
-            for idx, item in enumerate(items):
-                title = item.get('Title', '')
-                if not title:
-                    continue
-                heat = item.get('HotValue', 0)
-                heat = ensure_numeric_heat(heat)
-                if heat == 0:
-                    heat = max(10000 - idx * 300, 100)
-                topics.append({
-                    'title': title,
-                    'heat': heat,
-                    'url': f'https://www.douyin.com/search/{quote(title)}',
-                    'source': 'douyin'
-                })
-            if topics:
-                print(f"  ✅ 今日头条成功: {len(topics)} 条")
-                return topics
-    except Exception as e:
-        print(f"  ❌ 今日头条失败: {e}")
-
     print("  ⚠️ 抖音所有接口失败")
     return topics
 
@@ -435,7 +513,6 @@ def merge_topics(all_data):
                 }
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
-            # 关键修复：确保 heat 是数值类型
             heat = ensure_numeric_heat(heat)
 
             if source == 'weibo':
