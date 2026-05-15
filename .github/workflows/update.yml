@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -37,55 +40,18 @@ jobs:
       - name: Update data
         run: python scripts/update_hot_topics.py
 
-      - name: Commit via GitHub API using Python
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push via git
         run: |
-          python3 << 'EOF'
-          import base64
-          import json
-          import os
-          import urllib.request
-
-          repo = "${{ github.repository }}"
-          token = os.environ['GITHUB_TOKEN']
-
-          # 读取文件内容
-          with open('data/hot_data.json', 'rb') as f:
-              content = base64.b64encode(f.read()).decode('utf-8')
-
-          # 获取当前文件的 SHA
-          req = urllib.request.Request(
-              f'https://api.github.com/repos/{repo}/contents/data/hot_data.json',
-              headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json'}
-          )
-          resp = urllib.request.urlopen(req)
-          data = json.loads(resp.read().decode())
-          sha = data['sha']
-
-          # 更新文件
-          import datetime
-          now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-
-          payload = json.dumps({
-              'message': f'Update hot topics - {now}',
-              'content': content,
-              'sha': sha
-          }).encode('utf-8')
-
-          req = urllib.request.Request(
-              f'https://api.github.com/repos/{repo}/contents/data/hot_data.json',
-              data=payload,
-              headers={
-                  'Authorization': f'Bearer {token}',
-                  'Accept': 'application/vnd.github+json',
-                  'Content-Type': 'application/json'
-              },
-              method='PUT'
-          )
-          resp = urllib.request.urlopen(req)
-          print(f"File updated: {resp.status}")
-          EOF
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/hot_data.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update hot topics: $(date +'%Y-%m-%d %H:%M')"
+            git pull --rebase origin ${{ github.ref_name }} || true
+            git push origin ${{ github.ref_name }}
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
