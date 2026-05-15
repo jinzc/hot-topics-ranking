@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v8.2 修复版)
-修复: 微博空内容、百度float类型错误
+全网热点榜单自动更新脚本 (v10 多平台独立榜单版)
+核心改进:
+1. 每个平台独立保留完整榜单数据
+2. 综合榜基于跨平台覆盖度排序
+3. 每条内容标注在各平台的热度
 """
 
 import json
@@ -63,27 +66,18 @@ def safe_request(url, headers=None, timeout=15, retries=3):
 
 # ============ 归一化热度 ============
 def normalize_heat(source, heat):
-    """
-    将各平台热度归一化到同一量级 (0-10000)
-    用于综合排名计算
-    """
+    """将各平台热度归一化到 0-10000，用于综合排名"""
     if heat <= 0:
         return 0
-
     if source == 'weibo':
-        # 微博: 100-5000 → 保持不变
         return min(heat, 10000)
     elif source == 'baidu':
-        # 百度: 10000-500000 → ÷10
         return min(heat / 10, 10000)
     elif source == 'zhihu':
-        # 知乎: 100000-5000000 → ÷100
         return min(heat / 100, 10000)
     elif source == 'bilibili':
-        # B站: 100-3000 → ×2
         return min(heat * 2, 10000)
     elif source == 'douyin':
-        # 抖音: 1000-10000 → 保持不变
         return min(heat, 10000)
     else:
         return min(heat, 10000)
@@ -92,22 +86,18 @@ def normalize_heat(source, heat):
 def fetch_weibo_hot():
     topics = []
     try:
-        print("  [微博] 尝试抓取...")
+        print(" [微博] 尝试抓取...")
         url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
         resp = safe_request(url, timeout=10)
         if resp:
-            # 检查内容是否为空
             if not resp.text or resp.text.strip() == '':
                 print("  ⚠️ 返回内容为空")
                 return topics
-
             try:
                 data = resp.json()
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
-                print(f"  响应内容: {resp.text[:200]}")
                 return topics
-
             if data.get('ok') == 1:
                 cards = data['data'].get('cards', [])
                 for card in cards:
@@ -137,7 +127,6 @@ def fetch_weibo_hot():
                     return topics
     except Exception as e:
         print(f"  ❌ 失败: {e}")
-
     print("  ⚠️ 微博所有接口失败")
     return topics
 
@@ -145,7 +134,7 @@ def fetch_weibo_hot():
 def fetch_baidu_hot():
     topics = []
     try:
-        print("  [百度] 尝试第三方API...")
+        print(" [百度] 尝试第三方API...")
         url = 'https://v2.xxapi.cn/api/baiduhot'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -154,7 +143,6 @@ def fetch_baidu_hot():
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
                 return topics
-
             if data.get('code') == 200 and 'data' in data:
                 items = data['data']
                 for item in items[:30]:
@@ -162,12 +150,10 @@ def fetch_baidu_hot():
                     if not title:
                         continue
                     hot = item.get('hot', 0)
-                    # 修复：确保hot是数值类型
                     if isinstance(hot, str):
                         match = re.search(r'(\d+(?:\.\d+)?)', hot)
                         if match:
                             hot = float(match.group(1))
-                            # 检查字符串中是否包含万/亿
                             if '万' in str(item.get('hot', '')) or 'w' in str(item.get('hot', '')).lower():
                                 hot *= 10000
                             elif '亿' in str(item.get('hot', '')):
@@ -178,10 +164,8 @@ def fetch_baidu_hot():
                         hot = float(hot)
                     else:
                         hot = 0
-
                     if hot == 0:
                         hot = random.randint(10000, 500000)
-
                     topics.append({
                         'title': title,
                         'heat': int(hot),
@@ -194,7 +178,6 @@ def fetch_baidu_hot():
                     return topics
     except Exception as e:
         print(f"  ❌ 失败: {e}")
-
     print("  ⚠️ 百度所有接口失败")
     return topics
 
@@ -202,7 +185,7 @@ def fetch_baidu_hot():
 def fetch_zhihu_hot():
     topics = []
     try:
-        print("  [知乎] 尝试API...")
+        print(" [知乎] 尝试API...")
         url = 'https://www.zhihu.com/api/v3/feed/topstory/hot-list-web?limit=20&desktop=true'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -211,7 +194,6 @@ def fetch_zhihu_hot():
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
                 return topics
-
             items = data.get('data', [])
             for idx, item in enumerate(items):
                 target = item.get('target', {})
@@ -231,7 +213,6 @@ def fetch_zhihu_hot():
                         heat *= 10000
                 if heat == 0:
                     heat = max(5000000 - idx * 250000, 100000)
-
                 topics.append({
                     'title': title,
                     'heat': int(heat),
@@ -243,7 +224,6 @@ def fetch_zhihu_hot():
                 return topics
     except Exception as e:
         print(f"  ❌ 失败: {e}")
-
     print("  ⚠️ 知乎所有接口失败")
     return topics
 
@@ -251,7 +231,7 @@ def fetch_zhihu_hot():
 def fetch_bilibili_hot():
     topics = []
     try:
-        print("  [B站] 尝试搜索推荐API...")
+        print(" [B站] 尝试搜索推荐API...")
         url = 'https://s.search.bilibili.com/main/hotword?limit=30'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -260,7 +240,6 @@ def fetch_bilibili_hot():
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
                 return topics
-
             if data.get('code') == 0:
                 items = data.get('list', [])
                 for idx, item in enumerate(items):
@@ -287,7 +266,6 @@ def fetch_bilibili_hot():
                     return topics
     except Exception as e:
         print(f"  ❌ 失败: {e}")
-
     print("  ⚠️ B站所有接口失败")
     return topics
 
@@ -295,7 +273,7 @@ def fetch_bilibili_hot():
 def fetch_douyin_hot():
     topics = []
     try:
-        print("  [抖音] 尝试官方API...")
+        print(" [抖音] 尝试官方API...")
         headers_dy = {**HEADERS, 'Referer': 'https://www.douyin.com/'}
         resp = safe_request('https://www.douyin.com/aweme/v1/web/hot/search/list/', headers=headers_dy, timeout=10)
         if resp:
@@ -304,7 +282,6 @@ def fetch_douyin_hot():
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
                 return topics
-
             word_list = data.get('data', {}).get('word_list', [])
             for idx, item in enumerate(word_list):
                 title = item.get('word', '')
@@ -330,12 +307,18 @@ def fetch_douyin_hot():
                 return topics
     except Exception as e:
         print(f"  ❌ 失败: {e}")
-
     print("  ⚠️ 抖音所有接口失败")
     return topics
 
-# ============ 合并数据 ============
+# ============ 合并数据（生成综合榜） ============
 def merge_topics(all_data):
+    """
+    合并各平台数据，生成综合榜
+    核心逻辑：
+    1. 同一话题在不同平台出现，合并为一条
+    2. 综合排序基于：跨平台覆盖数 * 10000 + 归一化热度总和
+    3. 保留每个平台独立的热度值
+    """
     topic_map = {}
 
     for source_name, topics in all_data.items():
@@ -392,6 +375,8 @@ def merge_topics(all_data):
         source_count = len(data['sources'])
         normalized_total = sum(data['normalized_heat'].values())
         original_total = sum(data['heat'].values())
+        # 综合分数 = 跨平台覆盖数 * 10000 + 归一化热度总和
+        # 这样跨平台出现的话题会排在前面
         composite_score = source_count * 10000 + normalized_total
 
         categories = data['categories']
@@ -412,8 +397,8 @@ def merge_topics(all_data):
             'title': data['title'],
             'category': category,
             'summary': data['summary'] or data['title'],
-            'heat': data['heat'],
-            'normalized_heat': data['normalized_heat'],
+            'heat': data['heat'],           # 各平台原始热度
+            'normalized_heat': data['normalized_heat'],  # 各平台归一化热度
             'total_heat': original_total,
             'normalized_total': normalized_total,
             'source_count': source_count,
@@ -423,12 +408,13 @@ def merge_topics(all_data):
             'sources': data['sources']
         })
 
+    # 按综合分数降序排列
     topics.sort(key=lambda x: x['composite_score'], reverse=True)
 
-    for i, topic in enumerate(topics[:30]):
+    for i, topic in enumerate(topics[:50]):
         topic['rank'] = i + 1
 
-    return topics[:30]
+    return topics[:50]
 
 # ============ 主函数 ============
 def generate_data():
@@ -475,12 +461,13 @@ def generate_data():
             'douyin': []
         }
 
-    print("合并数据...")
-    topics = merge_topics(all_data)
-    print(f"合并后: {len(topics)} 条热点")
+    print("合并数据生成综合榜...")
+    merged_topics = merge_topics(all_data)
+    print(f"综合榜: {len(merged_topics)} 条热点")
 
+    # 统计各平台在综合榜中的覆盖情况
     platform_counts = {'weibo': 0, 'baidu': 0, 'zhihu': 0, 'bilibili': 0, 'douyin': 0}
-    for topic in topics:
+    for topic in merged_topics:
         for source in topic['sources']:
             source_name = source['name']
             if source_name == '微博':
@@ -498,22 +485,39 @@ def generate_data():
     for platform, count in platform_counts.items():
         print(f"  {platform}: {count} 条")
 
+    # 为每个平台榜单添加排名
+    platform_rankings = {}
+    for source, topics in all_data.items():
+        ranked = []
+        for i, t in enumerate(topics):
+            ranked.append({
+                'rank': i + 1,
+                'title': t['title'],
+                'heat': t['heat'],
+                'url': t.get('url', ''),
+                'summary': t.get('summary', ''),
+                'source': t['source'],
+                'category': classify_topic(t['title'], t.get('summary', ''))
+            })
+        platform_rankings[source] = ranked
+
     output = {
         'updateTime': beijing_now.strftime('%Y-%m-%d %H:%M'),
-        'topics': topics
+        'topics': merged_topics,              # 综合榜（跨平台合并排序）
+        'platforms': platform_rankings        # 各平台独立榜单
     }
 
     with open('data/hot_data.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"[{beijing_now}] 数据已更新，共 {len(topics)} 条热点")
+    print(f"[{beijing_now}] 数据已更新")
     print(f"更新时间: {output['updateTime']}")
-
-    print("Top 5 热点:")
-    for i, t in enumerate(topics[:5]):
+    print(f"综合榜: {len(merged_topics)} 条")
+    print("Top 5 综合热点:")
+    for i, t in enumerate(merged_topics[:5]):
         sources_str = ', '.join([f"{s['name']}({s['heat']})" for s in t['sources']])
         print(f"  {i+1}. {t['title'][:40]}...")
-        print(f"     覆盖: {t['source_count']}平台, 综合: {t['composite_score']}")
+        print(f"     覆盖: {t['source_count']}平台, 综合分: {t['composite_score']}")
         print(f"     来源: [{sources_str}]")
 
     return output
