@@ -85,61 +85,125 @@ def normalize_heat(source, heat):
 # ============ 微博 ============
 def fetch_weibo_hot():
     topics = []
+
+    # 方案1: 微博官方AJAX接口 (无需认证，直接GET)
     try:
-        print(" [微博] 尝试绝痕数科API...")
-        # 绝痕数科开放API - 稳定、无需认证
-        url = 'https://api.juehen.com/weibo/'
-        resp = safe_request(url, timeout=15)
+        print(" [微博] 尝试官方AJAX接口...")
+        url = 'https://weibo.com/ajax/side/hotSearch'
+        headers_wb = {
+            **HEADERS,
+            'Accept': 'application/json, text/plain, */*',
+            'Referer': 'https://weibo.com/',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+        resp = safe_request(url, headers=headers_wb, timeout=15)
         if resp:
             if not resp.text or resp.text.strip() == '':
                 print("  ⚠️ 返回内容为空")
-                return topics
+                raise Exception("Empty response")
             try:
                 data = resp.json()
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
-                return topics
+                raise Exception("JSON parse failed")
 
-            # 绝痕API返回格式: { "data": [{"title": "...", "hotnum": 12345, "tag": "新"}, ...] }
-            items = data.get('data', [])
-            for idx, item in enumerate(items):
-                title = item.get('title', '')
+            # 官方接口返回格式: { "data": { "realtime": [ {...}, ... ], "hotgov": {...} } }
+            realtime = data.get('data', {}).get('realtime', [])
+            for idx, item in enumerate(realtime):
+                title = item.get('word', '')
                 if not title:
                     continue
-                # 跳过置顶广告条目
+                # 跳过置顶和广告
                 if title in ['热搜', '实时上升热点', '微博热搜榜']:
                     continue
+                # 过滤掉纯数字或太短的内容
+                if len(title) < 2:
+                    continue
 
-                heat = item.get('hotnum', 0)
+                # 热度值: raw_hot 或 num (官方字段)
+                heat = item.get('raw_hot', 0) or item.get('num', 0)
                 if isinstance(heat, str):
                     match = re.search(r'(\d+(?:\.\d+)?)', heat)
                     if match:
                         heat = float(match.group(1))
-                        if '万' in heat:
+                        if '万' in str(heat):
                             heat *= 10000
                     else:
                         heat = 0
 
-                # 如果API没有返回热度值，根据排名估算
+                # 如果没有热度值，根据排名估算 (微博热度通常在 10万-500万)
                 if heat == 0:
-                    heat = max(500000 - idx * 10000, 10000)
+                    heat = max(500000 - idx * 15000, 50000)
+
+                # 话题链接
+                url_link = item.get('word_scheme', '')
+                if url_link:
+                    url_link = f'https://s.weibo.com/weibo?q={quote(url_link)}'
+                else:
+                    url_link = f'https://s.weibo.com/weibo?q={quote(title)}'
 
                 topics.append({
                     'title': title,
                     'heat': int(heat),
-                    'url': f'https://s.weibo.com/weibo?q={quote(title)}',
+                    'url': url_link,
                     'source': 'weibo'
                 })
 
             if topics:
-                print(f"  ✅ 成功: {len(topics)} 条")
+                print(f"  ✅ 官方接口成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 绝痕API失败: {e}")
+        print(f"  ❌ 官方接口失败: {e}")
 
-    # 备用方案1: 尝试 vvhan API
+    # 方案2: GitHub上的weibo-daily-hot-search仓库 (GitHub内部访问稳定)
     try:
-        print(" [微博] 尝试备用API (vvhan)...")
+        print(" [微博] 尝试GitHub数据源...")
+        from datetime import datetime
+        today = datetime.utcnow().strftime('%Y-%m-%d')
+        url = f'https://raw.githubusercontent.com/arandomguyhere/weibo-daily-hot-search/main/raw/{today}.json'
+        resp = safe_request(url, timeout=15)
+        if resp and resp.status_code == 200:
+            try:
+                items = resp.json()
+            except Exception as e:
+                print(f"  ⚠️ JSON解析失败: {e}")
+                raise Exception("JSON parse failed")
+
+            for idx, item in enumerate(items[:50]):
+                title = item.get('text', '')
+                if not title:
+                    continue
+                heat = item.get('count', 0)
+                if isinstance(heat, str):
+                    match = re.search(r'(\d+(?:\.\d+)?)', heat)
+                    if match:
+                        heat = float(match.group(1))
+                    else:
+                        heat = 0
+                if heat == 0:
+                    heat = max(500000 - idx * 10000, 10000)
+
+                url_link = item.get('url', '')
+                if url_link and not url_link.startswith('http'):
+                    url_link = 'https://s.weibo.com' + url_link
+                elif not url_link:
+                    url_link = f'https://s.weibo.com/weibo?q={quote(title)}'
+
+                topics.append({
+                    'title': title,
+                    'heat': int(heat),
+                    'url': url_link,
+                    'source': 'weibo'
+                })
+            if topics:
+                print(f"  ✅ GitHub数据源成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ GitHub数据源失败: {e}")
+
+    # 方案3: 尝试第三方聚合API
+    try:
+        print(" [微博] 尝试第三方聚合API...")
         url = 'https://api.vvhan.com/api/hotlist?type=wbHot'
         resp = safe_request(url, timeout=15)
         if resp:
@@ -147,7 +211,7 @@ def fetch_weibo_hot():
                 data = resp.json()
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
-                return topics
+                raise Exception("JSON parse failed")
 
             items = data.get('data', [])
             for idx, item in enumerate(items):
@@ -170,10 +234,10 @@ def fetch_weibo_hot():
                     'source': 'weibo'
                 })
             if topics:
-                print(f"  ✅ 备用成功: {len(topics)} 条")
+                print(f"  ✅ 第三方API成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 备用也失败: {e}")
+        print(f"  ❌ 第三方API失败: {e}")
 
     print("  ⚠️ 微博所有接口失败")
     return topics
