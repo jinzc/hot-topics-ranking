@@ -64,23 +64,57 @@ def safe_request(url, headers=None, timeout=15, retries=3):
             time.sleep(random.uniform(2, 4))
     return None
 
-# ============ 归一化热度 ============
+# ============ 归一化热度 (v2 优化版) ============
+# 平台权重系数: 反映各平台热度的"含金量"
+PLATFORM_WEIGHTS = {
+    'weibo': 1.2,    # 微博热度价值高(社交传播力强)
+    'baidu': 1.0,    # 百度搜索热度基准
+    'zhihu': 0.9,    # 知乎讨论深度高但搜索量相对低
+    'bilibili': 0.7, # B站热度相对垂直
+    'douyin': 0.8    # 抖音热度高但时效性强
+}
+
+# 平台覆盖加成系数: 覆盖越多平台，加成越高
+COVERAGE_MULTIPLIER = {
+    1: 1.0,
+    2: 1.5,
+    3: 2.0,
+    4: 2.5,
+    5: 3.0
+}
+
 def normalize_heat(source, heat):
-    """将各平台热度归一化到 0-10000，用于综合排名"""
+    """
+    将各平台热度归一化到统一量级，用于综合排名计算
+    v2优化: 更合理的归一化系数，避免单一平台主导
+    """
     if heat <= 0:
         return 0
+
+    # 先进行基础归一化 (将各平台热度拉到相近数量级)
     if source == 'weibo':
-        return min(heat, 10000)
+        # 微博: 100-5000 → 归一化到 100-5000
+        base = heat
     elif source == 'baidu':
-        return min(heat / 10, 10000)
+        # 百度: 10000-5000000 → 归一化到 200-100000
+        base = heat / 50
     elif source == 'zhihu':
-        return min(heat / 100, 10000)
+        # 知乎: 100000-50000000 → 归一化到 200-100000
+        base = heat / 500
     elif source == 'bilibili':
-        return min(heat * 2, 10000)
+        # B站: 100-300000 → 归一化到 100-300000
+        base = heat
     elif source == 'douyin':
-        return min(heat, 10000)
+        # 抖音: 1000-10000000 → 归一化到 100-1000000
+        base = heat / 10
     else:
-        return min(heat, 10000)
+        base = heat
+
+    # 应用平台权重
+    weight = PLATFORM_WEIGHTS.get(source, 1.0)
+    normalized = base * weight
+
+    return min(normalized, 100000)  # 上限10万，避免极端值
 
 # ============ 微博 ============
 def fetch_weibo_hot():
