@@ -427,19 +427,19 @@ def merge_topics(all_data):
             # 修复: 更合理的热度归一化
             # 目标: 让所有平台的热度在同一数量级 (0-10000)
             if source == 'weibo':
-                # 微博: 100-5000 -> 直接保留
+                # 微博: 100-5000 → 直接保留
                 normalized_heat = min(heat, 10000)
             elif source == 'baidu':
-                # 百度: 10000-500000 -> 除以10
+                # 百度: 10000-500000 → 除以10
                 normalized_heat = min(heat / 10, 10000)
             elif source == 'zhihu':
-                # 知乎: 100000-5000000 -> 除以100
+                # 知乎: 100000-5000000 → 除以100
                 normalized_heat = min(heat / 100, 10000)
             elif source == 'bilibili':
-                # B站: 100-3000 -> 乘以2
+                # B站: 100-3000 → 乘以2
                 normalized_heat = min(heat * 2, 10000)
             elif source == 'douyin':
-                # 抖音: 1000-10000 -> 直接保留
+                # 抖音: 1000-10000 → 直接保留
                 normalized_heat = min(heat, 10000)
             else:
                 normalized_heat = min(heat, 10000)
@@ -504,53 +504,68 @@ def generate_data():
 
     all_data = {}
 
-    print("[1/5] 抓取微博热搜...")
+    print("
+[1/5] 抓取微博热搜...")
     all_data['weibo'] = fetch_weibo_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("[2/5] 抓取百度热搜...")
+    print("
+[2/5] 抓取百度热搜...")
     all_data['baidu'] = fetch_baidu_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("[3/5] 抓取知乎热榜...")
+    print("
+[3/5] 抓取知乎热榜...")
     all_data['zhihu'] = fetch_zhihu_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("[4/5] 抓取B站热搜...")
+    print("
+[4/5] 抓取B站热搜...")
     all_data['bilibili'] = fetch_bilibili_hot()
     time.sleep(random.uniform(0.5, 1.5))
 
-    print("[5/5] 抓取抖音热榜...")
+    print("
+[5/5] 抓取抖音热榜...")
     all_data['douyin'] = fetch_douyin_hot()
 
     total_fetched = sum(len(v) for v in all_data.values())
-    print("="*50)
-    print("抓取统计:")
+    print(f"
+{'='*50}")
+    print(f"抓取统计:")
     for source, topics in all_data.items():
         status = "✅" if topics else "❌"
         print(f"  {status} {source}: {len(topics)} 条")
-    print("="*50)
+    print(f"{'='*50}")
 
     if total_fetched == 0:
-        print("所有数据源均抓取失败！")
+        print("
+❌ 所有数据源均抓取失败！")
         sys.exit(1)
 
-    print("合并数据，去重并计算综合热度...")
+    print("
+[合并数据] 去重并计算综合热度...")
     topics = merge_topics(all_data)
     print(f"合并后: {len(topics)} 条热点")
 
+    # 使用北京时间 (UTC+8)
+    from datetime import timedelta
+    utc_now = datetime.utcnow()
+    beijing_now = utc_now + timedelta(hours=8)
+
     output = {
-        'updateTime': datetime.now().strftime('%Y-%m-%d %H:%M'),
+        'updateTime': beijing_now.strftime('%Y-%m-%d %H:%M'),
         'topics': topics
     }
 
     with open('data/hot_data.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"[{datetime.now()}] 数据已更新，共 {len(topics)} 条热点")
+    print(f"
+[{datetime.now()}] ✅ 数据已更新，共 {len(topics)} 条热点")
     print(f"更新时间: {output['updateTime']}")
 
-    print("Top 5 热点:")
+    print("
+Top 5 热点:")
     for i, t in enumerate(topics[:5]):
         total = sum(t['heat'].values())
         sources = [s['name'] for s in t['sources']]
