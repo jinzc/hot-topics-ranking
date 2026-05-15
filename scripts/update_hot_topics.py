@@ -86,9 +86,10 @@ def normalize_heat(source, heat):
 def fetch_weibo_hot():
     topics = []
     try:
-        print(" [微博] 尝试抓取...")
-        url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
-        resp = safe_request(url, timeout=10)
+        print(" [微博] 尝试绝痕数科API...")
+        # 绝痕数科开放API - 稳定、无需认证
+        url = 'https://api.juehen.com/weibo/'
+        resp = safe_request(url, timeout=15)
         if resp:
             if not resp.text or resp.text.strip() == '':
                 print("  ⚠️ 返回内容为空")
@@ -98,35 +99,82 @@ def fetch_weibo_hot():
             except Exception as e:
                 print(f"  ⚠️ JSON解析失败: {e}")
                 return topics
-            if data.get('ok') == 1:
-                cards = data['data'].get('cards', [])
-                for card in cards:
-                    for item in card.get('card_group', []):
-                        title = item.get('desc', '')
-                        if not title or title in ['热搜', '实时上升热点']:
-                            continue
-                        heat = item.get('desc_extr', 0)
-                        if isinstance(heat, str):
-                            match = re.search(r'(\d+(?:\.\d+)?)', heat)
-                            if match:
-                                heat = float(match.group(1))
-                                if '万' in heat:
-                                    heat *= 10000
-                            else:
-                                heat = 0
-                        if heat == 0:
-                            heat = max(5000 - len(topics) * 200, 100)
-                        topics.append({
-                            'title': title,
-                            'heat': int(heat),
-                            'url': f'https://s.weibo.com/weibo?q={quote(title)}',
-                            'source': 'weibo'
-                        })
-                if topics:
-                    print(f"  ✅ 成功: {len(topics)} 条")
-                    return topics
+
+            # 绝痕API返回格式: { "data": [{"title": "...", "hotnum": 12345, "tag": "新"}, ...] }
+            items = data.get('data', [])
+            for idx, item in enumerate(items):
+                title = item.get('title', '')
+                if not title:
+                    continue
+                # 跳过置顶广告条目
+                if title in ['热搜', '实时上升热点', '微博热搜榜']:
+                    continue
+
+                heat = item.get('hotnum', 0)
+                if isinstance(heat, str):
+                    match = re.search(r'(\d+(?:\.\d+)?)', heat)
+                    if match:
+                        heat = float(match.group(1))
+                        if '万' in heat:
+                            heat *= 10000
+                    else:
+                        heat = 0
+
+                # 如果API没有返回热度值，根据排名估算
+                if heat == 0:
+                    heat = max(500000 - idx * 10000, 10000)
+
+                topics.append({
+                    'title': title,
+                    'heat': int(heat),
+                    'url': f'https://s.weibo.com/weibo?q={quote(title)}',
+                    'source': 'weibo'
+                })
+
+            if topics:
+                print(f"  ✅ 成功: {len(topics)} 条")
+                return topics
     except Exception as e:
-        print(f"  ❌ 失败: {e}")
+        print(f"  ❌ 绝痕API失败: {e}")
+
+    # 备用方案1: 尝试 vvhan API
+    try:
+        print(" [微博] 尝试备用API (vvhan)...")
+        url = 'https://api.vvhan.com/api/hotlist?type=wbHot'
+        resp = safe_request(url, timeout=15)
+        if resp:
+            try:
+                data = resp.json()
+            except Exception as e:
+                print(f"  ⚠️ JSON解析失败: {e}")
+                return topics
+
+            items = data.get('data', [])
+            for idx, item in enumerate(items):
+                title = item.get('title', '')
+                if not title:
+                    continue
+                heat = item.get('hot', 0)
+                if isinstance(heat, str):
+                    match = re.search(r'(\d+(?:\.\d+)?)', heat)
+                    if match:
+                        heat = float(match.group(1))
+                    else:
+                        heat = 0
+                if heat == 0:
+                    heat = max(500000 - idx * 10000, 10000)
+                topics.append({
+                    'title': title,
+                    'heat': int(heat),
+                    'url': item.get('url', f'https://s.weibo.com/weibo?q={quote(title)}'),
+                    'source': 'weibo'
+                })
+            if topics:
+                print(f"  ✅ 备用成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ 备用也失败: {e}")
+
     print("  ⚠️ 微博所有接口失败")
     return topics
 
