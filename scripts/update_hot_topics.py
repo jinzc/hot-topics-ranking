@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v4.0 终极版)
-特点：
-- 每个平台独立抓取，互不影响
-- 使用多个备用API
-- 合并时确保所有平台数据都包含
-- 如果某个平台失败，其他平台数据仍然显示
+全网热点榜单自动更新脚本 (v4.1 RSS版)
+使用 RSSHub 和 RSS 源获取数据，更稳定可靠
 """
 
 import json
@@ -14,6 +10,7 @@ import re
 import sys
 import time
 import random
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from urllib.parse import quote
 
@@ -26,10 +23,8 @@ except ImportError:
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
+    'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+    'Accept-Language': 'zh-CN,zh;q=0.9',
 }
 
 CATEGORY_KEYWORDS = {
@@ -88,9 +83,67 @@ def ensure_numeric_heat(heat):
         return int(heat)
     return 0
 
+# ============ 解析 RSS ============
+def parse_rss(xml_content, source_name):
+    """解析RSS XML内容，提取标题和链接"""
+    topics = []
+    try:
+        root = ET.fromstring(xml_content)
+        # RSS 2.0 格式
+        channel = root.find('channel')
+        if channel is not None:
+            items = channel.findall('item')
+        else:
+            # Atom 格式
+            items = root.findall('.//{http://www.w3.org/2005/Atom}entry')
+
+        for idx, item in enumerate(items[:30]):
+            title = item.findtext('title', '')
+            if not title:
+                continue
+            link = item.findtext('link', '')
+            if not link:
+                # Atom 格式
+                link_elem = item.find('{http://www.w3.org/2005/Atom}link')
+                if link_elem is not None:
+                    link = link_elem.get('href', '')
+
+            # 从 description 中提取热度（如果有）
+            description = item.findtext('description', '')
+            heat = extract_heat_value(description)
+            if heat == 0:
+                # 根据排名给默认热度
+                heat = max(5000 - idx * 150, 100)
+
+            topics.append({
+                'title': title.strip(),
+                'heat': heat,
+                'url': link,
+                'source': source_name
+            })
+    except Exception as e:
+        print(f"  ❌ 解析RSS失败: {e}")
+
+    return topics
+
 # ============ 微博 ============
 def fetch_weibo_hot():
     topics = []
+
+    # 尝试1: RSSHub RSS源
+    try:
+        print("  [微博] 尝试 RSSHub...")
+        url = 'https://rsshub.app/weibo/search/hot'
+        resp = safe_request(url, timeout=15)
+        if resp:
+            topics = parse_rss(resp.text, 'weibo')
+            if topics:
+                print(f"  ✅ RSSHub成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ RSSHub失败: {e}")
+
+    # 尝试2: 原有API
     try:
         print("  [微博] 尝试 m.weibo.cn...")
         url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
@@ -121,38 +174,27 @@ def fetch_weibo_hot():
     except Exception as e:
         print(f"  ❌ 失败: {e}")
 
-    try:
-        print("  [微博] 尝试 weibo.com/ajax...")
-        headers2 = {**HEADERS, 'Referer': 'https://weibo.com/', 'X-Requested-With': 'XMLHttpRequest'}
-        resp = safe_request('https://weibo.com/ajax/side/hotSearch', headers=headers2, timeout=10)
-        if resp:
-            data = resp.json()
-            realtime = data.get('data', {}).get('realtime', [])
-            for idx, item in enumerate(realtime):
-                title = item.get('word', '')
-                if not title:
-                    continue
-                raw_hot = item.get('raw_hot', 0)
-                if raw_hot == 0:
-                    raw_hot = max(5000 - idx * 100, 100)
-                topics.append({
-                    'title': title,
-                    'heat': raw_hot,
-                    'url': f'https://s.weibo.com/weibo?q={quote(title)}',
-                    'source': 'weibo'
-                })
-            if topics:
-                print(f"  ✅ 成功: {len(topics)} 条")
-                return topics
-    except Exception as e:
-        print(f"  ❌ 失败: {e}")
-
     print("  ⚠️ 微博所有接口失败")
     return topics
 
 # ============ 百度 ============
 def fetch_baidu_hot():
     topics = []
+
+    # 尝试1: RSS源
+    try:
+        print("  [百度] 尝试 RSS...")
+        url = 'https://rss.aishort.top/?type=baidu'
+        resp = safe_request(url, timeout=15)
+        if resp:
+            topics = parse_rss(resp.text, 'baidu')
+            if topics:
+                print(f"  ✅ RSS成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ RSS失败: {e}")
+
+    # 尝试2: 第三方API
     try:
         print("  [百度] 尝试第三方API...")
         url = 'https://v2.xxapi.cn/api/baiduhot'
@@ -182,35 +224,6 @@ def fetch_baidu_hot():
     except Exception as e:
         print(f"  ❌ 第三方API失败: {e}")
 
-    try:
-        print("  [百度] 尝试官方API...")
-        url = 'https://top.baidu.com/api/board?platform=wise&tab=realtime'
-        resp = safe_request(url, timeout=10)
-        if resp:
-            data = resp.json()
-            cards = data.get('data', {}).get('cards', [])
-            for card in cards:
-                for item in card.get('content', []):
-                    title = item.get('word', '')
-                    if not title:
-                        continue
-                    raw_hot = item.get('raw_hot', 0)
-                    raw_hot = ensure_numeric_heat(raw_hot)
-                    if raw_hot == 0:
-                        raw_hot = random.randint(10000, 500000)
-                    topics.append({
-                        'title': title,
-                        'heat': raw_hot,
-                        'summary': item.get('desc', '')[:100],
-                        'url': f'https://www.baidu.com/s?wd={quote(title)}',
-                        'source': 'baidu'
-                    })
-            if topics:
-                print(f"  ✅ 官方API成功: {len(topics)} 条")
-                return topics
-    except Exception as e:
-        print(f"  ❌ 官方API失败: {e}")
-
     print("  ⚠️ 百度所有接口失败")
     return topics
 
@@ -218,9 +231,22 @@ def fetch_baidu_hot():
 def fetch_zhihu_hot():
     topics = []
 
-    # 尝试1: 知乎日报API（无需登录）
+    # 尝试1: RSSHub RSS源
     try:
-        print("  [知乎] 尝试知乎日报API...")
+        print("  [知乎] 尝试 RSSHub...")
+        url = 'https://rsshub.app/zhihu/hot'
+        resp = safe_request(url, timeout=15)
+        if resp:
+            topics = parse_rss(resp.text, 'zhihu')
+            if topics:
+                print(f"  ✅ RSSHub成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ RSSHub失败: {e}")
+
+    # 尝试2: 知乎日报API
+    try:
+        print("  [知乎] 尝试知乎日报...")
         url = 'https://news-at.zhihu.com/api/4/news/latest'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -230,7 +256,6 @@ def fetch_zhihu_hot():
                 title = item.get('title', '')
                 if not title:
                     continue
-                # 知乎日报没有热度值，用排名估算
                 heat = max(5000000 - idx * 150000, 100000)
                 topics.append({
                     'title': title,
@@ -240,41 +265,10 @@ def fetch_zhihu_hot():
                     'source': 'zhihu'
                 })
             if topics:
-                print(f"  ✅ 知乎日报API成功: {len(topics)} 条")
+                print(f"  ✅ 知乎日报成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 知乎日报API失败: {e}")
-
-    # 尝试2: 知乎热榜API（简化版）
-    try:
-        print("  [知乎] 尝试热榜API...")
-        url = 'https://www.zhihu.com/api/v3/feed/topstory/hot-lists/total?limit=50'
-        headers_zh = {**HEADERS, 'Referer': 'https://www.zhihu.com/hot'}
-        resp = safe_request(url, headers=headers_zh, timeout=10)
-        if resp and resp.status_code == 200:
-            data = resp.json()
-            items = data.get('data', [])
-            for idx, item in enumerate(items):
-                target = item.get('target', {})
-                title = target.get('title', '')
-                if not title:
-                    continue
-                detail = item.get('detail_text', '')
-                heat = extract_heat_value(detail)
-                if heat == 0:
-                    heat = max(5000000 - idx * 100000, 100000)
-                topics.append({
-                    'title': title,
-                    'heat': heat,
-                    'summary': target.get('excerpt', '')[:100],
-                    'url': target.get('url', f'https://www.zhihu.com/question/{target.get("id", "")}'),
-                    'source': 'zhihu'
-                })
-            if topics:
-                print(f"  ✅ 热榜API成功: {len(topics)} 条")
-                return topics
-    except Exception as e:
-        print(f"  ❌ 热榜API失败: {e}")
+        print(f"  ❌ 知乎日报失败: {e}")
 
     print("  ⚠️ 知乎所有接口失败")
     return topics
@@ -283,11 +277,23 @@ def fetch_zhihu_hot():
 def fetch_bilibili_hot():
     topics = []
 
-    # 尝试1: B站搜索推荐API
+    # 尝试1: RSSHub RSS源
     try:
-        print("  [B站] 尝试搜索推荐API...")
-        url = 'https://api.bilibili.com/x/web-interface/search/square?limit=30'
-        resp = safe_request(url, timeout=10)
+        print("  [B站] 尝试 RSSHub...")
+        url = 'https://rsshub.app/bilibili/ranking/0/3/1'
+        resp = safe_request(url, timeout=15)
+        if resp:
+            topics = parse_rss(resp.text, 'bilibili')
+            if topics:
+                print(f"  ✅ RSSHub成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ RSSHub失败: {e}")
+
+    # 尝试2: 官方API
+    try:
+        print("  [B站] 尝试官方API...")
+        resp = safe_request('https://api.bilibili.com/x/web-interface/search/square?limit=30', timeout=10)
         if resp:
             data = resp.json()
             if data.get('code') == 0:
@@ -308,37 +314,10 @@ def fetch_bilibili_hot():
                         'source': 'bilibili'
                     })
                 if topics:
-                    print(f"  ✅ 搜索推荐API成功: {len(topics)} 条")
+                    print(f"  ✅ 官方API成功: {len(topics)} 条")
                     return topics
     except Exception as e:
-        print(f"  ❌ 搜索推荐API失败: {e}")
-
-    # 尝试2: B站热门视频API
-    try:
-        print("  [B站] 尝试热门视频API...")
-        url = 'https://api.bilibili.com/x/web-interface/ranking/v2?rid=0&type=all'
-        resp = safe_request(url, timeout=10)
-        if resp:
-            data = resp.json()
-            if data.get('code') == 0:
-                items = data.get('data', {}).get('list', [])
-                for idx, item in enumerate(items[:30]):
-                    title = item.get('title', '')
-                    if not title:
-                        continue
-                    # 热门视频没有热度值，用排名估算
-                    heat = max(5000 - idx * 150, 100)
-                    topics.append({
-                        'title': title,
-                        'heat': heat,
-                        'url': f'https://www.bilibili.com/video/{item.get("bvid", "")}',
-                        'source': 'bilibili'
-                    })
-                if topics:
-                    print(f"  ✅ 热门视频API成功: {len(topics)} 条")
-                    return topics
-    except Exception as e:
-        print(f"  ❌ 热门视频API失败: {e}")
+        print(f"  ❌ 官方API失败: {e}")
 
     print("  ⚠️ B站所有接口失败")
     return topics
@@ -347,9 +326,9 @@ def fetch_bilibili_hot():
 def fetch_douyin_hot():
     topics = []
 
-    # 尝试1: 抖音搜索推荐API
+    # 尝试1: 官方API
     try:
-        print("  [抖音] 尝试搜索推荐API...")
+        print("  [抖音] 尝试官方API...")
         headers_dy = {**HEADERS, 'Referer': 'https://www.douyin.com/'}
         resp = safe_request('https://www.douyin.com/aweme/v1/web/hot/search/list/', headers=headers_dy, timeout=10)
         if resp:
@@ -370,12 +349,12 @@ def fetch_douyin_hot():
                     'source': 'douyin'
                 })
             if topics:
-                print(f"  ✅ 搜索推荐API成功: {len(topics)} 条")
+                print(f"  ✅ 官方API成功: {len(topics)} 条")
                 return topics
     except Exception as e:
-        print(f"  ❌ 搜索推荐API失败: {e}")
+        print(f"  ❌ 官方API失败: {e}")
 
-    # 尝试2: 今日头条热榜（与抖音数据互通）
+    # 尝试2: 今日头条
     try:
         print("  [抖音] 尝试今日头条...")
         headers_tt = {**HEADERS, 'Referer': 'https://www.toutiao.com/'}
@@ -409,13 +388,10 @@ def fetch_douyin_hot():
 # ============ 合并数据 ============
 def merge_topics(all_data):
     topic_map = {}
-
-    # 先收集所有平台的数据
     for source_name, topics in all_data.items():
         for idx, item in enumerate(topics):
             title = item['title']
             key = title[:15]
-
             if key not in topic_map:
                 topic_map[key] = {
                     'title': title,
@@ -424,12 +400,10 @@ def merge_topics(all_data):
                     'summary': item.get('summary', ''),
                     'categories': []
                 }
-
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
             heat = ensure_numeric_heat(heat)
 
-            # 归一化热度值
             if source == 'weibo':
                 normalized_heat = min(heat, 10000)
             elif source == 'baidu':
@@ -444,26 +418,21 @@ def merge_topics(all_data):
                 normalized_heat = min(heat, 10000)
 
             topic_map[key]['heat'][source] = max(topic_map[key]['heat'][source], normalized_heat)
-
             source_url = item.get('url', '')
             existing = [s['name'] for s in topic_map[key]['sources']]
             source_display = {'weibo': '微博', 'baidu': '百度', 'zhihu': '知乎', 'bilibili': 'B站', 'douyin': '抖音'}.get(source, source)
             if source_display not in existing:
                 topic_map[key]['sources'].append({'name': source_display, 'url': source_url})
-
             if item.get('summary') and len(item['summary']) > len(topic_map[key]['summary']):
                 topic_map[key]['summary'] = item['summary']
-
             cat = classify_topic(title, topic_map[key]['summary'])
             topic_map[key]['categories'].append(cat)
 
-    # 转换为列表并排序
     topics = []
     for key, data in topic_map.items():
         total_heat = sum(data['heat'].values())
         categories = data['categories']
         category = max(set(categories), key=categories.count) if categories else 'social'
-
         source_count = len(data['sources'])
         if source_count >= 3:
             trend = 'hot'
@@ -474,7 +443,6 @@ def merge_topics(all_data):
         else:
             trend = 'up'
             trend_val = random.randint(1, 10)
-
         topics.append({
             'rank': 0,
             'title': data['title'],
@@ -485,26 +453,19 @@ def merge_topics(all_data):
             'trendVal': trend_val,
             'sources': data['sources']
         })
-
-    # 按综合热度排序
     topics.sort(key=lambda x: sum(x['heat'].values()), reverse=True)
-
-    # 重新编号，取前30
     for i, topic in enumerate(topics[:30]):
         topic['rank'] = i + 1
-
     return topics[:30]
 
 # ============ 主函数 ============
 def generate_data():
-    # 使用北京时间 (UTC+8)
     utc_now = datetime.utcnow()
     beijing_now = utc_now + timedelta(hours=8)
 
     print(f"[{beijing_now}] 开始抓取热点数据...")
 
     all_data = {}
-
     print("[1/5] 抓取微博热搜...")
     all_data['weibo'] = fetch_weibo_hot()
     time.sleep(random.uniform(0.5, 1.5))
