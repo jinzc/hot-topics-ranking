@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v5.1 修复版)
-修复: Rebang API 400错误和JSON解析错误
+全网热点榜单自动更新脚本 (v5.2 最终修复版)
+修复: JSON解析问题，Rebang API返回字符串而不是字典
 """
 
 import json
@@ -61,20 +61,35 @@ def safe_request(url, headers=None, timeout=15, retries=3):
             time.sleep(random.uniform(2, 4))
     return None
 
+def parse_json_response(resp):
+    """解析响应，处理字符串JSON的情况"""
+    try:
+        data = resp.json()
+        # 如果返回的是字符串，再次解析
+        if isinstance(data, str):
+            data = json.loads(data)
+        return data
+    except Exception as e:
+        print(f"  ❌ JSON解析失败: {e}")
+        return None
+
 def fetch_rebang_data(platform):
     """从 Rebang.Today 获取数据"""
     topics = []
     try:
         print(f"  [{platform}] 尝试 Rebang.Today API...")
-        # 使用正确的API格式
         url = f'https://api.rebang.today/v1/items?tab={platform}&date_type=now&version=1'
         resp = safe_request(url, timeout=15)
         if resp:
-            try:
-                data = resp.json()
-                # 检查是否是字典类型
-                if isinstance(data, dict) and 'data' in data and 'list' in data['data']:
-                    items = data['data']['list']
+            data = parse_json_response(resp)
+            if data is None:
+                return topics
+
+            # 检查数据结构
+            if isinstance(data, dict) and 'data' in data:
+                data_inner = data['data']
+                if isinstance(data_inner, dict) and 'list' in data_inner:
+                    items = data_inner['list']
                     for idx, item in enumerate(items[:30]):
                         title = item.get('title', '')
                         if not title:
@@ -106,10 +121,9 @@ def fetch_rebang_data(platform):
                         print(f"  ✅ Rebang成功: {len(topics)} 条")
                         return topics
                 else:
-                    print(f"  ⚠️ 返回数据格式不正确: {type(data)}")
-            except Exception as e:
-                print(f"  ❌ JSON解析失败: {e}")
-                print(f"  响应内容: {resp.text[:200]}")
+                    print(f"  ⚠️ 数据结构不正确: {type(data_inner)}")
+            else:
+                print(f"  ⚠️ 返回数据格式不正确: {type(data)}")
     except Exception as e:
         print(f"  ❌ Rebang失败: {e}")
 
@@ -120,44 +134,6 @@ def fetch_weibo_hot():
     topics = fetch_rebang_data('weibo')
     if topics:
         return topics
-    # 备用：直接API
-    try:
-        print("  [微博] 尝试直接API...")
-        url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
-        resp = safe_request(url, timeout=10)
-        if resp:
-            data = resp.json()
-            if data.get('ok') == 1:
-                cards = data['data'].get('cards', [])
-                for card in cards:
-                    for item in card.get('card_group', []):
-                        title = item.get('desc', '')
-                        if not title or title in ['热搜', '实时上升热点']:
-                            continue
-                        heat = item.get('desc_extr', 0)
-                        if isinstance(heat, str):
-                            import re
-                            match = re.search(r'(\d+(?:\.\d+)?)', heat)
-                            if match:
-                                heat = float(match.group(1))
-                                if '万' in heat:
-                                    heat *= 10000
-                            else:
-                                heat = 0
-                        if heat == 0:
-                            heat = max(5000 - len(topics) * 200, 100)
-                        topics.append({
-                            'title': title,
-                            'heat': int(heat),
-                            'url': f'https://s.weibo.com/weibo?q={quote(title)}',
-                            'source': 'weibo'
-                        })
-                if topics:
-                    print(f"  ✅ 直接API成功: {len(topics)} 条")
-                    return topics
-    except Exception as e:
-        print(f"  ❌ 直接API失败: {e}")
-
     print("  ⚠️ 微博所有接口失败")
     return topics
 
@@ -309,7 +285,7 @@ def generate_data():
 
     if total_fetched == 0:
         print("所有数据源均抓取失败！")
-        # 不退出，使用空数据
+        # 使用空数据，不退出
         all_data = {
             'weibo': [],
             'baidu': [],
