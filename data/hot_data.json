@@ -1,8 +1,46 @@
 {
-  "updateTime": "2026-05-15 14:56",
+  "updateTime": "2026-05-15 15:00",
   "topics": [
     {
       "rank": 1,
+      "title": "特朗普结束访华 乘专机离开北京",
+      "category": "politics",
+      "summary": "特朗普结束访华 乘专机离开北京",
+      "heat": {
+        "weibo": 0,
+        "baidu": 7710000,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 11141966
+      },
+      "normalized_heat": {
+        "weibo": 0,
+        "baidu": 10000,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 10000
+      },
+      "total_heat": 18851966,
+      "normalized_total": 20000,
+      "source_count": 2,
+      "composite_score": 40000,
+      "trend": "up",
+      "trendVal": 9,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E7%BB%93%E6%9D%9F%E8%AE%BF%E5%8D%8E+%E4%B9%98%E4%B8%93%E6%9C%BA%E7%A6%BB%E5%BC%80%E5%8C%97%E4%BA%AC&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 7710000
+        },
+        {
+          "name": "抖音",
+          "url": "https://www.douyin.com/search/%E7%89%B9%E6%9C%97%E6%99%AE%E7%BB%93%E6%9D%9F%E8%AE%BF%E5%8D%8E%20%E4%B9%98%E4%B8%93%E6%9C%BA%E7%A6%BB%E5%BC%80%E5%8C%97%E4%BA%AC",
+          "heat": 11141966
+        }
+      ]
+    },
+    {
+      "rank": 2,
       "title": "中美元首在中南海小范围会晤",
       "category": "politics",
       "summary": "中美元首在中南海小范围会晤",
@@ -11,7 +49,7 @@
         "baidu": 0,
         "zhihu": 0,
         "bilibili": 250095,
-        "douyin": 12080498
+        "douyin": 12091908
       },
       "normalized_heat": {
         "weibo": 0,
@@ -20,12 +58,12 @@
         "bilibili": 10000,
         "douyin": 10000
       },
-      "total_heat": 12330593,
+      "total_heat": 12342003,
       "normalized_total": 20000,
       "source_count": 2,
       "composite_score": 40000,
       "trend": "up",
-      "trendVal": 13,
+      "trendVal": 5,
       "sources": [
         {
           "name": "B站",
@@ -35,12 +73,12 @@
         {
           "name": "抖音",
           "url": "https://www.douyin.com/search/%E4%B8%AD%E7%BE%8E%E5%85%83%E9%A6%96%E5%9C%A8%E4%B8%AD%E5%8D%97%E6%B5%B7%E5%B0%8F%E8%8C%83%E5%9B%B4%E4%BC%9A%E6%99%A4",
-          "heat": 12080498
+          "heat": 12091908
         }
       ]
     },
     {
-      "rank": 2,
+      "rank": 3,
       "title": "中美元首北京会晤达成重要共识",
       "category": "politics",
       "summary": "两国元首的会谈时间超过2小时15分钟。会谈厅传出重磅消息。习主席和特朗普总统赞同将构建“中美建设性战略稳定关系”作为中美关系新定位，将为未来3年乃至更长时间的中美关系提供战略指引。这一共识，来之不易。",
@@ -63,7 +101,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
@@ -73,10 +111,10 @@
       ]
     },
     {
-      "rank": 3,
-      "title": "习近平同特朗普在中南海小范围会晤",
-      "category": "politics",
-      "summary": "习近平同特朗普在中南海小范围会晤",
+      "rank": 4,
+      "title": "央视拿下世界杯版权",
+      "category": "sports",
+      "summary": "最新消息：中央广播电视总台已经获得2026年美加墨世界杯版权。中国球迷可以在家看世界杯了！",
       "heat": {
         "weibo": 0,
         "baidu": 7800000,
@@ -96,45 +134,12 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E4%B9%A0%E8%BF%91%E5%B9%B3%E5%90%8C%E7%89%B9%E6%9C%97%E6%99%AE%E5%9C%A8%E4%B8%AD%E5%8D%97%E6%B5%B7%E5%B0%8F%E8%8C%83%E5%9B%B4%E4%BC%9A%E6%99%A4&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E5%A4%AE%E8%A7%86%E6%8B%BF%E4%B8%8B%E4%B8%96%E7%95%8C%E6%9D%AF%E7%89%88%E6%9D%83&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 7800000
-        }
-      ]
-    },
-    {
-      "rank": 4,
-      "title": "第一现场看中美元首会晤",
-      "category": "politics",
-      "summary": "5月14日，习近平主席与特朗普总统在北京展开密集互动。有正式会谈，也有天坛畅叙。谋中美相处之道，也话互利共赢之策。一起来看，中美元首会晤第一现场！",
-      "heat": {
-        "weibo": 0,
-        "baidu": 7710000,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "normalized_heat": {
-        "weibo": 0,
-        "baidu": 10000,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "total_heat": 7710000,
-      "normalized_total": 10000,
-      "source_count": 1,
-      "composite_score": 20000,
-      "trend": "up",
-      "trendVal": 7,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E7%AC%AC%E4%B8%80%E7%8E%B0%E5%9C%BA%E7%9C%8B%E4%B8%AD%E7%BE%8E%E5%85%83%E9%A6%96%E4%BC%9A%E6%99%A4&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 7710000
         }
       ]
     },
@@ -162,7 +167,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 6,
       "sources": [
         {
           "name": "百度",
@@ -173,9 +178,9 @@
     },
     {
       "rank": 6,
-      "title": "中国首款 打破国外近20年垄断",
-      "category": "tech",
-      "summary": "日前，江西省农业科学院联合华中农业大学、苏州拉索生物芯片科技有限公司正式发布了我国首款甘蓝型油菜20K固相基因芯片——“中芯油1号”，打破了国外近20年对固相芯片技术的垄断。中国油菜种业从“看天吃饭”",
+      "title": "义乌又爆单了",
+      "category": "sports",
+      "summary": "还有不到一个月，2026年美加墨世界杯就要来了。据悉，本届世界杯官方授权及周边产品的外贸红利已覆盖国内十余个省区市，但频繁冲上热搜的还是被誉为“世界超市”的义乌。又双叒叕爆单的背后，义乌到底凭什么？",
       "heat": {
         "weibo": 0,
         "baidu": 7520000,
@@ -195,20 +200,20 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E9%A6%96%E6%AC%BE+%E6%89%93%E7%A0%B4%E5%9B%BD%E5%A4%96%E8%BF%9120%E5%B9%B4%E5%9E%84%E6%96%AD&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E4%B9%89%E4%B9%8C%E5%8F%88%E7%88%86%E5%8D%95%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 7520000
         }
       ]
     },
     {
       "rank": 7,
-      "title": "华为Mate X7直降1000元",
+      "title": "华为官宣Mate X6直降3000元",
       "category": "tech",
-      "summary": "5月15日，据华为终端消息，折叠屏旗舰华为Mate X7开启降价，全系直降1000元，优惠后11999元起，并推出至高12期分期免息。",
+      "summary": "5月15日，华为终端宣布两款折叠屏手机开启降价优惠，华为Mate X7直降1000元，华为Mate X6直降3000元，两款机型至高可享12期分期免息。",
       "heat": {
         "weibo": 0,
         "baidu": 7420000,
@@ -228,20 +233,20 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BAMate+X7%E7%9B%B4%E9%99%8D1000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BA%E5%AE%98%E5%AE%A3Mate+X6%E7%9B%B4%E9%99%8D3000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 7420000
         }
       ]
     },
     {
       "rank": 8,
-      "title": "日本翻车了",
-      "category": "politics",
-      "summary": "近期，大量日本网民在公开平台疯狂叫嚣、聚众“洗地”。有人说日本人在X平台上原本给人的印象是动漫，结果现在暴露出一些右翼分子堪比希特勒，日本精心打造的国际“人设”崩塌。此次日本国际“人设”崩塌，也是给日",
+      "title": "女子总遇见“面熟”大姐一查竟是亲姐",
+      "category": "life",
+      "summary": "“我经常在街上遇到我的姐姐，只是觉得面熟，但从来没想过，她真的就是我的亲姐姐！”64岁的郑招莲回忆起过往，感慨不已。被抱养的她成年后嫁到螺洋街道生活，而她的亲生家庭本就扎根螺洋。",
       "heat": {
         "weibo": 0,
         "baidu": 7330000,
@@ -261,20 +266,20 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BF%BB%E8%BD%A6%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E6%80%BB%E9%81%87%E8%A7%81%E2%80%9C%E9%9D%A2%E7%86%9F%E2%80%9D%E5%A4%A7%E5%A7%90%E4%B8%80%E6%9F%A5%E7%AB%9F%E6%98%AF%E4%BA%B2%E5%A7%90&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 7330000
         }
       ]
     },
     {
       "rank": 9,
-      "title": "女子总遇见“面熟”大姐一查竟是亲姐",
-      "category": "life",
-      "summary": "“我经常在街上遇到我的姐姐，只是觉得面熟，但从来没想过，她真的就是我的亲姐姐！”64岁的郑招莲回忆起过往，感慨不已。被抱养的她成年后嫁到螺洋街道生活，而她的亲生家庭本就扎根螺洋。",
+      "title": "鸿蒙智行智界V9上市发布会",
+      "category": "finance",
+      "summary": "北京时间5月15日14:30，鸿蒙智行 智界V9发布会，我们不见不散！",
       "heat": {
         "weibo": 0,
         "baidu": 7230000,
@@ -294,23 +299,23 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 5,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E6%80%BB%E9%81%87%E8%A7%81%E2%80%9C%E9%9D%A2%E7%86%9F%E2%80%9D%E5%A4%A7%E5%A7%90%E4%B8%80%E6%9F%A5%E7%AB%9F%E6%98%AF%E4%BA%B2%E5%A7%90&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E9%B8%BF%E8%92%99%E6%99%BA%E8%A1%8C%E6%99%BA%E7%95%8CV9%E4%B8%8A%E5%B8%82%E5%8F%91%E5%B8%83%E4%BC%9A&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 7230000
         }
       ]
     },
     {
       "rank": 10,
-      "title": "华为官宣Mate X6直降3000元",
-      "category": "tech",
-      "summary": "5月15日，华为终端宣布两款折叠屏手机开启降价优惠，华为Mate X7直降1000元，华为Mate X6直降3000元，两款机型至高可享12期分期免息。",
+      "title": "日本翻车了",
+      "category": "politics",
+      "summary": "近期，大量日本网民在公开平台疯狂叫嚣、聚众“洗地”。有人说日本人在X平台上原本给人的印象是动漫，结果现在暴露出一些右翼分子堪比希特勒，日本精心打造的国际“人设”崩塌。此次日本国际“人设”崩塌，也是给日",
       "heat": {
         "weibo": 0,
-        "baidu": 7130000,
+        "baidu": 7140000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -322,28 +327,28 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 7130000,
+      "total_heat": 7140000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BA%E5%AE%98%E5%AE%A3Mate+X6%E7%9B%B4%E9%99%8D3000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 7130000
+          "url": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BF%BB%E8%BD%A6%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 7140000
         }
       ]
     },
     {
       "rank": 11,
-      "title": "义乌又爆单了",
-      "category": "sports",
-      "summary": "还有不到一个月，2026年美加墨世界杯就要来了。据悉，本届世界杯官方授权及周边产品的外贸红利已覆盖国内十余个省区市，但频繁冲上热搜的还是被誉为“世界超市”的义乌。又双叒叕爆单的背后，义乌到底凭什么？",
+      "title": "中国首款 打破国外近20年垄断",
+      "category": "tech",
+      "summary": "日前，江西省农业科学院联合华中农业大学、苏州拉索生物芯片科技有限公司正式发布了我国首款甘蓝型油菜20K固相基因芯片——“中芯油1号”，打破了国外近20年对固相芯片技术的垄断。中国油菜种业从“看天吃饭”",
       "heat": {
         "weibo": 0,
-        "baidu": 7040000,
+        "baidu": 7030000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -355,28 +360,28 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 7040000,
+      "total_heat": 7030000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 9,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E4%B9%89%E4%B9%8C%E5%8F%88%E7%88%86%E5%8D%95%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 7040000
+          "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E9%A6%96%E6%AC%BE+%E6%89%93%E7%A0%B4%E5%9B%BD%E5%A4%96%E8%BF%9120%E5%B9%B4%E5%9E%84%E6%96%AD&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 7030000
         }
       ]
     },
     {
       "rank": 12,
-      "title": "支付宝：正寻求警方帮助",
-      "category": "social",
-      "summary": "5月14日晚，用户关闭支付功能后被扣捐赠184万相关话题引发关注。15日，支付宝方面回应称，平台系正常执行用户账户下达的支付指令。由于涉事账户存在与他人共用的嫌疑，不排除涉嫌违法犯罪的可能，支付宝正在",
+      "title": "《给阿嬷的情书》预测票房飙升至10亿",
+      "category": "entertainment",
+      "summary": "5月14日晚，据AI票房预测显示，电影《给阿嬷的情书》总票房预测连续15天上调至超10亿元。截至14日，该片累计票房2.28亿元，票房大盘占比高达70%以上。",
       "heat": {
         "weibo": 0,
-        "baidu": 6940000,
+        "baidu": 6950000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -388,17 +393,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 6940000,
+      "total_heat": 6950000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E6%94%AF%E4%BB%98%E5%AE%9D%EF%BC%9A%E6%AD%A3%E5%AF%BB%E6%B1%82%E8%AD%A6%E6%96%B9%E5%B8%AE%E5%8A%A9&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 6940000
+          "url": "https://www.baidu.com/s?wd=%E3%80%8A%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E3%80%8B%E9%A2%84%E6%B5%8B%E7%A5%A8%E6%88%BF%E9%A3%99%E5%8D%87%E8%87%B310%E4%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 6950000
         }
       ]
     },
@@ -426,7 +431,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 10,
       "sources": [
         {
           "name": "百度",
@@ -459,7 +464,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
@@ -470,9 +475,9 @@
     },
     {
       "rank": 15,
-      "title": "特朗普乘车抵达中南海",
-      "category": "politics",
-      "summary": "5月15日，美国总统特朗普乘车抵达中南海。",
+      "title": "游客一句菜太咸 山东老板全额退款",
+      "category": "life",
+      "summary": "日前，浙江游客陆先生和妻子来山东旅游。在日照一家烧烤店吃饭时，发现不合口味，菜太咸。店老板小邓得知情况后，主动将300多元餐费退还。",
       "heat": {
         "weibo": 0,
         "baidu": 6660000,
@@ -492,23 +497,23 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E4%B9%98%E8%BD%A6%E6%8A%B5%E8%BE%BE%E4%B8%AD%E5%8D%97%E6%B5%B7&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E6%B8%B8%E5%AE%A2%E4%B8%80%E5%8F%A5%E8%8F%9C%E5%A4%AA%E5%92%B8+%E5%B1%B1%E4%B8%9C%E8%80%81%E6%9D%BF%E5%85%A8%E9%A2%9D%E9%80%80%E6%AC%BE&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 6660000
         }
       ]
     },
     {
       "rank": 16,
-      "title": "特朗普：美国中餐馆比五大快餐店还多",
-      "category": "politics",
-      "summary": "5月14日，美国总统特朗普表示，正如如今许多中国人喜爱篮球和牛仔裤一样，在美国中餐馆的数量比五大快餐连锁店加起来还要多。",
+      "title": "男子骗养20多只狗供烈犬撕咬被刑拘",
+      "category": "life",
+      "summary": "据悉，东莞的罗某某长期在网络骗养犬只，并将领养来的狗用于训练自己的烈性犬。从2018年至今，已有20多只小狗被罗某某领养。目前，罗某某已被依法刑拘。",
       "heat": {
         "weibo": 0,
-        "baidu": 6550000,
+        "baidu": 6560000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -520,28 +525,28 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 6550000,
+      "total_heat": 6560000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%EF%BC%9A%E7%BE%8E%E5%9B%BD%E4%B8%AD%E9%A4%90%E9%A6%86%E6%AF%94%E4%BA%94%E5%A4%A7%E5%BF%AB%E9%A4%90%E5%BA%97%E8%BF%98%E5%A4%9A&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 6550000
+          "url": "https://www.baidu.com/s?wd=%E7%94%B7%E5%AD%90%E9%AA%97%E5%85%BB20%E5%A4%9A%E5%8F%AA%E7%8B%97%E4%BE%9B%E7%83%88%E7%8A%AC%E6%92%95%E5%92%AC%E8%A2%AB%E5%88%91%E6%8B%98&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 6560000
         }
       ]
     },
     {
       "rank": 17,
-      "title": "国际足联秘书长来京与央视谈判转播权",
-      "category": "social",
-      "summary": "近日，国际足联秘书长马蒂亚斯·格拉夫斯特伦（Mattias Grafström）、执行办公室主任丹尼尔·奥图尔（Daniel O’Toole）率国际足联代表团一行来到北京，其首要任务是与中国足协及央视",
+      "title": "40岁男子看到鸡蛋价格后决定戒烟",
+      "category": "life",
+      "summary": "近日，一名40岁男子因发现一包烟（20元）价格相当于30个鸡蛋（19.9元），计算年省7000元可支持家庭旅游，最终戒烟。他表示：“现在家人开心就是我最大的快乐。”",
       "heat": {
         "weibo": 0,
-        "baidu": 6470000,
+        "baidu": 6460000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -553,17 +558,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 6470000,
+      "total_heat": 6460000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 5,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%9B%BD%E9%99%85%E8%B6%B3%E8%81%94%E7%A7%98%E4%B9%A6%E9%95%BF%E6%9D%A5%E4%BA%AC%E4%B8%8E%E5%A4%AE%E8%A7%86%E8%B0%88%E5%88%A4%E8%BD%AC%E6%92%AD%E6%9D%83&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 6470000
+          "url": "https://www.baidu.com/s?wd=40%E5%B2%81%E7%94%B7%E5%AD%90%E7%9C%8B%E5%88%B0%E9%B8%A1%E8%9B%8B%E4%BB%B7%E6%A0%BC%E5%90%8E%E5%86%B3%E5%AE%9A%E6%88%92%E7%83%9F&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 6460000
         }
       ]
     },
@@ -574,7 +579,7 @@
       "summary": "5月15日，外交部发言人就美国总统特朗普访华情况答记者问。外交部发言人表示，两国元首互动促进了相互理解，加深了彼此信任，推进了务实合作，增进了两国人民的福祉，为世界注入了亟需的稳定性和确定性。",
       "heat": {
         "weibo": 0,
-        "baidu": 6380000,
+        "baidu": 6370000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -586,28 +591,28 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 6380000,
+      "total_heat": 6370000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 9,
       "sources": [
         {
           "name": "百度",
           "url": "https://www.baidu.com/s?wd=%E5%A4%96%E4%BA%A4%E9%83%A8%E5%B0%B1%E7%89%B9%E6%9C%97%E6%99%AE%E8%AE%BF%E5%8D%8E%E6%83%85%E5%86%B5%E7%AD%94%E9%97%AE&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 6380000
+          "heat": 6370000
         }
       ]
     },
     {
       "rank": 19,
-      "title": "美国主播在北京公园和市民打乒乓球",
-      "category": "sports",
-      "summary": "5月14日，美国福克斯新闻台主持人布雷特·拜尔在北京朝阳公园和市民打乒乓球，对方频频友好喂球。其坦言：“一个小小的球真的可以改变世界。”",
+      "title": "年轻人的“电子茅台”过气了吗",
+      "category": "entertainment",
+      "summary": "5月13日，大疆官方商城启动限时优惠活动，明星产品Osmo Pocket 3较首发价最高直降1400元，活动持续至5月20日。该产品曾因供不应求加价超30%，如今被质疑“电子茅台”（指保值电子产品）光",
       "heat": {
         "weibo": 0,
-        "baidu": 6270000,
+        "baidu": 6280000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -619,25 +624,25 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 6270000,
+      "total_heat": 6280000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 9,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E7%BE%8E%E5%9B%BD%E4%B8%BB%E6%92%AD%E5%9C%A8%E5%8C%97%E4%BA%AC%E5%85%AC%E5%9B%AD%E5%92%8C%E5%B8%82%E6%B0%91%E6%89%93%E4%B9%92%E4%B9%93%E7%90%83&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 6270000
+          "url": "https://www.baidu.com/s?wd=%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E2%80%9C%E7%94%B5%E5%AD%90%E8%8C%85%E5%8F%B0%E2%80%9D%E8%BF%87%E6%B0%94%E4%BA%86%E5%90%97&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 6280000
         }
       ]
     },
     {
       "rank": 20,
-      "title": "台当局连续“跪拜”丑陋至极",
+      "title": "中国取得重大找矿突破",
       "category": "social",
-      "summary": "近日，台当局领导人赖清德“偷渡式”窜访非洲斯威士兰，闹了一出国际大笑话。岛内媒体曝光，台外事部门负责人林佳龙等官员，在见斯威士兰“王母”时，竟集体“蹲跪”受礼，被网友痛骂“花钱还要跪舔”，丑陋至极。",
+      "summary": "5月13日，自然资源部发布西藏自治区江达县玉龙铜矿资源储量核实勘查项目成果：矿区新增铜资源量131.42万吨、钼资源量10.77万吨、银资源量793吨。至此，玉龙矿区累计查明铜资源量已达753.4万吨",
       "heat": {
         "weibo": 0,
         "baidu": 6180000,
@@ -657,23 +662,23 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 6,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%8F%B0%E5%BD%93%E5%B1%80%E8%BF%9E%E7%BB%AD%E2%80%9C%E8%B7%AA%E6%8B%9C%E2%80%9D%E4%B8%91%E9%99%8B%E8%87%B3%E6%9E%81&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E5%8F%96%E5%BE%97%E9%87%8D%E5%A4%A7%E6%89%BE%E7%9F%BF%E7%AA%81%E7%A0%B4&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 6180000
         }
       ]
     },
     {
       "rank": 21,
-      "title": "《给阿嬷的情书》预测票房飙升至10亿",
-      "category": "entertainment",
-      "summary": "5月14日晚，据AI票房预测显示，电影《给阿嬷的情书》总票房预测连续15天上调至超10亿元。截至14日，该片累计票房2.28亿元，票房大盘占比高达70%以上。",
+      "title": "十部门严打中医违法违规行为",
+      "category": "health",
+      "summary": "5月15日，国家中医药管理局等十部门联合召开中医医疗违法违规行为专项治理工作启动会。据悉，本次专项治理工作为期1年，将严厉打击打着中医养生保健治病“幌子”从事非法行医，借中医药名义虚假宣传、直播带货，",
       "heat": {
         "weibo": 0,
-        "baidu": 6090000,
+        "baidu": 6080000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -685,28 +690,28 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 6090000,
+      "total_heat": 6080000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E3%80%8A%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E3%80%8B%E9%A2%84%E6%B5%8B%E7%A5%A8%E6%88%BF%E9%A3%99%E5%8D%87%E8%87%B310%E4%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 6090000
+          "url": "https://www.baidu.com/s?wd=%E5%8D%81%E9%83%A8%E9%97%A8%E4%B8%A5%E6%89%93%E4%B8%AD%E5%8C%BB%E8%BF%9D%E6%B3%95%E8%BF%9D%E8%A7%84%E8%A1%8C%E4%B8%BA&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 6080000
         }
       ]
     },
     {
       "rank": 22,
-      "title": "中美元首会晤 这个表述极为关键",
+      "title": "特朗普：美国中餐馆比五大快餐店还多",
       "category": "politics",
-      "summary": "5月14日上午，中美元首举行会谈。双方赞同将构建“中美建设性战略稳定关系”作为中美关系新定位。怎么理解这一新定位？此次会晤将对未来两国关系和世界发展带来哪些影响？来看北京外国语大学区域与全球治理高等研",
+      "summary": "5月14日，美国总统特朗普表示，正如如今许多中国人喜爱篮球和牛仔裤一样，在美国中餐馆的数量比五大快餐连锁店加起来还要多。",
       "heat": {
         "weibo": 0,
-        "baidu": 5990000,
+        "baidu": 5980000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -718,25 +723,25 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 5990000,
+      "total_heat": 5980000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 7,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E7%BE%8E%E5%85%83%E9%A6%96%E4%BC%9A%E6%99%A4+%E8%BF%99%E4%B8%AA%E8%A1%A8%E8%BF%B0%E6%9E%81%E4%B8%BA%E5%85%B3%E9%94%AE&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 5990000
+          "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%EF%BC%9A%E7%BE%8E%E5%9B%BD%E4%B8%AD%E9%A4%90%E9%A6%86%E6%AF%94%E4%BA%94%E5%A4%A7%E5%BF%AB%E9%A4%90%E5%BA%97%E8%BF%98%E5%A4%9A&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 5980000
         }
       ]
     },
     {
       "rank": 23,
-      "title": "游客一句菜太咸 山东老板全额退款",
-      "category": "life",
-      "summary": "日前，浙江游客陆先生和妻子来山东旅游。在日照一家烧烤店吃饭时，发现不合口味，菜太咸。店老板小邓得知情况后，主动将300多元餐费退还。",
+      "title": "美国主播在北京公园和市民打乒乓球",
+      "category": "sports",
+      "summary": "5月14日，美国福克斯新闻台主持人布雷特·拜尔在北京朝阳公园和市民打乒乓球，对方频频友好喂球。其坦言：“一个小小的球真的可以改变世界。”",
       "heat": {
         "weibo": 0,
         "baidu": 5890000,
@@ -756,20 +761,20 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 6,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E6%B8%B8%E5%AE%A2%E4%B8%80%E5%8F%A5%E8%8F%9C%E5%A4%AA%E5%92%B8+%E5%B1%B1%E4%B8%9C%E8%80%81%E6%9D%BF%E5%85%A8%E9%A2%9D%E9%80%80%E6%AC%BE&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E7%BE%8E%E5%9B%BD%E4%B8%BB%E6%92%AD%E5%9C%A8%E5%8C%97%E4%BA%AC%E5%85%AC%E5%9B%AD%E5%92%8C%E5%B8%82%E6%B0%91%E6%89%93%E4%B9%92%E4%B9%93%E7%90%83&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 5890000
         }
       ]
     },
     {
       "rank": 24,
-      "title": "“网上售课”主播王仲焘偷税被查",
+      "title": "台当局连续“跪拜”丑陋至极",
       "category": "social",
-      "summary": "近期，国家税务总局北京市税务局第三稽查局根据相关部门推送的线索，依法查处“网上售课”主播王仲焘偷税案件。经查，王仲焘通过转换收入性质、私人账户收款隐匿2020至2023年课程销售收入，少缴税费119.",
+      "summary": "近日，台当局领导人赖清德“偷渡式”窜访非洲斯威士兰，闹了一出国际大笑话。岛内媒体曝光，台外事部门负责人林佳龙等官员，在见斯威士兰“王母”时，竟集体“蹲跪”受礼，被网友痛骂“花钱还要跪舔”，丑陋至极。",
       "heat": {
         "weibo": 0,
         "baidu": 5800000,
@@ -789,23 +794,23 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 1,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E2%80%9C%E7%BD%91%E4%B8%8A%E5%94%AE%E8%AF%BE%E2%80%9D%E4%B8%BB%E6%92%AD%E7%8E%8B%E4%BB%B2%E7%84%98%E5%81%B7%E7%A8%8E%E8%A2%AB%E6%9F%A5&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E5%8F%B0%E5%BD%93%E5%B1%80%E8%BF%9E%E7%BB%AD%E2%80%9C%E8%B7%AA%E6%8B%9C%E2%80%9D%E4%B8%91%E9%99%8B%E8%87%B3%E6%9E%81&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 5800000
         }
       ]
     },
     {
       "rank": 25,
-      "title": "年轻人的“电子茅台”过气了吗",
-      "category": "entertainment",
-      "summary": "5月13日，大疆官方商城启动限时优惠活动，明星产品Osmo Pocket 3较首发价最高直降1400元，活动持续至5月20日。该产品曾因供不应求加价超30%，如今被质疑“电子茅台”（指保值电子产品）光",
+      "title": "华为Mate X7直降1000元",
+      "category": "tech",
+      "summary": "5月15日，据华为终端消息，折叠屏旗舰华为Mate X7开启降价，全系直降1000元，优惠后11999元起，并推出至高12期分期免息。",
       "heat": {
         "weibo": 0,
-        "baidu": 5710000,
+        "baidu": 5700000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -817,25 +822,25 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 5710000,
+      "total_heat": 5700000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 10,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E2%80%9C%E7%94%B5%E5%AD%90%E8%8C%85%E5%8F%B0%E2%80%9D%E8%BF%87%E6%B0%94%E4%BA%86%E5%90%97&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 5710000
+          "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BAMate+X7%E7%9B%B4%E9%99%8D1000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 5700000
         }
       ]
     },
     {
       "rank": 26,
-      "title": "明天起 机票燃油附加费上调",
-      "category": "finance",
-      "summary": "记者14日从国航、南航、厦航等航空公司获悉，自5月16日0时起销售的中国内地航线客票，燃油附加费将上调。具体标准为：800公里（含）以下航段‌：每位旅客收取‌90元‌；‌800公里以上航段‌：每位旅客",
+      "title": "国际足联秘书长来京与央视谈判转播权",
+      "category": "social",
+      "summary": "近日，国际足联秘书长马蒂亚斯·格拉夫斯特伦（Mattias Grafström）、执行办公室主任丹尼尔·奥图尔（Daniel O’Toole）率国际足联代表团一行来到北京，其首要任务是与中国足协及央视",
       "heat": {
         "weibo": 0,
         "baidu": 5600000,
@@ -855,20 +860,20 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 9,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E6%98%8E%E5%A4%A9%E8%B5%B7+%E6%9C%BA%E7%A5%A8%E7%87%83%E6%B2%B9%E9%99%84%E5%8A%A0%E8%B4%B9%E4%B8%8A%E8%B0%83&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=%E5%9B%BD%E9%99%85%E8%B6%B3%E8%81%94%E7%A7%98%E4%B9%A6%E9%95%BF%E6%9D%A5%E4%BA%AC%E4%B8%8E%E5%A4%AE%E8%A7%86%E8%B0%88%E5%88%A4%E8%BD%AC%E6%92%AD%E6%9D%83&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 5600000
         }
       ]
     },
     {
       "rank": 27,
-      "title": "贯穿南北的大范围降雨来了",
-      "category": "social",
-      "summary": "5月15日开始至19日，由于冷暖空气将长时间交汇，中东部地区会迎来一轮大范围降雨过程。强降雨带将自西向东、自北向南移动，西南地区东部、江淮、江南中西部和北部、华南、西北地区东部、华北西部和北部、黄淮及",
+      "title": "19岁男主播喊麦后右肺几乎“消失”",
+      "category": "health",
+      "summary": "近日，19岁男主播小杨为活跃气氛，长时间在直播间高声嘶吼。下播后，他突感胸口撕裂般剧痛，被火速送医抢救。CT显示，其右侧大量气胸，右肺已被压缩95%，几近“消失”。经紧急引流手术，小杨住院一周后康复出",
       "heat": {
         "weibo": 0,
         "baidu": 5510000,
@@ -892,19 +897,19 @@
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E8%B4%AF%E7%A9%BF%E5%8D%97%E5%8C%97%E7%9A%84%E5%A4%A7%E8%8C%83%E5%9B%B4%E9%99%8D%E9%9B%A8%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+          "url": "https://www.baidu.com/s?wd=19%E5%B2%81%E7%94%B7%E4%B8%BB%E6%92%AD%E5%96%8A%E9%BA%A6%E5%90%8E%E5%8F%B3%E8%82%BA%E5%87%A0%E4%B9%8E%E2%80%9C%E6%B6%88%E5%A4%B1%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
           "heat": 5510000
         }
       ]
     },
     {
       "rank": 28,
-      "title": "谁能拒绝西双版纳专属“水果自由”",
-      "category": "social",
-      "summary": "近日，西双版纳开启芒果、椰子等水果大放送！谁能拒绝西双版纳的专属 “水果自由”呢？",
+      "title": "荔枝西瓜芒果榴莲批量上市 专家提醒",
+      "category": "finance",
+      "summary": "立夏以来，荔枝、西瓜、芒果、榴莲等高甜水果批量上市，专家提醒需警惕糖分超标及不当食用引发的健康风险。专家指出，荔枝空腹大量食用可能诱发低血糖，而榴莲性热且热量密度高，特定人群需谨慎食用。",
       "heat": {
         "weibo": 0,
-        "baidu": 5420000,
+        "baidu": 5410000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -916,7 +921,40 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 5420000,
+      "total_heat": 5410000,
+      "normalized_total": 10000,
+      "source_count": 1,
+      "composite_score": 20000,
+      "trend": "up",
+      "trendVal": 10,
+      "sources": [
+        {
+          "name": "百度",
+          "url": "https://www.baidu.com/s?wd=%E8%8D%94%E6%9E%9D%E8%A5%BF%E7%93%9C%E8%8A%92%E6%9E%9C%E6%A6%B4%E8%8E%B2%E6%89%B9%E9%87%8F%E4%B8%8A%E5%B8%82+%E4%B8%93%E5%AE%B6%E6%8F%90%E9%86%92&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 5410000
+        }
+      ]
+    },
+    {
+      "rank": 29,
+      "title": "《名侦探柯南》毛利兰声优去世",
+      "category": "finance",
+      "summary": "5月15日，山崎和佳奈所属经纪公司发布讣告，宣布曾为经典动画《名侦探柯南》女主角毛利兰配音的知名声优山崎和佳奈因病去世，享年61岁。",
+      "heat": {
+        "weibo": 0,
+        "baidu": 5320000,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "normalized_heat": {
+        "weibo": 0,
+        "baidu": 10000,
+        "zhihu": 0,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "total_heat": 5320000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
@@ -925,52 +963,19 @@
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E8%B0%81%E8%83%BD%E6%8B%92%E7%BB%9D%E8%A5%BF%E5%8F%8C%E7%89%88%E7%BA%B3%E4%B8%93%E5%B1%9E%E2%80%9C%E6%B0%B4%E6%9E%9C%E8%87%AA%E7%94%B1%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 5420000
-        }
-      ]
-    },
-    {
-      "rank": 29,
-      "title": "十部门严打中医违法违规行为",
-      "category": "health",
-      "summary": "5月15日，国家中医药管理局等十部门联合召开中医医疗违法违规行为专项治理工作启动会。据悉，本次专项治理工作为期1年，将严厉打击打着中医养生保健治病“幌子”从事非法行医，借中医药名义虚假宣传、直播带货，",
-      "heat": {
-        "weibo": 0,
-        "baidu": 5310000,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "normalized_heat": {
-        "weibo": 0,
-        "baidu": 10000,
-        "zhihu": 0,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "total_heat": 5310000,
-      "normalized_total": 10000,
-      "source_count": 1,
-      "composite_score": 20000,
-      "trend": "up",
-      "trendVal": 7,
-      "sources": [
-        {
-          "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E5%8D%81%E9%83%A8%E9%97%A8%E4%B8%A5%E6%89%93%E4%B8%AD%E5%8C%BB%E8%BF%9D%E6%B3%95%E8%BF%9D%E8%A7%84%E8%A1%8C%E4%B8%BA&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 5310000
+          "url": "https://www.baidu.com/s?wd=%E3%80%8A%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97%E3%80%8B%E6%AF%9B%E5%88%A9%E5%85%B0%E5%A3%B0%E4%BC%98%E5%8E%BB%E4%B8%96&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 5320000
         }
       ]
     },
     {
       "rank": 30,
-      "title": "《名侦探柯南》毛利兰声优去世",
-      "category": "finance",
-      "summary": "5月15日，山崎和佳奈所属经纪公司发布讣告，宣布曾为经典动画《名侦探柯南》女主角毛利兰配音的知名声优山崎和佳奈因病去世，享年61岁。",
+      "title": "贯穿南北的大范围降雨来了",
+      "category": "social",
+      "summary": "5月15日开始至19日，由于冷暖空气将长时间交汇，中东部地区会迎来一轮大范围降雨过程。强降雨带将自西向东、自北向南移动，西南地区东部、江淮、江南中西部和北部、华南、西北地区东部、华北西部和北部、黄淮及",
       "heat": {
         "weibo": 0,
-        "baidu": 5230000,
+        "baidu": 5220000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -982,28 +987,28 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 5230000,
+      "total_heat": 5220000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E3%80%8A%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97%E3%80%8B%E6%AF%9B%E5%88%A9%E5%85%B0%E5%A3%B0%E4%BC%98%E5%8E%BB%E4%B8%96&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 5230000
+          "url": "https://www.baidu.com/s?wd=%E8%B4%AF%E7%A9%BF%E5%8D%97%E5%8C%97%E7%9A%84%E5%A4%A7%E8%8C%83%E5%9B%B4%E9%99%8D%E9%9B%A8%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 5220000
         }
       ]
     },
     {
       "rank": 31,
-      "title": "镜头颤抖的40秒他们抢回一条命",
+      "title": "谁能拒绝西双版纳专属“水果自由”",
       "category": "social",
-      "summary": "近日，一位女性乘客在北京心跳骤停被抬下列车。北京公交警方民警狂奔跪地轮番对其进行心脏按压。一段画面不停抖动的视频，记录下这惊心动魄的40秒。次日，家属报来平安：母亲已脱险。颤抖的镜头，托举的是生命的分",
+      "summary": "近日，西双版纳开启芒果、椰子等水果大放送！谁能拒绝西双版纳的专属 “水果自由”呢？",
       "heat": {
         "weibo": 0,
-        "baidu": 5130000,
+        "baidu": 5140000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
@@ -1015,17 +1020,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 5130000,
+      "total_heat": 5140000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 10,
       "sources": [
         {
           "name": "百度",
-          "url": "https://www.baidu.com/s?wd=%E9%95%9C%E5%A4%B4%E9%A2%A4%E6%8A%96%E7%9A%8440%E7%A7%92%E4%BB%96%E4%BB%AC%E6%8A%A2%E5%9B%9E%E4%B8%80%E6%9D%A1%E5%91%BD&sa=fyb_news&rsv_dl=fyb_news",
-          "heat": 5130000
+          "url": "https://www.baidu.com/s?wd=%E8%B0%81%E8%83%BD%E6%8B%92%E7%BB%9D%E8%A5%BF%E5%8F%8C%E7%89%88%E7%BA%B3%E4%B8%93%E5%B1%9E%E2%80%9C%E6%B0%B4%E6%9E%9C%E8%87%AA%E7%94%B1%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+          "heat": 5140000
         }
       ]
     },
@@ -1037,7 +1042,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 27160000,
+        "zhihu": 27260000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1048,7 +1053,7 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 27160000,
+      "total_heat": 27260000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
@@ -1058,7 +1063,7 @@
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038010908488590805",
-          "heat": 27160000
+          "heat": 27260000
         }
       ]
     },
@@ -1070,7 +1075,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 15370000,
+        "zhihu": 15450000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1081,17 +1086,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 15370000,
+      "total_heat": 15450000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 3,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038367718697431356",
-          "heat": 15370000
+          "heat": 15450000
         }
       ]
     },
@@ -1103,7 +1108,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 4240000,
+        "zhihu": 4410000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1114,17 +1119,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 4240000,
+      "total_heat": 4410000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 8,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038553773010678772",
-          "heat": 4240000
+          "heat": 4410000
         }
       ]
     },
@@ -1136,7 +1141,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 2610000,
+        "zhihu": 2640000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1147,17 +1152,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 2610000,
+      "total_heat": 2640000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 4,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038335260765544921",
-          "heat": 2610000
+          "heat": 2640000
         }
       ]
     },
@@ -1169,7 +1174,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 2420000,
+        "zhihu": 2450000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1180,17 +1185,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 2420000,
+      "total_heat": 2450000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 3,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2018783635805860978",
-          "heat": 2420000
+          "heat": 2450000
         }
       ]
     },
@@ -1202,7 +1207,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 2230000,
+        "zhihu": 2250000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1213,17 +1218,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 2230000,
+      "total_heat": 2250000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 1,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038570087221655021",
-          "heat": 2230000
+          "heat": 2250000
         }
       ]
     },
@@ -1235,7 +1240,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 2040000,
+        "zhihu": 2050000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1246,17 +1251,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 2040000,
+      "total_heat": 2050000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 9,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2037919713590818143",
-          "heat": 2040000
+          "heat": 2050000
         }
       ]
     },
@@ -1284,7 +1289,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 3,
       "sources": [
         {
           "name": "知乎",
@@ -1317,7 +1322,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 1,
       "sources": [
         {
           "name": "知乎",
@@ -1383,7 +1388,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 7,
       "sources": [
         {
           "name": "知乎",
@@ -1416,7 +1421,7 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 2,
       "sources": [
         {
           "name": "知乎",
@@ -1433,7 +1438,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 1720000,
+        "zhihu": 1730000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1444,17 +1449,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 1720000,
+      "total_heat": 1730000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 2,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038219236431098730",
-          "heat": 1720000
+          "heat": 1730000
         }
       ]
     },
@@ -1466,7 +1471,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 1700000,
+        "zhihu": 1710000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1477,7 +1482,7 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 1700000,
+      "total_heat": 1710000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
@@ -1487,7 +1492,7 @@
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/question/2038245920383489528",
-          "heat": 1700000
+          "heat": 1710000
         }
       ]
     },
@@ -1499,7 +1504,7 @@
       "heat": {
         "weibo": 0,
         "baidu": 0,
-        "zhihu": 1390000,
+        "zhihu": 1470000,
         "bilibili": 0,
         "douyin": 0
       },
@@ -1510,17 +1515,17 @@
         "bilibili": 0,
         "douyin": 0
       },
-      "total_heat": 1390000,
+      "total_heat": 1470000,
       "normalized_total": 10000,
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 6,
       "sources": [
         {
           "name": "知乎",
           "url": "https://www.zhihu.com/roundtable/2026sheyingji",
-          "heat": 1390000
+          "heat": 1470000
         }
       ]
     },
@@ -1529,6 +1534,72 @@
       "title": "《安娜·卡列尼娜》读不下去，但书评称此是经典中的经典，那为什么很枯燥？",
       "category": "social",
       "summary": "《安娜·卡列尼娜》读不下去，但书评称此是经典中的经典，那为什么很枯燥？",
+      "heat": {
+        "weibo": 0,
+        "baidu": 0,
+        "zhihu": 1360000,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "normalized_heat": {
+        "weibo": 0,
+        "baidu": 0,
+        "zhihu": 10000,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "total_heat": 1360000,
+      "normalized_total": 10000,
+      "source_count": 1,
+      "composite_score": 20000,
+      "trend": "up",
+      "trendVal": 3,
+      "sources": [
+        {
+          "name": "知乎",
+          "url": "https://www.zhihu.com/question/21854971",
+          "heat": 1360000
+        }
+      ]
+    },
+    {
+      "rank": 48,
+      "title": "「100% 概率获得 200 万」和「99% 概率获得 2 个亿」，你选哪个？",
+      "category": "social",
+      "summary": "「100% 概率获得 200 万」和「99% 概率获得 2 个亿」，你选哪个？",
+      "heat": {
+        "weibo": 0,
+        "baidu": 0,
+        "zhihu": 1300000,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "normalized_heat": {
+        "weibo": 0,
+        "baidu": 0,
+        "zhihu": 10000,
+        "bilibili": 0,
+        "douyin": 0
+      },
+      "total_heat": 1300000,
+      "normalized_total": 10000,
+      "source_count": 1,
+      "composite_score": 20000,
+      "trend": "up",
+      "trendVal": 2,
+      "sources": [
+        {
+          "name": "知乎",
+          "url": "https://www.zhihu.com/question/1890572054891328884",
+          "heat": 1300000
+        }
+      ]
+    },
+    {
+      "rank": 49,
+      "title": "追觅 CEO 俞浩一天狂发 75 条视频，他是要开始做自媒体了吗？这是什么策略？对营销传播来说有效吗？",
+      "category": "social",
+      "summary": "追觅 CEO 俞浩一天狂发 75 条视频，他是要开始做自媒体了吗？这是什么策略？对营销传播来说有效吗？",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -1548,20 +1619,20 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 3,
       "sources": [
         {
           "name": "知乎",
-          "url": "https://www.zhihu.com/question/21854971",
+          "url": "https://www.zhihu.com/question/2037133010990884347",
           "heat": 1240000
         }
       ]
     },
     {
-      "rank": 48,
-      "title": "「100% 概率获得 200 万」和「99% 概率获得 2 个亿」，你选哪个？",
-      "category": "social",
-      "summary": "「100% 概率获得 200 万」和「99% 概率获得 2 个亿」，你选哪个？",
+      "rank": 50,
+      "title": "为什么八九十年代医院规模小，医生也轻松，现在医院规模大大膨胀，医生反而很累？",
+      "category": "health",
+      "summary": "为什么八九十年代医院规模小，医生也轻松，现在医院规模大大膨胀，医生反而很累？",
       "heat": {
         "weibo": 0,
         "baidu": 0,
@@ -1581,78 +1652,12 @@
       "source_count": 1,
       "composite_score": 20000,
       "trend": "up",
-      "trendVal": 3,
-      "sources": [
-        {
-          "name": "知乎",
-          "url": "https://www.zhihu.com/question/1890572054891328884",
-          "heat": 1170000
-        }
-      ]
-    },
-    {
-      "rank": 49,
-      "title": "药店「闭店潮」持续，一年净减 2.2 万家，中小药店加快被淘汰出局，为啥会这样？对普通人买药影响大吗？",
-      "category": "social",
-      "summary": "药店「闭店潮」持续，一年净减 2.2 万家，中小药店加快被淘汰出局，为啥会这样？对普通人买药影响大吗？",
-      "heat": {
-        "weibo": 0,
-        "baidu": 0,
-        "zhihu": 1090000,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "normalized_heat": {
-        "weibo": 0,
-        "baidu": 0,
-        "zhihu": 10000,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "total_heat": 1090000,
-      "normalized_total": 10000,
-      "source_count": 1,
-      "composite_score": 20000,
-      "trend": "up",
       "trendVal": 1,
       "sources": [
         {
           "name": "知乎",
-          "url": "https://www.zhihu.com/question/2035429478663444199",
-          "heat": 1090000
-        }
-      ]
-    },
-    {
-      "rank": 50,
-      "title": "追觅 CEO 俞浩一天狂发 75 条视频，他是要开始做自媒体了吗？这是什么策略？对营销传播来说有效吗？",
-      "category": "social",
-      "summary": "追觅 CEO 俞浩一天狂发 75 条视频，他是要开始做自媒体了吗？这是什么策略？对营销传播来说有效吗？",
-      "heat": {
-        "weibo": 0,
-        "baidu": 0,
-        "zhihu": 1060000,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "normalized_heat": {
-        "weibo": 0,
-        "baidu": 0,
-        "zhihu": 10000,
-        "bilibili": 0,
-        "douyin": 0
-      },
-      "total_heat": 1060000,
-      "normalized_total": 10000,
-      "source_count": 1,
-      "composite_score": 20000,
-      "trend": "up",
-      "trendVal": 5,
-      "sources": [
-        {
-          "name": "知乎",
-          "url": "https://www.zhihu.com/question/2037133010990884347",
-          "heat": 1060000
+          "url": "https://www.zhihu.com/question/437504207",
+          "heat": 1170000
         }
       ]
     }
@@ -1671,19 +1676,19 @@
       },
       {
         "rank": 2,
-        "title": "习近平同特朗普在中南海小范围会晤",
+        "title": "央视拿下世界杯版权",
         "heat": 7800000,
-        "url": "https://www.baidu.com/s?wd=%E4%B9%A0%E8%BF%91%E5%B9%B3%E5%90%8C%E7%89%B9%E6%9C%97%E6%99%AE%E5%9C%A8%E4%B8%AD%E5%8D%97%E6%B5%B7%E5%B0%8F%E8%8C%83%E5%9B%B4%E4%BC%9A%E6%99%A4&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "",
+        "url": "https://www.baidu.com/s?wd=%E5%A4%AE%E8%A7%86%E6%8B%BF%E4%B8%8B%E4%B8%96%E7%95%8C%E6%9D%AF%E7%89%88%E6%9D%83&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "最新消息：中央广播电视总台已经获得2026年美加墨世界杯版权。中国球迷可以在家看世界杯了！",
         "source": "baidu",
-        "category": "politics"
+        "category": "sports"
       },
       {
         "rank": 3,
-        "title": "第一现场看中美元首会晤",
+        "title": "特朗普结束访华 乘专机离开北京",
         "heat": 7710000,
-        "url": "https://www.baidu.com/s?wd=%E7%AC%AC%E4%B8%80%E7%8E%B0%E5%9C%BA%E7%9C%8B%E4%B8%AD%E7%BE%8E%E5%85%83%E9%A6%96%E4%BC%9A%E6%99%A4&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月14日，习近平主席与特朗普总统在北京展开密集互动。有正式会谈，也有天坛畅叙。谋中美相处之道，也话互利共赢之策。一起来看，中美元首会晤第一现场！",
+        "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E7%BB%93%E6%9D%9F%E8%AE%BF%E5%8D%8E+%E4%B9%98%E4%B8%93%E6%9C%BA%E7%A6%BB%E5%BC%80%E5%8C%97%E4%BA%AC&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "",
         "source": "baidu",
         "category": "politics"
       },
@@ -1698,66 +1703,66 @@
       },
       {
         "rank": 5,
-        "title": "中国首款 打破国外近20年垄断",
-        "heat": 7520000,
-        "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E9%A6%96%E6%AC%BE+%E6%89%93%E7%A0%B4%E5%9B%BD%E5%A4%96%E8%BF%9120%E5%B9%B4%E5%9E%84%E6%96%AD&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "日前，江西省农业科学院联合华中农业大学、苏州拉索生物芯片科技有限公司正式发布了我国首款甘蓝型油菜20K固相基因芯片——“中芯油1号”，打破了国外近20年对固相芯片技术的垄断。中国油菜种业从“看天吃饭”",
-        "source": "baidu",
-        "category": "tech"
-      },
-      {
-        "rank": 6,
-        "title": "华为Mate X7直降1000元",
-        "heat": 7420000,
-        "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BAMate+X7%E7%9B%B4%E9%99%8D1000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月15日，据华为终端消息，折叠屏旗舰华为Mate X7开启降价，全系直降1000元，优惠后11999元起，并推出至高12期分期免息。",
-        "source": "baidu",
-        "category": "tech"
-      },
-      {
-        "rank": 7,
-        "title": "日本翻车了",
-        "heat": 7330000,
-        "url": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BF%BB%E8%BD%A6%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "近期，大量日本网民在公开平台疯狂叫嚣、聚众“洗地”。有人说日本人在X平台上原本给人的印象是动漫，结果现在暴露出一些右翼分子堪比希特勒，日本精心打造的国际“人设”崩塌。此次日本国际“人设”崩塌，也是给日",
-        "source": "baidu",
-        "category": "politics"
-      },
-      {
-        "rank": 8,
-        "title": "女子总遇见“面熟”大姐一查竟是亲姐",
-        "heat": 7230000,
-        "url": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E6%80%BB%E9%81%87%E8%A7%81%E2%80%9C%E9%9D%A2%E7%86%9F%E2%80%9D%E5%A4%A7%E5%A7%90%E4%B8%80%E6%9F%A5%E7%AB%9F%E6%98%AF%E4%BA%B2%E5%A7%90&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "“我经常在街上遇到我的姐姐，只是觉得面熟，但从来没想过，她真的就是我的亲姐姐！”64岁的郑招莲回忆起过往，感慨不已。被抱养的她成年后嫁到螺洋街道生活，而她的亲生家庭本就扎根螺洋。",
-        "source": "baidu",
-        "category": "life"
-      },
-      {
-        "rank": 9,
-        "title": "华为官宣Mate X6直降3000元",
-        "heat": 7130000,
-        "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BA%E5%AE%98%E5%AE%A3Mate+X6%E7%9B%B4%E9%99%8D3000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月15日，华为终端宣布两款折叠屏手机开启降价优惠，华为Mate X7直降1000元，华为Mate X6直降3000元，两款机型至高可享12期分期免息。",
-        "source": "baidu",
-        "category": "tech"
-      },
-      {
-        "rank": 10,
         "title": "义乌又爆单了",
-        "heat": 7040000,
+        "heat": 7520000,
         "url": "https://www.baidu.com/s?wd=%E4%B9%89%E4%B9%8C%E5%8F%88%E7%88%86%E5%8D%95%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
         "summary": "还有不到一个月，2026年美加墨世界杯就要来了。据悉，本届世界杯官方授权及周边产品的外贸红利已覆盖国内十余个省区市，但频繁冲上热搜的还是被誉为“世界超市”的义乌。又双叒叕爆单的背后，义乌到底凭什么？",
         "source": "baidu",
         "category": "sports"
       },
       {
-        "rank": 11,
-        "title": "支付宝：正寻求警方帮助",
-        "heat": 6940000,
-        "url": "https://www.baidu.com/s?wd=%E6%94%AF%E4%BB%98%E5%AE%9D%EF%BC%9A%E6%AD%A3%E5%AF%BB%E6%B1%82%E8%AD%A6%E6%96%B9%E5%B8%AE%E5%8A%A9&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月14日晚，用户关闭支付功能后被扣捐赠184万相关话题引发关注。15日，支付宝方面回应称，平台系正常执行用户账户下达的支付指令。由于涉事账户存在与他人共用的嫌疑，不排除涉嫌违法犯罪的可能，支付宝正在",
+        "rank": 6,
+        "title": "华为官宣Mate X6直降3000元",
+        "heat": 7420000,
+        "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BA%E5%AE%98%E5%AE%A3Mate+X6%E7%9B%B4%E9%99%8D3000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月15日，华为终端宣布两款折叠屏手机开启降价优惠，华为Mate X7直降1000元，华为Mate X6直降3000元，两款机型至高可享12期分期免息。",
         "source": "baidu",
-        "category": "social"
+        "category": "tech"
+      },
+      {
+        "rank": 7,
+        "title": "女子总遇见“面熟”大姐一查竟是亲姐",
+        "heat": 7330000,
+        "url": "https://www.baidu.com/s?wd=%E5%A5%B3%E5%AD%90%E6%80%BB%E9%81%87%E8%A7%81%E2%80%9C%E9%9D%A2%E7%86%9F%E2%80%9D%E5%A4%A7%E5%A7%90%E4%B8%80%E6%9F%A5%E7%AB%9F%E6%98%AF%E4%BA%B2%E5%A7%90&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "“我经常在街上遇到我的姐姐，只是觉得面熟，但从来没想过，她真的就是我的亲姐姐！”64岁的郑招莲回忆起过往，感慨不已。被抱养的她成年后嫁到螺洋街道生活，而她的亲生家庭本就扎根螺洋。",
+        "source": "baidu",
+        "category": "life"
+      },
+      {
+        "rank": 8,
+        "title": "鸿蒙智行智界V9上市发布会",
+        "heat": 7230000,
+        "url": "https://www.baidu.com/s?wd=%E9%B8%BF%E8%92%99%E6%99%BA%E8%A1%8C%E6%99%BA%E7%95%8CV9%E4%B8%8A%E5%B8%82%E5%8F%91%E5%B8%83%E4%BC%9A&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "北京时间5月15日14:30，鸿蒙智行 智界V9发布会，我们不见不散！",
+        "source": "baidu",
+        "category": "finance"
+      },
+      {
+        "rank": 9,
+        "title": "日本翻车了",
+        "heat": 7140000,
+        "url": "https://www.baidu.com/s?wd=%E6%97%A5%E6%9C%AC%E7%BF%BB%E8%BD%A6%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "近期，大量日本网民在公开平台疯狂叫嚣、聚众“洗地”。有人说日本人在X平台上原本给人的印象是动漫，结果现在暴露出一些右翼分子堪比希特勒，日本精心打造的国际“人设”崩塌。此次日本国际“人设”崩塌，也是给日",
+        "source": "baidu",
+        "category": "politics"
+      },
+      {
+        "rank": 10,
+        "title": "中国首款 打破国外近20年垄断",
+        "heat": 7030000,
+        "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E9%A6%96%E6%AC%BE+%E6%89%93%E7%A0%B4%E5%9B%BD%E5%A4%96%E8%BF%9120%E5%B9%B4%E5%9E%84%E6%96%AD&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "日前，江西省农业科学院联合华中农业大学、苏州拉索生物芯片科技有限公司正式发布了我国首款甘蓝型油菜20K固相基因芯片——“中芯油1号”，打破了国外近20年对固相芯片技术的垄断。中国油菜种业从“看天吃饭”",
+        "source": "baidu",
+        "category": "tech"
+      },
+      {
+        "rank": 11,
+        "title": "《给阿嬷的情书》预测票房飙升至10亿",
+        "heat": 6950000,
+        "url": "https://www.baidu.com/s?wd=%E3%80%8A%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E3%80%8B%E9%A2%84%E6%B5%8B%E7%A5%A8%E6%88%BF%E9%A3%99%E5%8D%87%E8%87%B310%E4%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月14日晚，据AI票房预测显示，电影《给阿嬷的情书》总票房预测连续15天上调至超10亿元。截至14日，该片累计票房2.28亿元，票房大盘占比高达70%以上。",
+        "source": "baidu",
+        "category": "entertainment"
       },
       {
         "rank": 12,
@@ -1779,35 +1784,35 @@
       },
       {
         "rank": 14,
-        "title": "特朗普乘车抵达中南海",
+        "title": "游客一句菜太咸 山东老板全额退款",
         "heat": 6660000,
-        "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%E4%B9%98%E8%BD%A6%E6%8A%B5%E8%BE%BE%E4%B8%AD%E5%8D%97%E6%B5%B7&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月15日，美国总统特朗普乘车抵达中南海。",
+        "url": "https://www.baidu.com/s?wd=%E6%B8%B8%E5%AE%A2%E4%B8%80%E5%8F%A5%E8%8F%9C%E5%A4%AA%E5%92%B8+%E5%B1%B1%E4%B8%9C%E8%80%81%E6%9D%BF%E5%85%A8%E9%A2%9D%E9%80%80%E6%AC%BE&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "日前，浙江游客陆先生和妻子来山东旅游。在日照一家烧烤店吃饭时，发现不合口味，菜太咸。店老板小邓得知情况后，主动将300多元餐费退还。",
         "source": "baidu",
-        "category": "politics"
+        "category": "life"
       },
       {
         "rank": 15,
-        "title": "特朗普：美国中餐馆比五大快餐店还多",
-        "heat": 6550000,
-        "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%EF%BC%9A%E7%BE%8E%E5%9B%BD%E4%B8%AD%E9%A4%90%E9%A6%86%E6%AF%94%E4%BA%94%E5%A4%A7%E5%BF%AB%E9%A4%90%E5%BA%97%E8%BF%98%E5%A4%9A&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月14日，美国总统特朗普表示，正如如今许多中国人喜爱篮球和牛仔裤一样，在美国中餐馆的数量比五大快餐连锁店加起来还要多。",
+        "title": "男子骗养20多只狗供烈犬撕咬被刑拘",
+        "heat": 6560000,
+        "url": "https://www.baidu.com/s?wd=%E7%94%B7%E5%AD%90%E9%AA%97%E5%85%BB20%E5%A4%9A%E5%8F%AA%E7%8B%97%E4%BE%9B%E7%83%88%E7%8A%AC%E6%92%95%E5%92%AC%E8%A2%AB%E5%88%91%E6%8B%98&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "据悉，东莞的罗某某长期在网络骗养犬只，并将领养来的狗用于训练自己的烈性犬。从2018年至今，已有20多只小狗被罗某某领养。目前，罗某某已被依法刑拘。",
         "source": "baidu",
-        "category": "politics"
+        "category": "life"
       },
       {
         "rank": 16,
-        "title": "国际足联秘书长来京与央视谈判转播权",
-        "heat": 6470000,
-        "url": "https://www.baidu.com/s?wd=%E5%9B%BD%E9%99%85%E8%B6%B3%E8%81%94%E7%A7%98%E4%B9%A6%E9%95%BF%E6%9D%A5%E4%BA%AC%E4%B8%8E%E5%A4%AE%E8%A7%86%E8%B0%88%E5%88%A4%E8%BD%AC%E6%92%AD%E6%9D%83&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "近日，国际足联秘书长马蒂亚斯·格拉夫斯特伦（Mattias Grafström）、执行办公室主任丹尼尔·奥图尔（Daniel O’Toole）率国际足联代表团一行来到北京，其首要任务是与中国足协及央视",
+        "title": "40岁男子看到鸡蛋价格后决定戒烟",
+        "heat": 6460000,
+        "url": "https://www.baidu.com/s?wd=40%E5%B2%81%E7%94%B7%E5%AD%90%E7%9C%8B%E5%88%B0%E9%B8%A1%E8%9B%8B%E4%BB%B7%E6%A0%BC%E5%90%8E%E5%86%B3%E5%AE%9A%E6%88%92%E7%83%9F&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "近日，一名40岁男子因发现一包烟（20元）价格相当于30个鸡蛋（19.9元），计算年省7000元可支持家庭旅游，最终戒烟。他表示：“现在家人开心就是我最大的快乐。”",
         "source": "baidu",
-        "category": "social"
+        "category": "life"
       },
       {
         "rank": 17,
         "title": "外交部就特朗普访华情况答问",
-        "heat": 6380000,
+        "heat": 6370000,
         "url": "https://www.baidu.com/s?wd=%E5%A4%96%E4%BA%A4%E9%83%A8%E5%B0%B1%E7%89%B9%E6%9C%97%E6%99%AE%E8%AE%BF%E5%8D%8E%E6%83%85%E5%86%B5%E7%AD%94%E9%97%AE&sa=fyb_news&rsv_dl=fyb_news",
         "summary": "5月15日，外交部发言人就美国总统特朗普访华情况答记者问。外交部发言人表示，两国元首互动促进了相互理解，加深了彼此信任，推进了务实合作，增进了两国人民的福祉，为世界注入了亟需的稳定性和确定性。",
         "source": "baidu",
@@ -1815,118 +1820,118 @@
       },
       {
         "rank": 18,
-        "title": "美国主播在北京公园和市民打乒乓球",
-        "heat": 6270000,
-        "url": "https://www.baidu.com/s?wd=%E7%BE%8E%E5%9B%BD%E4%B8%BB%E6%92%AD%E5%9C%A8%E5%8C%97%E4%BA%AC%E5%85%AC%E5%9B%AD%E5%92%8C%E5%B8%82%E6%B0%91%E6%89%93%E4%B9%92%E4%B9%93%E7%90%83&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月14日，美国福克斯新闻台主持人布雷特·拜尔在北京朝阳公园和市民打乒乓球，对方频频友好喂球。其坦言：“一个小小的球真的可以改变世界。”",
-        "source": "baidu",
-        "category": "sports"
-      },
-      {
-        "rank": 19,
-        "title": "台当局连续“跪拜”丑陋至极",
-        "heat": 6180000,
-        "url": "https://www.baidu.com/s?wd=%E5%8F%B0%E5%BD%93%E5%B1%80%E8%BF%9E%E7%BB%AD%E2%80%9C%E8%B7%AA%E6%8B%9C%E2%80%9D%E4%B8%91%E9%99%8B%E8%87%B3%E6%9E%81&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "近日，台当局领导人赖清德“偷渡式”窜访非洲斯威士兰，闹了一出国际大笑话。岛内媒体曝光，台外事部门负责人林佳龙等官员，在见斯威士兰“王母”时，竟集体“蹲跪”受礼，被网友痛骂“花钱还要跪舔”，丑陋至极。",
-        "source": "baidu",
-        "category": "social"
-      },
-      {
-        "rank": 20,
-        "title": "《给阿嬷的情书》预测票房飙升至10亿",
-        "heat": 6090000,
-        "url": "https://www.baidu.com/s?wd=%E3%80%8A%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E3%80%8B%E9%A2%84%E6%B5%8B%E7%A5%A8%E6%88%BF%E9%A3%99%E5%8D%87%E8%87%B310%E4%BA%BF&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月14日晚，据AI票房预测显示，电影《给阿嬷的情书》总票房预测连续15天上调至超10亿元。截至14日，该片累计票房2.28亿元，票房大盘占比高达70%以上。",
-        "source": "baidu",
-        "category": "entertainment"
-      },
-      {
-        "rank": 21,
-        "title": "中美元首会晤 这个表述极为关键",
-        "heat": 5990000,
-        "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E7%BE%8E%E5%85%83%E9%A6%96%E4%BC%9A%E6%99%A4+%E8%BF%99%E4%B8%AA%E8%A1%A8%E8%BF%B0%E6%9E%81%E4%B8%BA%E5%85%B3%E9%94%AE&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月14日上午，中美元首举行会谈。双方赞同将构建“中美建设性战略稳定关系”作为中美关系新定位。怎么理解这一新定位？此次会晤将对未来两国关系和世界发展带来哪些影响？来看北京外国语大学区域与全球治理高等研",
-        "source": "baidu",
-        "category": "politics"
-      },
-      {
-        "rank": 22,
-        "title": "游客一句菜太咸 山东老板全额退款",
-        "heat": 5890000,
-        "url": "https://www.baidu.com/s?wd=%E6%B8%B8%E5%AE%A2%E4%B8%80%E5%8F%A5%E8%8F%9C%E5%A4%AA%E5%92%B8+%E5%B1%B1%E4%B8%9C%E8%80%81%E6%9D%BF%E5%85%A8%E9%A2%9D%E9%80%80%E6%AC%BE&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "日前，浙江游客陆先生和妻子来山东旅游。在日照一家烧烤店吃饭时，发现不合口味，菜太咸。店老板小邓得知情况后，主动将300多元餐费退还。",
-        "source": "baidu",
-        "category": "life"
-      },
-      {
-        "rank": 23,
-        "title": "“网上售课”主播王仲焘偷税被查",
-        "heat": 5800000,
-        "url": "https://www.baidu.com/s?wd=%E2%80%9C%E7%BD%91%E4%B8%8A%E5%94%AE%E8%AF%BE%E2%80%9D%E4%B8%BB%E6%92%AD%E7%8E%8B%E4%BB%B2%E7%84%98%E5%81%B7%E7%A8%8E%E8%A2%AB%E6%9F%A5&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "近期，国家税务总局北京市税务局第三稽查局根据相关部门推送的线索，依法查处“网上售课”主播王仲焘偷税案件。经查，王仲焘通过转换收入性质、私人账户收款隐匿2020至2023年课程销售收入，少缴税费119.",
-        "source": "baidu",
-        "category": "social"
-      },
-      {
-        "rank": 24,
         "title": "年轻人的“电子茅台”过气了吗",
-        "heat": 5710000,
+        "heat": 6280000,
         "url": "https://www.baidu.com/s?wd=%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E2%80%9C%E7%94%B5%E5%AD%90%E8%8C%85%E5%8F%B0%E2%80%9D%E8%BF%87%E6%B0%94%E4%BA%86%E5%90%97&sa=fyb_news&rsv_dl=fyb_news",
         "summary": "5月13日，大疆官方商城启动限时优惠活动，明星产品Osmo Pocket 3较首发价最高直降1400元，活动持续至5月20日。该产品曾因供不应求加价超30%，如今被质疑“电子茅台”（指保值电子产品）光",
         "source": "baidu",
         "category": "entertainment"
       },
       {
-        "rank": 25,
-        "title": "明天起 机票燃油附加费上调",
-        "heat": 5600000,
-        "url": "https://www.baidu.com/s?wd=%E6%98%8E%E5%A4%A9%E8%B5%B7+%E6%9C%BA%E7%A5%A8%E7%87%83%E6%B2%B9%E9%99%84%E5%8A%A0%E8%B4%B9%E4%B8%8A%E8%B0%83&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "记者14日从国航、南航、厦航等航空公司获悉，自5月16日0时起销售的中国内地航线客票，燃油附加费将上调。具体标准为：800公里（含）以下航段‌：每位旅客收取‌90元‌；‌800公里以上航段‌：每位旅客",
-        "source": "baidu",
-        "category": "finance"
-      },
-      {
-        "rank": 26,
-        "title": "贯穿南北的大范围降雨来了",
-        "heat": 5510000,
-        "url": "https://www.baidu.com/s?wd=%E8%B4%AF%E7%A9%BF%E5%8D%97%E5%8C%97%E7%9A%84%E5%A4%A7%E8%8C%83%E5%9B%B4%E9%99%8D%E9%9B%A8%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "5月15日开始至19日，由于冷暖空气将长时间交汇，中东部地区会迎来一轮大范围降雨过程。强降雨带将自西向东、自北向南移动，西南地区东部、江淮、江南中西部和北部、华南、西北地区东部、华北西部和北部、黄淮及",
+        "rank": 19,
+        "title": "中国取得重大找矿突破",
+        "heat": 6180000,
+        "url": "https://www.baidu.com/s?wd=%E4%B8%AD%E5%9B%BD%E5%8F%96%E5%BE%97%E9%87%8D%E5%A4%A7%E6%89%BE%E7%9F%BF%E7%AA%81%E7%A0%B4&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月13日，自然资源部发布西藏自治区江达县玉龙铜矿资源储量核实勘查项目成果：矿区新增铜资源量131.42万吨、钼资源量10.77万吨、银资源量793吨。至此，玉龙矿区累计查明铜资源量已达753.4万吨",
         "source": "baidu",
         "category": "social"
       },
       {
-        "rank": 27,
-        "title": "谁能拒绝西双版纳专属“水果自由”",
-        "heat": 5420000,
-        "url": "https://www.baidu.com/s?wd=%E8%B0%81%E8%83%BD%E6%8B%92%E7%BB%9D%E8%A5%BF%E5%8F%8C%E7%89%88%E7%BA%B3%E4%B8%93%E5%B1%9E%E2%80%9C%E6%B0%B4%E6%9E%9C%E8%87%AA%E7%94%B1%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "近日，西双版纳开启芒果、椰子等水果大放送！谁能拒绝西双版纳的专属 “水果自由”呢？",
-        "source": "baidu",
-        "category": "social"
-      },
-      {
-        "rank": 28,
+        "rank": 20,
         "title": "十部门严打中医违法违规行为",
-        "heat": 5310000,
+        "heat": 6080000,
         "url": "https://www.baidu.com/s?wd=%E5%8D%81%E9%83%A8%E9%97%A8%E4%B8%A5%E6%89%93%E4%B8%AD%E5%8C%BB%E8%BF%9D%E6%B3%95%E8%BF%9D%E8%A7%84%E8%A1%8C%E4%B8%BA&sa=fyb_news&rsv_dl=fyb_news",
         "summary": "5月15日，国家中医药管理局等十部门联合召开中医医疗违法违规行为专项治理工作启动会。据悉，本次专项治理工作为期1年，将严厉打击打着中医养生保健治病“幌子”从事非法行医，借中医药名义虚假宣传、直播带货，",
         "source": "baidu",
         "category": "health"
       },
       {
-        "rank": 29,
+        "rank": 21,
+        "title": "特朗普：美国中餐馆比五大快餐店还多",
+        "heat": 5980000,
+        "url": "https://www.baidu.com/s?wd=%E7%89%B9%E6%9C%97%E6%99%AE%EF%BC%9A%E7%BE%8E%E5%9B%BD%E4%B8%AD%E9%A4%90%E9%A6%86%E6%AF%94%E4%BA%94%E5%A4%A7%E5%BF%AB%E9%A4%90%E5%BA%97%E8%BF%98%E5%A4%9A&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月14日，美国总统特朗普表示，正如如今许多中国人喜爱篮球和牛仔裤一样，在美国中餐馆的数量比五大快餐连锁店加起来还要多。",
+        "source": "baidu",
+        "category": "politics"
+      },
+      {
+        "rank": 22,
+        "title": "美国主播在北京公园和市民打乒乓球",
+        "heat": 5890000,
+        "url": "https://www.baidu.com/s?wd=%E7%BE%8E%E5%9B%BD%E4%B8%BB%E6%92%AD%E5%9C%A8%E5%8C%97%E4%BA%AC%E5%85%AC%E5%9B%AD%E5%92%8C%E5%B8%82%E6%B0%91%E6%89%93%E4%B9%92%E4%B9%93%E7%90%83&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月14日，美国福克斯新闻台主持人布雷特·拜尔在北京朝阳公园和市民打乒乓球，对方频频友好喂球。其坦言：“一个小小的球真的可以改变世界。”",
+        "source": "baidu",
+        "category": "sports"
+      },
+      {
+        "rank": 23,
+        "title": "台当局连续“跪拜”丑陋至极",
+        "heat": 5800000,
+        "url": "https://www.baidu.com/s?wd=%E5%8F%B0%E5%BD%93%E5%B1%80%E8%BF%9E%E7%BB%AD%E2%80%9C%E8%B7%AA%E6%8B%9C%E2%80%9D%E4%B8%91%E9%99%8B%E8%87%B3%E6%9E%81&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "近日，台当局领导人赖清德“偷渡式”窜访非洲斯威士兰，闹了一出国际大笑话。岛内媒体曝光，台外事部门负责人林佳龙等官员，在见斯威士兰“王母”时，竟集体“蹲跪”受礼，被网友痛骂“花钱还要跪舔”，丑陋至极。",
+        "source": "baidu",
+        "category": "social"
+      },
+      {
+        "rank": 24,
+        "title": "华为Mate X7直降1000元",
+        "heat": 5700000,
+        "url": "https://www.baidu.com/s?wd=%E5%8D%8E%E4%B8%BAMate+X7%E7%9B%B4%E9%99%8D1000%E5%85%83&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月15日，据华为终端消息，折叠屏旗舰华为Mate X7开启降价，全系直降1000元，优惠后11999元起，并推出至高12期分期免息。",
+        "source": "baidu",
+        "category": "tech"
+      },
+      {
+        "rank": 25,
+        "title": "国际足联秘书长来京与央视谈判转播权",
+        "heat": 5600000,
+        "url": "https://www.baidu.com/s?wd=%E5%9B%BD%E9%99%85%E8%B6%B3%E8%81%94%E7%A7%98%E4%B9%A6%E9%95%BF%E6%9D%A5%E4%BA%AC%E4%B8%8E%E5%A4%AE%E8%A7%86%E8%B0%88%E5%88%A4%E8%BD%AC%E6%92%AD%E6%9D%83&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "近日，国际足联秘书长马蒂亚斯·格拉夫斯特伦（Mattias Grafström）、执行办公室主任丹尼尔·奥图尔（Daniel O’Toole）率国际足联代表团一行来到北京，其首要任务是与中国足协及央视",
+        "source": "baidu",
+        "category": "social"
+      },
+      {
+        "rank": 26,
+        "title": "19岁男主播喊麦后右肺几乎“消失”",
+        "heat": 5510000,
+        "url": "https://www.baidu.com/s?wd=19%E5%B2%81%E7%94%B7%E4%B8%BB%E6%92%AD%E5%96%8A%E9%BA%A6%E5%90%8E%E5%8F%B3%E8%82%BA%E5%87%A0%E4%B9%8E%E2%80%9C%E6%B6%88%E5%A4%B1%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "近日，19岁男主播小杨为活跃气氛，长时间在直播间高声嘶吼。下播后，他突感胸口撕裂般剧痛，被火速送医抢救。CT显示，其右侧大量气胸，右肺已被压缩95%，几近“消失”。经紧急引流手术，小杨住院一周后康复出",
+        "source": "baidu",
+        "category": "health"
+      },
+      {
+        "rank": 27,
+        "title": "荔枝西瓜芒果榴莲批量上市 专家提醒",
+        "heat": 5410000,
+        "url": "https://www.baidu.com/s?wd=%E8%8D%94%E6%9E%9D%E8%A5%BF%E7%93%9C%E8%8A%92%E6%9E%9C%E6%A6%B4%E8%8E%B2%E6%89%B9%E9%87%8F%E4%B8%8A%E5%B8%82+%E4%B8%93%E5%AE%B6%E6%8F%90%E9%86%92&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "立夏以来，荔枝、西瓜、芒果、榴莲等高甜水果批量上市，专家提醒需警惕糖分超标及不当食用引发的健康风险。专家指出，荔枝空腹大量食用可能诱发低血糖，而榴莲性热且热量密度高，特定人群需谨慎食用。",
+        "source": "baidu",
+        "category": "finance"
+      },
+      {
+        "rank": 28,
         "title": "《名侦探柯南》毛利兰声优去世",
-        "heat": 5230000,
+        "heat": 5320000,
         "url": "https://www.baidu.com/s?wd=%E3%80%8A%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97%E3%80%8B%E6%AF%9B%E5%88%A9%E5%85%B0%E5%A3%B0%E4%BC%98%E5%8E%BB%E4%B8%96&sa=fyb_news&rsv_dl=fyb_news",
         "summary": "5月15日，山崎和佳奈所属经纪公司发布讣告，宣布曾为经典动画《名侦探柯南》女主角毛利兰配音的知名声优山崎和佳奈因病去世，享年61岁。",
         "source": "baidu",
         "category": "finance"
       },
       {
+        "rank": 29,
+        "title": "贯穿南北的大范围降雨来了",
+        "heat": 5220000,
+        "url": "https://www.baidu.com/s?wd=%E8%B4%AF%E7%A9%BF%E5%8D%97%E5%8C%97%E7%9A%84%E5%A4%A7%E8%8C%83%E5%9B%B4%E9%99%8D%E9%9B%A8%E6%9D%A5%E4%BA%86&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "5月15日开始至19日，由于冷暖空气将长时间交汇，中东部地区会迎来一轮大范围降雨过程。强降雨带将自西向东、自北向南移动，西南地区东部、江淮、江南中西部和北部、华南、西北地区东部、华北西部和北部、黄淮及",
+        "source": "baidu",
+        "category": "social"
+      },
+      {
         "rank": 30,
-        "title": "镜头颤抖的40秒他们抢回一条命",
-        "heat": 5130000,
-        "url": "https://www.baidu.com/s?wd=%E9%95%9C%E5%A4%B4%E9%A2%A4%E6%8A%96%E7%9A%8440%E7%A7%92%E4%BB%96%E4%BB%AC%E6%8A%A2%E5%9B%9E%E4%B8%80%E6%9D%A1%E5%91%BD&sa=fyb_news&rsv_dl=fyb_news",
-        "summary": "近日，一位女性乘客在北京心跳骤停被抬下列车。北京公交警方民警狂奔跪地轮番对其进行心脏按压。一段画面不停抖动的视频，记录下这惊心动魄的40秒。次日，家属报来平安：母亲已脱险。颤抖的镜头，托举的是生命的分",
+        "title": "谁能拒绝西双版纳专属“水果自由”",
+        "heat": 5140000,
+        "url": "https://www.baidu.com/s?wd=%E8%B0%81%E8%83%BD%E6%8B%92%E7%BB%9D%E8%A5%BF%E5%8F%8C%E7%89%88%E7%BA%B3%E4%B8%93%E5%B1%9E%E2%80%9C%E6%B0%B4%E6%9E%9C%E8%87%AA%E7%94%B1%E2%80%9D&sa=fyb_news&rsv_dl=fyb_news",
+        "summary": "近日，西双版纳开启芒果、椰子等水果大放送！谁能拒绝西双版纳的专属 “水果自由”呢？",
         "source": "baidu",
         "category": "social"
       }
@@ -1935,7 +1940,7 @@
       {
         "rank": 1,
         "title": "国际社会是怎样看待特朗普本次访华行程的？",
-        "heat": 27160000,
+        "heat": 27260000,
         "url": "https://www.zhihu.com/question/2038010908488590805",
         "summary": "",
         "source": "zhihu",
@@ -1944,7 +1949,7 @@
       {
         "rank": 2,
         "title": "媒体报道称俄罗斯总统普京即将访华，有哪些信息值得关注？",
-        "heat": 15370000,
+        "heat": 15450000,
         "url": "https://www.zhihu.com/question/2038367718697431356",
         "summary": "",
         "source": "zhihu",
@@ -1953,7 +1958,7 @@
       {
         "rank": 3,
         "title": "网传央视与国际足联达成协议，各让一步 1.1 亿美元转播世界杯，这消息可信度大吗？最终谈判结果会如何？",
-        "heat": 4240000,
+        "heat": 4410000,
         "url": "https://www.zhihu.com/question/2038553773010678772",
         "summary": "",
         "source": "zhihu",
@@ -1962,7 +1967,7 @@
       {
         "rank": 4,
         "title": "特朗普访华欢迎宴会都有哪些中国企业家参加了？",
-        "heat": 2610000,
+        "heat": 2640000,
         "url": "https://www.zhihu.com/question/2038335260765544921",
         "summary": "",
         "source": "zhihu",
@@ -1971,7 +1976,7 @@
       {
         "rank": 5,
         "title": "有没有人试过把全世界已有的佛经喂给 AI 看看最后能不能生成一个赛博在世佛祖?",
-        "heat": 2420000,
+        "heat": 2450000,
         "url": "https://www.zhihu.com/question/2018783635805860978",
         "summary": "",
         "source": "zhihu",
@@ -1980,7 +1985,7 @@
       {
         "rank": 6,
         "title": "中美元首会谈，双方将构建「中美建设性战略稳定关系」作为中美关系新定位，怎么理解这一新定位？",
-        "heat": 2230000,
+        "heat": 2250000,
         "url": "https://www.zhihu.com/question/2038570087221655021",
         "summary": "",
         "source": "zhihu",
@@ -1989,7 +1994,7 @@
       {
         "rank": 7,
         "title": "深铁再借 25 亿，万科称「押上全部身价」，这笔借款意味着什么？",
-        "heat": 2040000,
+        "heat": 2050000,
         "url": "https://www.zhihu.com/question/2037919713590818143",
         "summary": "",
         "source": "zhihu",
@@ -2043,7 +2048,7 @@
       {
         "rank": 13,
         "title": "男子应聘程序员被要求先养两个月猪，HR 称工作成果需落地养殖场，要在前期接触养殖业务，这种要求合理吗？",
-        "heat": 1720000,
+        "heat": 1730000,
         "url": "https://www.zhihu.com/question/2038219236431098730",
         "summary": "",
         "source": "zhihu",
@@ -2052,7 +2057,7 @@
       {
         "rank": 14,
         "title": "既然央视买不起世界杯，为什么不开放其他媒体购买？",
-        "heat": 1700000,
+        "heat": 1710000,
         "url": "https://www.zhihu.com/question/2038245920383489528",
         "summary": "",
         "source": "zhihu",
@@ -2061,7 +2066,7 @@
       {
         "rank": 15,
         "title": "有人说摄影算是一次心理治疗，它真的能「疗愈」一个人吗？",
-        "heat": 1390000,
+        "heat": 1470000,
         "url": "https://www.zhihu.com/roundtable/2026sheyingji",
         "summary": "",
         "source": "zhihu",
@@ -2070,7 +2075,7 @@
       {
         "rank": 16,
         "title": "《安娜·卡列尼娜》读不下去，但书评称此是经典中的经典，那为什么很枯燥？",
-        "heat": 1240000,
+        "heat": 1360000,
         "url": "https://www.zhihu.com/question/21854971",
         "summary": "",
         "source": "zhihu",
@@ -2079,7 +2084,7 @@
       {
         "rank": 17,
         "title": "「100% 概率获得 200 万」和「99% 概率获得 2 个亿」，你选哪个？",
-        "heat": 1170000,
+        "heat": 1300000,
         "url": "https://www.zhihu.com/question/1890572054891328884",
         "summary": "",
         "source": "zhihu",
@@ -2087,26 +2092,26 @@
       },
       {
         "rank": 18,
-        "title": "药店「闭店潮」持续，一年净减 2.2 万家，中小药店加快被淘汰出局，为啥会这样？对普通人买药影响大吗？",
-        "heat": 1090000,
-        "url": "https://www.zhihu.com/question/2035429478663444199",
-        "summary": "",
-        "source": "zhihu",
-        "category": "social"
-      },
-      {
-        "rank": 19,
         "title": "追觅 CEO 俞浩一天狂发 75 条视频，他是要开始做自媒体了吗？这是什么策略？对营销传播来说有效吗？",
-        "heat": 1060000,
+        "heat": 1240000,
         "url": "https://www.zhihu.com/question/2037133010990884347",
         "summary": "",
         "source": "zhihu",
         "category": "social"
       },
       {
+        "rank": 19,
+        "title": "为什么八九十年代医院规模小，医生也轻松，现在医院规模大大膨胀，医生反而很累？",
+        "heat": 1170000,
+        "url": "https://www.zhihu.com/question/437504207",
+        "summary": "",
+        "source": "zhihu",
+        "category": "health"
+      },
+      {
         "rank": 20,
         "title": "你怎么看待南京审计大学男生偷拍女生裙底光速开除学籍，而华南理工大学男生偷拍女生裙底仅留校察看？",
-        "heat": 1050000,
+        "heat": 1130000,
         "url": "https://www.zhihu.com/question/2038012082130563099",
         "summary": "",
         "source": "zhihu",
@@ -2152,12 +2157,12 @@
       },
       {
         "rank": 5,
-        "title": "大学生徒步279公里回家",
-        "heat": 250115,
-        "url": "https://search.bilibili.com/all?keyword=%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%BE%92%E6%AD%A5279%E5%85%AC%E9%87%8C%E5%9B%9E%E5%AE%B6",
+        "title": "iPhone17系列大降价",
+        "heat": 250076,
+        "url": "https://search.bilibili.com/all?keyword=iPhone17%E7%B3%BB%E5%88%97%E5%A4%A7%E9%99%8D%E4%BB%B7",
         "summary": "",
         "source": "bilibili",
-        "category": "life"
+        "category": "social"
       },
       {
         "rank": 6,
@@ -2170,12 +2175,12 @@
       },
       {
         "rank": 7,
-        "title": "iPhone17系列大降价",
-        "heat": 250076,
-        "url": "https://search.bilibili.com/all?keyword=iPhone17%E7%B3%BB%E5%88%97%E5%A4%A7%E9%99%8D%E4%BB%B7",
+        "title": "大学生徒步279公里回家",
+        "heat": 250115,
+        "url": "https://search.bilibili.com/all?keyword=%E5%A4%A7%E5%AD%A6%E7%94%9F%E5%BE%92%E6%AD%A5279%E5%85%AC%E9%87%8C%E5%9B%9E%E5%AE%B6",
         "summary": "",
         "source": "bilibili",
-        "category": "social"
+        "category": "life"
       },
       {
         "rank": 8,
@@ -2215,18 +2220,18 @@
       },
       {
         "rank": 12,
-        "title": "Smoggy 伦敦我有24年的感觉",
-        "heat": 250113,
-        "url": "https://search.bilibili.com/all?keyword=Smoggy%20%E4%BC%A6%E6%95%A6%E6%88%91%E6%9C%8924%E5%B9%B4%E7%9A%84%E6%84%9F%E8%A7%89",
+        "title": "地平线6首发评测报告",
+        "heat": 250025,
+        "url": "https://search.bilibili.com/all?keyword=%E5%9C%B0%E5%B9%B3%E7%BA%BF6%E9%A6%96%E5%8F%91%E8%AF%84%E6%B5%8B%E6%8A%A5%E5%91%8A",
         "summary": "",
         "source": "bilibili",
         "category": "social"
       },
       {
         "rank": 13,
-        "title": "地平线6首发评测报告",
-        "heat": 250025,
-        "url": "https://search.bilibili.com/all?keyword=%E5%9C%B0%E5%B9%B3%E7%BA%BF6%E9%A6%96%E5%8F%91%E8%AF%84%E6%B5%8B%E6%8A%A5%E5%91%8A",
+        "title": "Smoggy 伦敦我有24年的感觉",
+        "heat": 250113,
+        "url": "https://search.bilibili.com/all?keyword=Smoggy%20%E4%BC%A6%E6%95%A6%E6%88%91%E6%9C%8924%E5%B9%B4%E7%9A%84%E6%84%9F%E8%A7%89",
         "summary": "",
         "source": "bilibili",
         "category": "social"
@@ -2242,15 +2247,6 @@
       },
       {
         "rank": 15,
-        "title": "夫赖巅峰第一了",
-        "heat": 250109,
-        "url": "https://search.bilibili.com/all?keyword=%E5%A4%AB%E8%B5%96%E5%B7%85%E5%B3%B0%E7%AC%AC%E4%B8%80%E4%BA%86",
-        "summary": "",
-        "source": "bilibili",
-        "category": "social"
-      },
-      {
-        "rank": 16,
         "title": "锐评WBG战胜JDG",
         "heat": 250063,
         "url": "https://search.bilibili.com/all?keyword=%E9%94%90%E8%AF%84WBG%E6%88%98%E8%83%9CJDG",
@@ -2259,7 +2255,7 @@
         "category": "social"
       },
       {
-        "rank": 17,
+        "rank": 16,
         "title": "长征六号改运载火箭成功发射",
         "heat": 249869,
         "url": "https://search.bilibili.com/all?keyword=%E9%95%BF%E5%BE%81%E5%85%AD%E5%8F%B7%E6%94%B9%E8%BF%90%E8%BD%BD%E7%81%AB%E7%AE%AD%E6%88%90%E5%8A%9F%E5%8F%91%E5%B0%84",
@@ -2268,7 +2264,7 @@
         "category": "social"
       },
       {
-        "rank": 18,
+        "rank": 17,
         "title": "凹凸世界新生紫堂幻身世",
         "heat": 250086,
         "url": "https://search.bilibili.com/all?keyword=%E5%87%B9%E5%87%B8%E4%B8%96%E7%95%8C%E6%96%B0%E7%94%9F",
@@ -2277,7 +2273,7 @@
         "category": "social"
       },
       {
-        "rank": 19,
+        "rank": 18,
         "title": "你这宝可梦有问题啊",
         "heat": 250078,
         "url": "https://search.bilibili.com/all?keyword=%E4%BD%A0%E8%BF%99%E5%AE%9D%E5%8F%AF%E6%A2%A6%E6%9C%89%E9%97%AE%E9%A2%98%E5%95%8A",
@@ -2286,7 +2282,7 @@
         "category": "social"
       },
       {
-        "rank": 20,
+        "rank": 19,
         "title": "不转播世界杯到底谁最亏",
         "heat": 250107,
         "url": "https://search.bilibili.com/all?keyword=%E4%B8%8D%E8%BD%AC%E6%92%AD%E4%B8%96%E7%95%8C%E6%9D%AF%E5%88%B0%E5%BA%95%E8%B0%81%E6%9C%80%E4%BA%8F",
@@ -2295,7 +2291,7 @@
         "category": "sports"
       },
       {
-        "rank": 21,
+        "rank": 20,
         "title": "传说三忍纲手实战",
         "heat": 250119,
         "url": "https://search.bilibili.com/all?keyword=%E4%BC%A0%E8%AF%B4%E4%B8%89%E5%BF%8D%E7%BA%B2%E6%89%8B%E5%AE%9E%E6%88%98",
@@ -2304,7 +2300,7 @@
         "category": "social"
       },
       {
-        "rank": 22,
+        "rank": 21,
         "title": "小鹿探访欧洲最混乱城市",
         "heat": 249862,
         "url": "https://search.bilibili.com/all?keyword=%E5%B0%8F%E9%B9%BF%E6%8E%A2%E8%AE%BF%E6%AC%A7%E6%B4%B2%E6%9C%80%E6%B7%B7%E4%B9%B1%E5%9F%8E%E5%B8%82",
@@ -2313,7 +2309,7 @@
         "category": "social"
       },
       {
-        "rank": 23,
+        "rank": 22,
         "title": "颜文字团建",
         "heat": 249958,
         "url": "https://search.bilibili.com/all?keyword=%E9%A2%9C%E6%96%87%E5%AD%97%E5%9B%A2%E5%BB%BA",
@@ -2322,7 +2318,7 @@
         "category": "social"
       },
       {
-        "rank": 24,
+        "rank": 23,
         "title": "广东暴雨还会下吗",
         "heat": 250073,
         "url": "https://search.bilibili.com/all?keyword=%E5%B9%BF%E4%B8%9C%E6%9A%B4%E9%9B%A8%E8%BF%98%E4%BC%9A%E4%B8%8B%E5%90%97",
@@ -2331,7 +2327,7 @@
         "category": "social"
       },
       {
-        "rank": 25,
+        "rank": 24,
         "title": "魔女养成计划第二集",
         "heat": 250048,
         "url": "https://search.bilibili.com/all?keyword=%E9%AD%94%E5%A5%B3%E5%85%BB%E6%88%90%E8%AE%A1%E5%88%92%E7%AC%AC%E4%BA%8C%E9%9B%86",
@@ -2340,10 +2336,19 @@
         "category": "social"
       },
       {
-        "rank": 26,
+        "rank": 25,
         "title": "解析黑袍纠察队父子决裂",
         "heat": 249931,
         "url": "https://search.bilibili.com/all?keyword=%E8%A7%A3%E6%9E%90%E9%BB%91%E8%A2%8D%E7%BA%A0%E5%AF%9F%E9%98%9F%E7%88%B6%E5%AD%90%E5%86%B3%E8%A3%82",
+        "summary": "",
+        "source": "bilibili",
+        "category": "social"
+      },
+      {
+        "rank": 26,
+        "title": "夫赖巅峰第一了",
+        "heat": 250109,
+        "url": "https://search.bilibili.com/all?keyword=%E5%A4%AB%E8%B5%96%E5%B7%85%E5%B3%B0%E7%AC%AC%E4%B8%80%E4%BA%86",
         "summary": "",
         "source": "bilibili",
         "category": "social"
@@ -2389,7 +2394,7 @@
       {
         "rank": 1,
         "title": "中美元首在中南海小范围会晤",
-        "heat": 12080498,
+        "heat": 12091908,
         "url": "https://www.douyin.com/search/%E4%B8%AD%E7%BE%8E%E5%85%83%E9%A6%96%E5%9C%A8%E4%B8%AD%E5%8D%97%E6%B5%B7%E5%B0%8F%E8%8C%83%E5%9B%B4%E4%BC%9A%E6%99%A4",
         "summary": "",
         "source": "douyin",
@@ -2398,7 +2403,7 @@
       {
         "rank": 2,
         "title": "特朗普结束访华 乘专机离开北京",
-        "heat": 11121269,
+        "heat": 11141966,
         "url": "https://www.douyin.com/search/%E7%89%B9%E6%9C%97%E6%99%AE%E7%BB%93%E6%9D%9F%E8%AE%BF%E5%8D%8E%20%E4%B9%98%E4%B8%93%E6%9C%BA%E7%A6%BB%E5%BC%80%E5%8C%97%E4%BA%AC",
         "summary": "",
         "source": "douyin",
@@ -2407,7 +2412,7 @@
       {
         "rank": 3,
         "title": "从故宫到天坛",
-        "heat": 11106386,
+        "heat": 11112166,
         "url": "https://www.douyin.com/search/%E4%BB%8E%E6%95%85%E5%AE%AB%E5%88%B0%E5%A4%A9%E5%9D%9B",
         "summary": "",
         "source": "douyin",
@@ -2416,7 +2421,7 @@
       {
         "rank": 4,
         "title": "外交部就特朗普访华情况答记者问",
-        "heat": 11087388,
+        "heat": 11106306,
         "url": "https://www.douyin.com/search/%E5%A4%96%E4%BA%A4%E9%83%A8%E5%B0%B1%E7%89%B9%E6%9C%97%E6%99%AE%E8%AE%BF%E5%8D%8E%E6%83%85%E5%86%B5%E7%AD%94%E8%AE%B0%E8%80%85%E9%97%AE",
         "summary": "",
         "source": "douyin",
@@ -2424,26 +2429,26 @@
       },
       {
         "rank": 5,
-        "title": "中美关系新定位",
-        "heat": 10530604,
-        "url": "https://www.douyin.com/search/%E4%B8%AD%E7%BE%8E%E5%85%B3%E7%B3%BB%E6%96%B0%E5%AE%9A%E4%BD%8D",
-        "summary": "",
-        "source": "douyin",
-        "category": "politics"
-      },
-      {
-        "rank": 6,
         "title": "媒体称央视获2026世界杯版权",
-        "heat": 10513283,
+        "heat": 10531047,
         "url": "https://www.douyin.com/search/%E5%AA%92%E4%BD%93%E7%A7%B0%E5%A4%AE%E8%A7%86%E8%8E%B72026%E4%B8%96%E7%95%8C%E6%9D%AF%E7%89%88%E6%9D%83",
         "summary": "",
         "source": "douyin",
         "category": "sports"
       },
       {
+        "rank": 6,
+        "title": "中美关系新定位",
+        "heat": 10529692,
+        "url": "https://www.douyin.com/search/%E4%B8%AD%E7%BE%8E%E5%85%B3%E7%B3%BB%E6%96%B0%E5%AE%9A%E4%BD%8D",
+        "summary": "",
+        "source": "douyin",
+        "category": "politics"
+      },
+      {
         "rank": 7,
         "title": "巴基斯坦总理将访华",
-        "heat": 9321916,
+        "heat": 9410399,
         "url": "https://www.douyin.com/search/%E5%B7%B4%E5%9F%BA%E6%96%AF%E5%9D%A6%E6%80%BB%E7%90%86%E5%B0%86%E8%AE%BF%E5%8D%8E",
         "summary": "",
         "source": "douyin",
@@ -2452,7 +2457,7 @@
       {
         "rank": 8,
         "title": "法国队官宣世界杯26人大名单",
-        "heat": 9268887,
+        "heat": 9322572,
         "url": "https://www.douyin.com/search/%E6%B3%95%E5%9B%BD%E9%98%9F%E5%AE%98%E5%AE%A3%E4%B8%96%E7%95%8C%E6%9D%AF26%E4%BA%BA%E5%A4%A7%E5%90%8D%E5%8D%95",
         "summary": "",
         "source": "douyin",
@@ -2461,7 +2466,7 @@
       {
         "rank": 9,
         "title": "CBA季后赛上海vs北京前瞻",
-        "heat": 9203981,
+        "heat": 9252867,
         "url": "https://www.douyin.com/search/CBA%E5%AD%A3%E5%90%8E%E8%B5%9B%E4%B8%8A%E6%B5%B7vs%E5%8C%97%E4%BA%AC%E5%89%8D%E7%9E%BB",
         "summary": "",
         "source": "douyin",
@@ -2470,7 +2475,7 @@
       {
         "rank": 10,
         "title": "钧正平谈岿然不动的哨兵",
-        "heat": 9091673,
+        "heat": 9203381,
         "url": "https://www.douyin.com/search/%E9%92%A7%E6%AD%A3%E5%B9%B3%E8%B0%88%E5%B2%BF%E7%84%B6%E4%B8%8D%E5%8A%A8%E7%9A%84%E5%93%A8%E5%85%B5",
         "summary": "",
         "source": "douyin",
@@ -2479,7 +2484,7 @@
       {
         "rank": 11,
         "title": "国行Switch成单机游戏机",
-        "heat": 9034971,
+        "heat": 9084511,
         "url": "https://www.douyin.com/search/%E5%9B%BD%E8%A1%8CSwitch%E6%88%90%E5%8D%95%E6%9C%BA%E6%B8%B8%E6%88%8F%E6%9C%BA",
         "summary": "",
         "source": "douyin",
@@ -2488,7 +2493,7 @@
       {
         "rank": 12,
         "title": "重庆江边游轮起火系谣言",
-        "heat": 9021741,
+        "heat": 9042704,
         "url": "https://www.douyin.com/search/%E9%87%8D%E5%BA%86%E6%B1%9F%E8%BE%B9%E6%B8%B8%E8%BD%AE%E8%B5%B7%E7%81%AB%E7%B3%BB%E8%B0%A3%E8%A8%80",
         "summary": "",
         "source": "douyin",
@@ -2497,7 +2502,7 @@
       {
         "rank": 13,
         "title": "歌手2026官宣定档",
-        "heat": 8552959,
+        "heat": 8702979,
         "url": "https://www.douyin.com/search/%E6%AD%8C%E6%89%8B2026%E5%AE%98%E5%AE%A3%E5%AE%9A%E6%A1%A3",
         "summary": "",
         "source": "douyin",
@@ -2506,7 +2511,7 @@
       {
         "rank": 14,
         "title": "数节拍手势挑战",
-        "heat": 8012958,
+        "heat": 8496600,
         "url": "https://www.douyin.com/search/%E6%95%B0%E8%8A%82%E6%8B%8D%E6%89%8B%E5%8A%BF%E6%8C%91%E6%88%98",
         "summary": "",
         "source": "douyin",
@@ -2515,7 +2520,7 @@
       {
         "rank": 15,
         "title": "爷爷的爱在此刻具象化了",
-        "heat": 8011079,
+        "heat": 7974012,
         "url": "https://www.douyin.com/search/%E7%88%B7%E7%88%B7%E7%9A%84%E7%88%B1%E5%9C%A8%E6%AD%A4%E5%88%BB%E5%85%B7%E8%B1%A1%E5%8C%96%E4%BA%86",
         "summary": "",
         "source": "douyin",
@@ -2523,45 +2528,45 @@
       },
       {
         "rank": 16,
-        "title": "马斯克：对此次会晤感觉不错",
-        "heat": 7825032,
-        "url": "https://www.douyin.com/search/%E9%A9%AC%E6%96%AF%E5%85%8B%EF%BC%9A%E5%AF%B9%E6%AD%A4%E6%AC%A1%E4%BC%9A%E6%99%A4%E6%84%9F%E8%A7%89%E4%B8%8D%E9%94%99",
-        "summary": "",
-        "source": "douyin",
-        "category": "politics"
-      },
-      {
-        "rank": 17,
         "title": "520我什么都不要",
-        "heat": 7823953,
+        "heat": 7823616,
         "url": "https://www.douyin.com/search/520%E6%88%91%E4%BB%80%E4%B9%88%E9%83%BD%E4%B8%8D%E8%A6%81",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 18,
+        "rank": 17,
         "title": "七彩阳光手指操来了",
-        "heat": 7795511,
+        "heat": 7772713,
         "url": "https://www.douyin.com/search/%E4%B8%83%E5%BD%A9%E9%98%B3%E5%85%89%E6%89%8B%E6%8C%87%E6%93%8D%E6%9D%A5%E4%BA%86",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 19,
+        "rank": 18,
         "title": "陈泽综艺OK了老铁们爆笑来袭",
-        "heat": 7772513,
+        "heat": 7770386,
         "url": "https://www.douyin.com/search/%E9%99%88%E6%B3%BD%E7%BB%BC%E8%89%BAOK%E4%BA%86%E8%80%81%E9%93%81%E4%BB%AC%E7%88%86%E7%AC%91%E6%9D%A5%E8%A2%AD",
         "summary": "",
         "source": "douyin",
         "category": "entertainment"
       },
       {
-        "rank": 20,
+        "rank": 19,
         "title": "中考倒计时奔跑吧少年",
-        "heat": 7763786,
+        "heat": 7764121,
         "url": "https://www.douyin.com/search/%E4%B8%AD%E8%80%83%E5%80%92%E8%AE%A1%E6%97%B6%E5%A5%94%E8%B7%91%E5%90%A7%E5%B0%91%E5%B9%B4",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
+        "rank": 20,
+        "title": "给阿嬷的情书为啥这么火",
+        "heat": 7746770,
+        "url": "https://www.douyin.com/search/%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E4%B8%BA%E5%95%A5%E8%BF%99%E4%B9%88%E7%81%AB",
         "summary": "",
         "source": "douyin",
         "category": "social"
@@ -2569,7 +2574,7 @@
       {
         "rank": 21,
         "title": "美方企业家离场手势亮了",
-        "heat": 7757202,
+        "heat": 7741769,
         "url": "https://www.douyin.com/search/%E7%BE%8E%E6%96%B9%E4%BC%81%E4%B8%9A%E5%AE%B6%E7%A6%BB%E5%9C%BA%E6%89%8B%E5%8A%BF%E4%BA%AE%E4%BA%86",
         "summary": "",
         "source": "douyin",
@@ -2578,7 +2583,7 @@
       {
         "rank": 22,
         "title": "夏日辣妹穿搭出击",
-        "heat": 7747645,
+        "heat": 7737023,
         "url": "https://www.douyin.com/search/%E5%A4%8F%E6%97%A5%E8%BE%A3%E5%A6%B9%E7%A9%BF%E6%90%AD%E5%87%BA%E5%87%BB",
         "summary": "",
         "source": "douyin",
@@ -2586,9 +2591,9 @@
       },
       {
         "rank": 23,
-        "title": "给阿嬷的情书为啥这么火",
-        "heat": 7741981,
-        "url": "https://www.douyin.com/search/%E7%BB%99%E9%98%BF%E5%AC%B7%E7%9A%84%E6%83%85%E4%B9%A6%E4%B8%BA%E5%95%A5%E8%BF%99%E4%B9%88%E7%81%AB",
+        "title": "老师可不可以教我怎么爱",
+        "heat": 7736647,
+        "url": "https://www.douyin.com/search/%E8%80%81%E5%B8%88%E5%8F%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E6%95%99%E6%88%91%E6%80%8E%E4%B9%88%E7%88%B1",
         "summary": "",
         "source": "douyin",
         "category": "social"
@@ -2596,7 +2601,7 @@
       {
         "rank": 24,
         "title": "情侣版不倒翁挑战",
-        "heat": 7735818,
+        "heat": 7736315,
         "url": "https://www.douyin.com/search/%E6%83%85%E4%BE%A3%E7%89%88%E4%B8%8D%E5%80%92%E7%BF%81%E6%8C%91%E6%88%98",
         "summary": "",
         "source": "douyin",
@@ -2604,9 +2609,9 @@
       },
       {
         "rank": 25,
-        "title": "老师可不可以教我怎么爱",
-        "heat": 7735654,
-        "url": "https://www.douyin.com/search/%E8%80%81%E5%B8%88%E5%8F%AF%E4%B8%8D%E5%8F%AF%E4%BB%A5%E6%95%99%E6%88%91%E6%80%8E%E4%B9%88%E7%88%B1",
+        "title": "良陈美锦红白相撞名场面",
+        "heat": 7717116,
+        "url": "https://www.douyin.com/search/%E8%89%AF%E9%99%88%E7%BE%8E%E9%94%A6%E7%BA%A2%E7%99%BD%E7%9B%B8%E6%92%9E%E5%90%8D%E5%9C%BA%E9%9D%A2",
         "summary": "",
         "source": "douyin",
         "category": "social"
@@ -2614,7 +2619,7 @@
       {
         "rank": 26,
         "title": "刘回杯打完意难平更多了",
-        "heat": 7734696,
+        "heat": 7712215,
         "url": "https://www.douyin.com/search/%E5%88%98%E5%9B%9E%E6%9D%AF%E6%89%93%E5%AE%8C%E6%84%8F%E9%9A%BE%E5%B9%B3%E6%9B%B4%E5%A4%9A%E4%BA%86",
         "summary": "",
         "source": "douyin",
@@ -2622,63 +2627,63 @@
       },
       {
         "rank": 27,
-        "title": "良陈美锦红白相撞名场面",
-        "heat": 7717454,
-        "url": "https://www.douyin.com/search/%E8%89%AF%E9%99%88%E7%BE%8E%E9%94%A6%E7%BA%A2%E7%99%BD%E7%9B%B8%E6%92%9E%E5%90%8D%E5%9C%BA%E9%9D%A2",
-        "summary": "",
-        "source": "douyin",
-        "category": "social"
-      },
-      {
-        "rank": 28,
         "title": "最爱看的声乐老师合体了",
-        "heat": 7715524,
+        "heat": 7705778,
         "url": "https://www.douyin.com/search/%E6%9C%80%E7%88%B1%E7%9C%8B%E7%9A%84%E5%A3%B0%E4%B9%90%E8%80%81%E5%B8%88%E5%90%88%E4%BD%93%E4%BA%86",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 29,
+        "rank": 28,
         "title": "尼克杨将与威姆斯进行百分大战",
-        "heat": 7700388,
+        "heat": 7693282,
         "url": "https://www.douyin.com/search/%E5%B0%BC%E5%85%8B%E6%9D%A8%E5%B0%86%E4%B8%8E%E5%A8%81%E5%A7%86%E6%96%AF%E8%BF%9B%E8%A1%8C%E7%99%BE%E5%88%86%E5%A4%A7%E6%88%98",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 30,
+        "rank": 29,
         "title": "跟着姜乘澜学化妆",
-        "heat": 7693809,
+        "heat": 7686587,
         "url": "https://www.douyin.com/search/%E8%B7%9F%E7%9D%80%E5%A7%9C%E4%B9%98%E6%BE%9C%E5%AD%A6%E5%8C%96%E5%A6%86",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 31,
+        "rank": 30,
         "title": "穿和穿搭的区别",
-        "heat": 7685753,
+        "heat": 7683520,
         "url": "https://www.douyin.com/search/%E7%A9%BF%E5%92%8C%E7%A9%BF%E6%90%AD%E7%9A%84%E5%8C%BA%E5%88%AB",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 32,
+        "rank": 31,
         "title": "刘回杯bbFps夺冠",
-        "heat": 7684789,
+        "heat": 7680377,
         "url": "https://www.douyin.com/search/%E5%88%98%E5%9B%9E%E6%9D%AFbbFps%E5%A4%BA%E5%86%A0",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 33,
+        "rank": 32,
         "title": "咸菜咸菜仍然十块",
-        "heat": 7683702,
+        "heat": 7672350,
         "url": "https://www.douyin.com/search/%E5%92%B8%E8%8F%9C%E5%92%B8%E8%8F%9C%E4%BB%8D%E7%84%B6%E5%8D%81%E5%9D%97",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
+        "rank": 33,
+        "title": "歌手回访十季十人",
+        "heat": 7671790,
+        "url": "https://www.douyin.com/search/%E6%AD%8C%E6%89%8B%E5%9B%9E%E8%AE%BF%E5%8D%81%E5%AD%A3%E5%8D%81%E4%BA%BA",
         "summary": "",
         "source": "douyin",
         "category": "social"
@@ -2686,7 +2691,7 @@
       {
         "rank": 34,
         "title": "让配色决定穿搭",
-        "heat": 7673979,
+        "heat": 7669477,
         "url": "https://www.douyin.com/search/%E8%AE%A9%E9%85%8D%E8%89%B2%E5%86%B3%E5%AE%9A%E7%A9%BF%E6%90%AD",
         "summary": "",
         "source": "douyin",
@@ -2694,108 +2699,108 @@
       },
       {
         "rank": 35,
-        "title": "被姜乘澜的这组照片治愈了",
-        "heat": 7671603,
-        "url": "https://www.douyin.com/search/%E8%A2%AB%E5%A7%9C%E4%B9%98%E6%BE%9C%E7%9A%84%E8%BF%99%E7%BB%84%E7%85%A7%E7%89%87%E6%B2%BB%E6%84%88%E4%BA%86",
-        "summary": "",
-        "source": "douyin",
-        "category": "social"
-      },
-      {
-        "rank": 36,
-        "title": "歌手回访十季十人",
-        "heat": 7668417,
-        "url": "https://www.douyin.com/search/%E6%AD%8C%E6%89%8B%E5%9B%9E%E8%AE%BF%E5%8D%81%E5%AD%A3%E5%8D%81%E4%BA%BA",
-        "summary": "",
-        "source": "douyin",
-        "category": "social"
-      },
-      {
-        "rank": 37,
-        "title": "就让岁月开成一朵花",
-        "heat": 7665175,
-        "url": "https://www.douyin.com/search/%E5%B0%B1%E8%AE%A9%E5%B2%81%E6%9C%88%E5%BC%80%E6%88%90%E4%B8%80%E6%9C%B5%E8%8A%B1",
-        "summary": "",
-        "source": "douyin",
-        "category": "social"
-      },
-      {
-        "rank": 38,
-        "title": "烧饼：方庸要木乃伊吗",
-        "heat": 7663390,
-        "url": "https://www.douyin.com/search/%E7%83%A7%E9%A5%BC%EF%BC%9A%E6%96%B9%E5%BA%B8%E8%A6%81%E6%9C%A8%E4%B9%83%E4%BC%8A%E5%90%97",
-        "summary": "",
-        "source": "douyin",
-        "category": "social"
-      },
-      {
-        "rank": 39,
-        "title": "夏日怎么少得了美式休闲感穿搭",
-        "heat": 7660399,
-        "url": "https://www.douyin.com/search/%E5%A4%8F%E6%97%A5%E6%80%8E%E4%B9%88%E5%B0%91%E5%BE%97%E4%BA%86%E7%BE%8E%E5%BC%8F%E4%BC%91%E9%97%B2%E6%84%9F%E7%A9%BF%E6%90%AD",
-        "summary": "",
-        "source": "douyin",
-        "category": "social"
-      },
-      {
-        "rank": 40,
         "title": "再过几天就是520",
-        "heat": 7660327,
+        "heat": 7666053,
         "url": "https://www.douyin.com/search/%E5%86%8D%E8%BF%87%E5%87%A0%E5%A4%A9%E5%B0%B1%E6%98%AF520",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 41,
+        "rank": 36,
         "title": "玛尼之歌是张哲华唱的",
-        "heat": 7660277,
+        "heat": 7663725,
         "url": "https://www.douyin.com/search/%E7%8E%9B%E5%B0%BC%E4%B9%8B%E6%AD%8C%E6%98%AF%E5%BC%A0%E5%93%B2%E5%8D%8E%E5%94%B1%E7%9A%84",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 42,
+        "rank": 37,
+        "title": "被姜乘澜的这组照片治愈了",
+        "heat": 7660245,
+        "url": "https://www.douyin.com/search/%E8%A2%AB%E5%A7%9C%E4%B9%98%E6%BE%9C%E7%9A%84%E8%BF%99%E7%BB%84%E7%85%A7%E7%89%87%E6%B2%BB%E6%84%88%E4%BA%86",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
+        "rank": 38,
         "title": "你是杨洋也得带蒜薹走",
-        "heat": 7654431,
+        "heat": 7659973,
         "url": "https://www.douyin.com/search/%E4%BD%A0%E6%98%AF%E6%9D%A8%E6%B4%8B%E4%B9%9F%E5%BE%97%E5%B8%A6%E8%92%9C%E8%96%B9%E8%B5%B0",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 43,
+        "rank": 39,
         "title": "我和长春有个colorwalk",
-        "heat": 7651974,
+        "heat": 7659744,
         "url": "https://www.douyin.com/search/%E6%88%91%E5%92%8C%E9%95%BF%E6%98%A5%E6%9C%89%E4%B8%AAcolorwalk",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
-        "rank": 44,
+        "rank": 40,
         "title": "雨霖铃猫鼠组合是灵珠魔丸",
-        "heat": 7651413,
+        "heat": 7657398,
         "url": "https://www.douyin.com/search/%E9%9B%A8%E9%9C%96%E9%93%83%E7%8C%AB%E9%BC%A0%E7%BB%84%E5%90%88%E6%98%AF%E7%81%B5%E7%8F%A0%E9%AD%94%E4%B8%B8",
         "summary": "",
         "source": "douyin",
         "category": "life"
       },
       {
+        "rank": 41,
+        "title": "这届父母不扫兴",
+        "heat": 7656805,
+        "url": "https://www.douyin.com/search/%E8%BF%99%E5%B1%8A%E7%88%B6%E6%AF%8D%E4%B8%8D%E6%89%AB%E5%85%B4",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
+        "rank": 42,
+        "title": "就让岁月开成一朵花",
+        "heat": 7653680,
+        "url": "https://www.douyin.com/search/%E5%B0%B1%E8%AE%A9%E5%B2%81%E6%9C%88%E5%BC%80%E6%88%90%E4%B8%80%E6%9C%B5%E8%8A%B1",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
+        "rank": 43,
+        "title": "烧饼：方庸要木乃伊吗",
+        "heat": 7649439,
+        "url": "https://www.douyin.com/search/%E7%83%A7%E9%A5%BC%EF%BC%9A%E6%96%B9%E5%BA%B8%E8%A6%81%E6%9C%A8%E4%B9%83%E4%BC%8A%E5%90%97",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
+        "rank": 44,
+        "title": "多人合拍珠满摇走位舞",
+        "heat": 7646570,
+        "url": "https://www.douyin.com/search/%E5%A4%9A%E4%BA%BA%E5%90%88%E6%8B%8D%E7%8F%A0%E6%BB%A1%E6%91%87%E8%B5%B0%E4%BD%8D%E8%88%9E",
+        "summary": "",
+        "source": "douyin",
+        "category": "social"
+      },
+      {
         "rank": 45,
-        "title": "毕节牛肉粉夯得没边",
-        "heat": 7648510,
-        "url": "https://www.douyin.com/search/%E6%AF%95%E8%8A%82%E7%89%9B%E8%82%89%E7%B2%89%E5%A4%AF%E5%BE%97%E6%B2%A1%E8%BE%B9",
+        "title": "夏日怎么少得了美式休闲感穿搭",
+        "heat": 7641922,
+        "url": "https://www.douyin.com/search/%E5%A4%8F%E6%97%A5%E6%80%8E%E4%B9%88%E5%B0%91%E5%BE%97%E4%BA%86%E7%BE%8E%E5%BC%8F%E4%BC%91%E9%97%B2%E6%84%9F%E7%A9%BF%E6%90%AD",
         "summary": "",
         "source": "douyin",
         "category": "social"
       },
       {
         "rank": 46,
-        "title": "这届父母不扫兴",
-        "heat": 7644778,
-        "url": "https://www.douyin.com/search/%E8%BF%99%E5%B1%8A%E7%88%B6%E6%AF%8D%E4%B8%8D%E6%89%AB%E5%85%B4",
+        "title": "毕节牛肉粉夯得没边",
+        "heat": 7640589,
+        "url": "https://www.douyin.com/search/%E6%AF%95%E8%8A%82%E7%89%9B%E8%82%89%E7%B2%89%E5%A4%AF%E5%BE%97%E6%B2%A1%E8%BE%B9",
         "summary": "",
         "source": "douyin",
         "category": "social"
@@ -2803,7 +2808,7 @@
       {
         "rank": 47,
         "title": "人的自利偏差会导致标准滑坡",
-        "heat": 7643117,
+        "heat": 7640535,
         "url": "https://www.douyin.com/search/%E4%BA%BA%E7%9A%84%E8%87%AA%E5%88%A9%E5%81%8F%E5%B7%AE%E4%BC%9A%E5%AF%BC%E8%87%B4%E6%A0%87%E5%87%86%E6%BB%91%E5%9D%A1",
         "summary": "",
         "source": "douyin",
@@ -2812,7 +2817,7 @@
       {
         "rank": 48,
         "title": "鸡胸肉的一些夯级吃法",
-        "heat": 7641800,
+        "heat": 7639273,
         "url": "https://www.douyin.com/search/%E9%B8%A1%E8%83%B8%E8%82%89%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%AF%E7%BA%A7%E5%90%83%E6%B3%95",
         "summary": "",
         "source": "douyin",
@@ -2821,7 +2826,7 @@
       {
         "rank": 49,
         "title": "柳智敏东方贵气感仿妆",
-        "heat": 7640952,
+        "heat": 7638164,
         "url": "https://www.douyin.com/search/%E6%9F%B3%E6%99%BA%E6%95%8F%E4%B8%9C%E6%96%B9%E8%B4%B5%E6%B0%94%E6%84%9F%E4%BB%BF%E5%A6%86",
         "summary": "",
         "source": "douyin",
@@ -2830,7 +2835,7 @@
       {
         "rank": 50,
         "title": "夏季质感衬衫大合集",
-        "heat": 7640709,
+        "heat": 7638081,
         "url": "https://www.douyin.com/search/%E5%A4%8F%E5%AD%A3%E8%B4%A8%E6%84%9F%E8%A1%AC%E8%A1%AB%E5%A4%A7%E5%90%88%E9%9B%86",
         "summary": "",
         "source": "douyin",
