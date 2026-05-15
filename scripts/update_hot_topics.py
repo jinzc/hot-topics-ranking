@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v11 防卡死版)
-核心改进:
-1. 所有API请求总超时控制在60秒内
-2. 微博使用GitHub数据源优先（内部访问稳定）
-3. 减少重试次数和等待时间
-4. 使用git命令提交，比GitHub API更稳定
+全网热点榜单自动更新脚本 (v12)
+修复:
+1. 移除 politics 中单独的"韩国"关键词
+2. sports 增加"赛场""啦啦队""饭拍"等词
+3. 保留所有之前的防卡死和智能分类改进
 """
 
 import json
@@ -30,7 +29,7 @@ HEADERS = {
     'Accept-Language': 'zh-CN,zh;q=0.9',
 }
 
-# ============ 智能分类系统 (v2.1) ============
+# ============ 智能分类系统 (v3) ============
 CATEGORY_KEYWORDS = {
     'politics': {
         'primary': [
@@ -39,7 +38,7 @@ CATEGORY_KEYWORDS = {
             '中美', '中俄', '中日', '中欧', '中印', '朝韩', '巴以', '俄乌',
             '会晤', '会谈', '谈判', '访问', '出访', '接待', '国事访问', '正式访问',
             '政治', '外交', '军事', '战争', '冲突', '制裁', '关税', '贸易战',
-            '伊朗', '以色列', '巴勒斯坦', '乌克兰', '俄罗斯', '朝鲜', '韩国', '日本',
+            '伊朗', '以色列', '巴勒斯坦', '乌克兰', '俄罗斯', '朝鲜', '韩朝', '日韩', '日美', '美韩', '韩美', '中日韩', '日本',
             '台湾', '香港', '澳门', '新疆', '西藏',
             '两会', '人大', '政协', '全会', '常委会', '代表大会',
             '总书记', '主席', '总理', '部长', '省长', '市长', '州长', '县长',
@@ -111,7 +110,8 @@ CATEGORY_KEYWORDS = {
             'F1', '赛车', 'NASCAR', '拉力赛', '达喀尔',
             '转会', '续约', '签约', '加盟', '离队', '退役', '复出', '伤停', '禁赛', '红牌', '黄牌',
             '裁判', 'VAR', '点球', '任意球', '角球', '越位', '犯规', '绝杀', '逆转', '平局', '加时', '点球大战',
-            '国足', '男足', '女足', '国青', '国奥', '国少', '国家队'
+            '国足', '男足', '女足', '国青', '国奥', '国少', '国家队',
+            '赛场', '球场', '体育场', '体育馆', '啦啦队', '啦啦操', '饭拍', '直拍', '应援', '球迷', '观众', '主场', '客场'
         ],
         'exclude': ['电影', '电视剧', '综艺', '演唱会', '票房', '明星', '演员'],
         'force': ['NBA', 'CBA', '英超', '欧冠', '世界杯', '奥运', '法网', '温网', '大满贯', 'F1', 'UFC', 'MMA', '转会', '退役', '国足']
@@ -271,8 +271,7 @@ def classify_topic(title, summary=''):
         if score > 0:
             scores[category] = score
 
-    # 检查是否有politics强制词命中（如"中美元首""外交部"等）
-    # 如果有，直接返回politics，不受文化词汇影响
+    # 检查是否有politics强制词命中
     politics_force = ['中美元首', '外交部', '国防部', '国务院', '两会', '人大', '政协', '总书记', '主席', '总理', '会晤', '会谈', '访问', '访华', '外交']
     if any(w in text_full for w in politics_force):
         if 'politics' in scores and scores['politics'] > 0:
@@ -281,7 +280,6 @@ def classify_topic(title, summary=''):
     # 文化/旅游/历史类内容优先归到 life（但优先级低于politics强制词）
     cultural_words = ['故宫', '天坛', '颐和园', '圆明园', '长城', '兵马俑', '敦煌', '布达拉宫', '黄山', '泰山', '华山', '张家界', '桂林', '西湖', '九寨沟', '丽江', '大理', '三亚', '厦门', '成都', '西安', '南京', '苏州', '杭州', '景点', '景区', '博物馆', '美术馆', '展览', '文物', '古迹', '遗址', '文化遗产', '历史建筑', '古建筑', '园林', '寺庙', '道观', '教堂', '文化', '历史', '传统', '民俗', '非遗']
     if any(w in text_full for w in cultural_words):
-        # 只有当 politics 得分不高时才归 life
         politics_score = scores.get('politics', 0)
         life_score = scores.get('life', 0)
         if life_score > 0 and politics_score <= life_score + 3:
@@ -302,7 +300,6 @@ def classify_topic(title, summary=''):
 
 # ============ 防卡死请求函数 ============
 def safe_request(url, headers=None, timeout=10, retries=2):
-    """防卡死请求：减少超时时间和重试次数"""
     headers = headers or HEADERS
     for i in range(retries):
         try:
@@ -358,11 +355,10 @@ def normalize_heat(source, heat):
 
     return min(normalized, 100000)
 
-# ============ 微博 (防卡死版) ============
+# ============ 微博 (多API备用) ============
 def fetch_weibo_hot():
     topics = []
 
-    # 方案1: 尝试多个第三方API
     apis = [
         ('https://api.vvhan.com/api/hotlist?type=wbHot', 'vvhan'),
         ('https://www.coderutil.com/api/v1/weibo/hot', 'coderutil'),
@@ -390,7 +386,6 @@ def fetch_weibo_hot():
                 print(f"  ⚠️ JSON解析失败: {e}")
                 continue
 
-            # 处理不同API的返回格式
             items = []
             if api_name == 'vvhan':
                 items = data.get('data', [])
