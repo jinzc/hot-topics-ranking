@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-全网热点榜单自动更新脚本 (v7.0 NewsNow参考版)
-参考: https://github.com/ourongxing/newsnow
-使用 NewsNow 的数据源实现方式
+全网热点榜单自动更新脚本 (v8.1 热度拉齐版)
+特点：
+- 综合排名时各平台热度拉齐（归一化）
+- 显示时保留各平台原始热度值
+- 排名算法：平台覆盖数 * 10000 + 归一化热度总和
 """
 
 import json
@@ -62,47 +64,38 @@ def safe_request(url, headers=None, timeout=15, retries=3):
             time.sleep(random.uniform(2, 4))
     return None
 
-# ============ 微博 (参考 NewsNow) ============
+# ============ 归一化热度 ============
+def normalize_heat(source, heat):
+    """
+    将各平台热度归一化到同一量级 (0-10000)
+    用于综合排名计算
+    """
+    if heat <= 0:
+        return 0
+
+    if source == 'weibo':
+        # 微博: 100-5000 → 保持不变
+        return min(heat, 10000)
+    elif source == 'baidu':
+        # 百度: 10000-500000 → ÷10
+        return min(heat / 10, 10000)
+    elif source == 'zhihu':
+        # 知乎: 100000-5000000 → ÷100
+        return min(heat / 100, 10000)
+    elif source == 'bilibili':
+        # B站: 100-3000 → ×2
+        return min(heat * 2, 10000)
+    elif source == 'douyin':
+        # 抖音: 1000-10000 → 保持不变
+        return min(heat, 10000)
+    else:
+        return min(heat, 10000)
+
+# ============ 微博 ============
 def fetch_weibo_hot():
     topics = []
     try:
-        print("  [微博] 尝试 NewsNow 方式...")
-        baseurl = "https://s.weibo.com"
-        url = f"{baseurl}/top/summary?cate=realtimehot"
-        headers = {
-            **HEADERS,
-            'Cookie': 'SUB=_2AkMWIuNSf8NxqwJRmP8dy2rhaoV2ygrEieKgfhKJJRMxHRl-yT9jqk86tRB6PaLNvQZR6zYUcYVT1zSjoSreQHidcUq7',
-            'referer': url,
-        }
-        resp = safe_request(url, headers=headers, timeout=10)
-        if resp:
-            # 使用正则提取数据
-            html = resp.text
-            # 提取标题和链接
-            pattern = r'<td class="td-02">\s*<a href="([^"]+)"[^>]*>([^<]+)</a>'
-            matches = re.findall(pattern, html)
-            for idx, (href, title) in enumerate(matches[:30]):
-                if 'javascript:void(0)' in href:
-                    continue
-                title = title.strip()
-                if not title:
-                    continue
-                heat = max(5000 - idx * 150, 100)
-                topics.append({
-                    'title': title,
-                    'heat': heat,
-                    'url': f"{baseurl}{href}" if href.startswith('/') else href,
-                    'source': 'weibo'
-                })
-            if topics:
-                print(f"  ✅ 成功: {len(topics)} 条")
-                return topics
-    except Exception as e:
-        print(f"  ❌ 失败: {e}")
-
-    # 备用: m.weibo.cn
-    try:
-        print("  [微博] 尝试 m.weibo.cn...")
+        print("  [微博] 尝试抓取...")
         url = 'https://m.weibo.cn/api/container/getIndex?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot'
         resp = safe_request(url, timeout=10)
         if resp:
@@ -138,118 +131,6 @@ def fetch_weibo_hot():
         print(f"  ❌ 失败: {e}")
 
     print("  ⚠️ 微博所有接口失败")
-    return topics
-
-# ============ 知乎 (参考 NewsNow) ============
-def fetch_zhihu_hot():
-    topics = []
-    try:
-        print("  [知乎] 尝试 NewsNow 方式...")
-        url = "https://www.zhihu.com/api/v3/feed/topstory/hot-list-web?limit=20&desktop=true"
-        resp = safe_request(url, timeout=10)
-        if resp:
-            data = resp.json()
-            items = data.get('data', [])
-            for idx, item in enumerate(items):
-                target = item.get('target', {})
-                title_area = target.get('title_area', {})
-                title = title_area.get('text', '')
-                if not title:
-                    continue
-                link = target.get('link', {})
-                url_zhihu = link.get('url', '')
-                metrics = target.get('metrics_area', {})
-                heat_text = metrics.get('text', '')
-                # 提取热度值
-                heat = 0
-                match = re.search(r'(\d+(?:\.\d+)?)', heat_text)
-                if match:
-                    heat = float(match.group(1))
-                    if '万' in heat_text:
-                        heat *= 10000
-                if heat == 0:
-                    heat = max(5000000 - idx * 250000, 100000)
-
-                topics.append({
-                    'title': title,
-                    'heat': int(heat),
-                    'url': url_zhihu,
-                    'source': 'zhihu'
-                })
-            if topics:
-                print(f"  ✅ 成功: {len(topics)} 条")
-                return topics
-    except Exception as e:
-        print(f"  ❌ 失败: {e}")
-
-    print("  ⚠️ 知乎所有接口失败")
-    return topics
-
-# ============ B站 (参考 NewsNow) ============
-def fetch_bilibili_hot():
-    topics = []
-    try:
-        print("  [B站] 尝试 NewsNow 方式 (热搜)...")
-        url = "https://s.search.bilibili.com/main/hotword?limit=30"
-        resp = safe_request(url, timeout=10)
-        if resp:
-            data = resp.json()
-            if data.get('code') == 0:
-                items = data.get('list', [])
-                for idx, item in enumerate(items):
-                    title = item.get('show_name', '') or item.get('keyword', '')
-                    if not title:
-                        continue
-                    heat = item.get('hot_id', 0)
-                    if isinstance(heat, str):
-                        match = re.search(r'(\d+(?:\.\d+)?)', heat)
-                        if match:
-                            heat = float(match.group(1))
-                        else:
-                            heat = 0
-                    if heat == 0:
-                        heat = max(3000 - idx * 100, 100)
-                    topics.append({
-                        'title': title,
-                        'heat': int(heat),
-                        'url': f'https://search.bilibili.com/all?keyword={quote(item.get("keyword", title))}',
-                        'source': 'bilibili'
-                    })
-                if topics:
-                    print(f"  ✅ 成功: {len(topics)} 条")
-                    return topics
-    except Exception as e:
-        print(f"  ❌ 失败: {e}")
-
-    # 备用: 热门视频
-    try:
-        print("  [B站] 尝试热门视频...")
-        url = "https://api.bilibili.com/x/web-interface/popular"
-        resp = safe_request(url, timeout=10)
-        if resp:
-            data = resp.json()
-            if data.get('code') == 0:
-                items = data.get('data', {}).get('list', [])
-                for idx, item in enumerate(items[:30]):
-                    title = item.get('title', '')
-                    if not title:
-                        continue
-                    stat = item.get('stat', {})
-                    view = stat.get('view', 0)
-                    heat = view if view > 0 else max(5000 - idx * 150, 100)
-                    topics.append({
-                        'title': title,
-                        'heat': int(heat),
-                        'url': f'https://www.bilibili.com/video/{item.get("bvid", "")}',
-                        'source': 'bilibili'
-                    })
-                if topics:
-                    print(f"  ✅ 成功: {len(topics)} 条")
-                    return topics
-    except Exception as e:
-        print(f"  ❌ 失败: {e}")
-
-    print("  ⚠️ B站所有接口失败")
     return topics
 
 # ============ 百度 ============
@@ -296,6 +177,89 @@ def fetch_baidu_hot():
     print("  ⚠️ 百度所有接口失败")
     return topics
 
+# ============ 知乎 ============
+def fetch_zhihu_hot():
+    topics = []
+    try:
+        print("  [知乎] 尝试API...")
+        url = 'https://www.zhihu.com/api/v3/feed/topstory/hot-list-web?limit=20&desktop=true'
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            items = data.get('data', [])
+            for idx, item in enumerate(items):
+                target = item.get('target', {})
+                title_area = target.get('title_area', {})
+                title = title_area.get('text', '')
+                if not title:
+                    continue
+                link = target.get('link', {})
+                url_zhihu = link.get('url', '')
+                metrics = target.get('metrics_area', {})
+                heat_text = metrics.get('text', '')
+                heat = 0
+                match = re.search(r'(\d+(?:\.\d+)?)', heat_text)
+                if match:
+                    heat = float(match.group(1))
+                    if '万' in heat_text:
+                        heat *= 10000
+                if heat == 0:
+                    heat = max(5000000 - idx * 250000, 100000)
+
+                topics.append({
+                    'title': title,
+                    'heat': int(heat),
+                    'url': url_zhihu,
+                    'source': 'zhihu'
+                })
+            if topics:
+                print(f"  ✅ 成功: {len(topics)} 条")
+                return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
+    print("  ⚠️ 知乎所有接口失败")
+    return topics
+
+# ============ B站 ============
+def fetch_bilibili_hot():
+    topics = []
+    try:
+        print("  [B站] 尝试搜索推荐API...")
+        url = 'https://s.search.bilibili.com/main/hotword?limit=30'
+        resp = safe_request(url, timeout=10)
+        if resp:
+            data = resp.json()
+            if data.get('code') == 0:
+                items = data.get('list', [])
+                for idx, item in enumerate(items):
+                    title = item.get('show_name', '') or item.get('keyword', '')
+                    if not title:
+                        continue
+                    heat = item.get('hot_id', 0)
+                    if isinstance(heat, str):
+                        match = re.search(r'(\d+(?:\.\d+)?)', heat)
+                        if match:
+                            heat = float(match.group(1))
+                        else:
+                            heat = 0
+                    if heat == 0:
+                        heat = max(3000 - idx * 100, 100)
+                    topics.append({
+                        'title': title,
+                        'heat': int(heat),
+                        'url': f'https://search.bilibili.com/all?keyword={quote(item.get("keyword", title))}',
+                        'source': 'bilibili'
+                    })
+                if topics:
+                    print(f"  ✅ 成功: {len(topics)} 条")
+                    return topics
+    except Exception as e:
+        print(f"  ❌ 失败: {e}")
+
+    print("  ⚠️ B站所有接口失败")
+    return topics
+
 # ============ 抖音 ============
 def fetch_douyin_hot():
     topics = []
@@ -334,21 +298,32 @@ def fetch_douyin_hot():
     print("  ⚠️ 抖音所有接口失败")
     return topics
 
-# ============ 合并数据 ============
+# ============ 合并数据（新逻辑） ============
 def merge_topics(all_data):
+    """
+    新的合并逻辑：
+    1. 每个平台的数据独立保留
+    2. 综合排名使用归一化后的热度
+    3. 显示时保留原始热度值
+    """
     topic_map = {}
+
+    # 第一步：收集所有数据
     for source_name, topics in all_data.items():
-        for idx, item in enumerate(topics):
+        for item in topics:
             title = item['title']
-            key = title[:15]
+            key = title
+
             if key not in topic_map:
                 topic_map[key] = {
                     'title': title,
                     'heat': {'weibo': 0, 'baidu': 0, 'zhihu': 0, 'bilibili': 0, 'douyin': 0},
+                    'normalized_heat': {'weibo': 0, 'baidu': 0, 'zhihu': 0, 'bilibili': 0, 'douyin': 0},
                     'sources': [],
                     'summary': item.get('summary', ''),
                     'categories': []
                 }
+
             source = item.get('source', source_name)
             heat = item.get('heat', 0)
             if isinstance(heat, str):
@@ -362,36 +337,52 @@ def merge_topics(all_data):
                 else:
                     heat = 0
 
-            if source == 'weibo':
-                normalized_heat = min(heat, 10000)
-            elif source == 'baidu':
-                normalized_heat = min(heat / 10, 10000)
-            elif source == 'zhihu':
-                normalized_heat = min(heat / 100, 10000)
-            elif source == 'bilibili':
-                normalized_heat = min(heat * 2, 10000)
-            elif source == 'douyin':
-                normalized_heat = min(heat, 10000)
-            else:
-                normalized_heat = min(heat, 10000)
+            heat = int(heat)
 
-            topic_map[key]['heat'][source] = max(topic_map[key]['heat'][source], normalized_heat)
+            # 保存原始热度值
+            topic_map[key]['heat'][source] = heat
+
+            # 保存归一化热度值（用于排名）
+            topic_map[key]['normalized_heat'][source] = normalize_heat(source, heat)
+
+            # 添加来源（保留原始热度用于显示）
             source_url = item.get('url', '')
             existing = [s['name'] for s in topic_map[key]['sources']]
             source_display = {'weibo': '微博', 'baidu': '百度', 'zhihu': '知乎', 'bilibili': 'B站', 'douyin': '抖音'}.get(source, source)
             if source_display not in existing:
-                topic_map[key]['sources'].append({'name': source_display, 'url': source_url})
+                topic_map[key]['sources'].append({
+                    'name': source_display,
+                    'url': source_url,
+                    'heat': heat  # 原始热度值
+                })
+
+            # 更新摘要
             if item.get('summary') and len(item['summary']) > len(topic_map[key]['summary']):
                 topic_map[key]['summary'] = item['summary']
+
+            # 分类
             cat = classify_topic(title, topic_map[key]['summary'])
             topic_map[key]['categories'].append(cat)
 
+    # 第二步：计算综合排名
     topics = []
     for key, data in topic_map.items():
-        total_heat = sum(data['heat'].values())
+        # 计算平台覆盖数
+        source_count = len(data['sources'])
+
+        # 计算归一化热度总和（用于排名）
+        normalized_total = sum(data['normalized_heat'].values())
+
+        # 计算原始热度总和（用于显示）
+        original_total = sum(data['heat'].values())
+
+        # 综合分数 = 平台覆盖数 * 10000 + 归一化热度总和
+        composite_score = source_count * 10000 + normalized_total
+
         categories = data['categories']
         category = max(set(categories), key=categories.count) if categories else 'social'
-        source_count = len(data['sources'])
+
+        # 趋势判断
         if source_count >= 3:
             trend = 'hot'
             trend_val = 0
@@ -401,19 +392,30 @@ def merge_topics(all_data):
         else:
             trend = 'up'
             trend_val = random.randint(1, 10)
+
         topics.append({
             'rank': 0,
             'title': data['title'],
             'category': category,
             'summary': data['summary'] or data['title'],
-            'heat': data['heat'],
+            'heat': data['heat'],  # 各平台原始热度（用于显示）
+            'normalized_heat': data['normalized_heat'],  # 归一化热度（用于排名）
+            'total_heat': original_total,  # 原始热度总和
+            'normalized_total': normalized_total,  # 归一化热度总和
+            'source_count': source_count,
+            'composite_score': composite_score,
             'trend': trend,
             'trendVal': trend_val,
-            'sources': data['sources']
+            'sources': data['sources']  # 包含原始热度
         })
-    topics.sort(key=lambda x: sum(x['heat'].values()), reverse=True)
+
+    # 按综合分数排序
+    topics.sort(key=lambda x: x['composite_score'], reverse=True)
+
+    # 重新编号，取前30
     for i, topic in enumerate(topics[:30]):
         topic['rank'] = i + 1
+
     return topics[:30]
 
 # ============ 主函数 ============
@@ -461,10 +463,11 @@ def generate_data():
             'douyin': []
         }
 
-    print("合并数据，去重并计算综合热度...")
+    print("合并数据...")
     topics = merge_topics(all_data)
     print(f"合并后: {len(topics)} 条热点")
 
+    # 统计各平台覆盖情况
     platform_counts = {'weibo': 0, 'baidu': 0, 'zhihu': 0, 'bilibili': 0, 'douyin': 0}
     for topic in topics:
         for source in topic['sources']:
@@ -497,9 +500,11 @@ def generate_data():
 
     print("Top 5 热点:")
     for i, t in enumerate(topics[:5]):
-        total = sum(t['heat'].values())
-        sources = [s['name'] for s in t['sources']]
-        print(f"  {i+1}. {t['title'][:40]}... (热度: {total:.0f}) [{', '.join(sources)}]")
+        sources_str = ', '.join([f"{s['name']}({s['heat']})" for s in t['sources']])
+        print(f"  {i+1}. {t['title'][:40]}...")
+        print(f"     覆盖: {t['source_count']}平台, 综合: {t['composite_score']}")
+        print(f"     原始热度: {t['total_heat']}, 归一化: {t['normalized_total']}")
+        print(f"     来源: [{sources_str}]")
 
     return output
 
