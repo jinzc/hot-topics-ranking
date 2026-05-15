@@ -24,6 +24,7 @@
             color: white;
             margin: -20px -15px 20px;
             border-radius: 0 0 20px 20px;
+            position: relative;
         }
         .header h1 {
             font-size: 28px;
@@ -38,6 +39,37 @@
             font-size: 12px;
             opacity: 0.7;
             margin-top: 8px;
+        }
+        .refresh-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+        .refresh-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .refresh-btn.spinning {
+            animation: spin 1s linear infinite;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .refresh-btn svg {
+            width: 20px;
+            height: 20px;
         }
 
         /* 平台切换标签 */
@@ -356,6 +388,11 @@
         /* 响应式 */
         @media (max-width: 600px) {
             .header h1 { font-size: 22px; }
+            .refresh-btn {
+                right: 10px;
+                width: 36px;
+                height: 36px;
+            }
             .topic-card { padding: 14px; }
             .topic-title { font-size: 15px; }
             .platform-heats { gap: 6px; }
@@ -370,6 +407,12 @@
             <h1>🔥 全网热点榜单</h1>
             <div class="subtitle">实时聚合微博、百度、知乎、B站、抖音热搜数据</div>
             <div class="update-time" id="updateTime">加载中...</div>
+            <button class="refresh-btn" id="refreshBtn" title="立即刷新数据">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+            </button>
         </div>
 
         <!-- 平台切换标签 -->
@@ -416,7 +459,7 @@
         </div>
 
         <div class="footer">
-            数据每小时自动更新 · 综合热度基于多平台覆盖度与归一化热度计算
+            数据每小时自动更新 · 综合热度基于多平台覆盖度与归一化热度计算 · 点击右上角按钮可手动刷新
         </div>
     </div>
 
@@ -425,6 +468,7 @@
         let allData = null;
         let currentTab = 'all';
         let currentFilter = 'all';
+        let isLoading = false;
 
         // 分类映射
         const CAT_MAP = {
@@ -460,19 +504,42 @@
 
         // 加载数据
         async function loadData() {
+            if (isLoading) return;
+            isLoading = true;
+
+            // 显示加载状态
+            const listEl = document.getElementById('topicList');
+            if (!allData) {
+                listEl.innerHTML = `
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <div>正在加载热点数据...</div>
+                    </div>
+                `;
+            }
+
+            // 刷新按钮动画
+            const refreshBtn = document.getElementById('refreshBtn');
+            refreshBtn.classList.add('spinning');
+
             try {
                 const resp = await fetch('data/hot_data.json?t=' + Date.now());
                 if (!resp.ok) throw new Error('HTTP ' + resp.status);
                 allData = await resp.json();
                 render();
             } catch (e) {
-                document.getElementById('topicList').innerHTML = `
-                    <div class="error-box">
-                        <div>⚠️ 数据加载失败</div>
-                        <div style="font-size:13px;color:#999;margin-top:8px">${e.message}</div>
-                        <button onclick="loadData()">重新加载</button>
-                    </div>
-                `;
+                if (!allData) {
+                    listEl.innerHTML = `
+                        <div class="error-box">
+                            <div>⚠️ 数据加载失败</div>
+                            <div style="font-size:13px;color:#999;margin-top:8px">${e.message}</div>
+                            <button onclick="loadData()">重新加载</button>
+                        </div>
+                    `;
+                }
+            } finally {
+                isLoading = false;
+                refreshBtn.classList.remove('spinning');
             }
         }
 
@@ -531,26 +598,29 @@
             const catClass = CAT_CLASS[topic.category] || 'cat-social';
             const catName = CAT_MAP[topic.category] || '社会';
 
-            // 平台热度条
-            const platformHeatsHtml = Object.entries(topic.heat || {})
+            // 平台热度条 - 按归一化热度排序
+            const heatEntries = Object.entries(topic.normalized_heat || {})
                 .filter(([_, h]) => h > 0)
-                .sort((a, b) => b[1] - a[1])
-                .map(([source, heat]) => {
-                    const cfg = PLATFORM_CONFIG[source];
-                    if (!cfg) return '';
-                    const maxHeat = Math.max(...Object.values(topic.heat || {}).filter(h => h > 0));
-                    const pct = maxHeat > 0 ? (heat / maxHeat * 100) : 0;
-                    const displayHeat = heat >= 10000 ? (heat / 10000).toFixed(1) + '万' : heat.toLocaleString();
-                    return `
-                        <div class="platform-heat">
-                            <span class="icon ${cfg.iconClass}">${cfg.name[0]}</span>
-                            <span class="heat-val">${displayHeat}</span>
-                            <div class="heat-bar">
-                                <div class="heat-bar-fill ${cfg.fillClass}" style="width:${pct}%"></div>
-                            </div>
+                .sort((a, b) => b[1] - a[1]);
+
+            const maxNormalized = heatEntries.length > 0 ? heatEntries[0][1] : 1;
+
+            const platformHeatsHtml = heatEntries.map(([source, nHeat]) => {
+                const cfg = PLATFORM_CONFIG[source];
+                if (!cfg) return '';
+                const originalHeat = (topic.heat && topic.heat[source]) || 0;
+                const pct = maxNormalized > 0 ? (nHeat / maxNormalized * 100) : 0;
+                const displayHeat = originalHeat >= 10000 ? (originalHeat / 10000).toFixed(1) + '万' : originalHeat.toLocaleString();
+                return `
+                    <div class="platform-heat">
+                        <span class="icon ${cfg.iconClass}">${cfg.name[0]}</span>
+                        <span class="heat-val">${displayHeat}</span>
+                        <div class="heat-bar">
+                            <div class="heat-bar-fill ${cfg.fillClass}" style="width:${pct}%"></div>
                         </div>
-                    `;
-                }).join('');
+                    </div>
+                `;
+            }).join('');
 
             // 跨平台覆盖标识
             let sourceCountClass = 'single';
@@ -571,8 +641,9 @@
                 trendHtml = `<span class="trend-tag trend-up">↑ ${topic.trendVal}</span>`;
             }
 
-            // 来源链接（取第一个）
-            const firstSource = (topic.sources && topic.sources[0]) || {};
+            // 来源链接（取热度最高的平台链接）
+            const sources = topic.sources || [];
+            const firstSource = sources[0] || {};
             const url = firstSource.url || '#';
 
             return `
@@ -665,6 +736,11 @@
             btn.classList.add('active');
             currentFilter = btn.dataset.cat;
             render();
+        });
+
+        // 手动刷新按钮
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            loadData();
         });
 
         // 初始化
