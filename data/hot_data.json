@@ -1,20 +1,20 @@
 {
-  "updateTime": "2026-05-15 11:42",
+  "updateTime": "2026-05-15 11:51",
   "topics": [
     {
       "rank": 1,
       "title": "榜一大哥花400万追主播连面都没见过",
-      "category": "finance",
+      "category": "social",
       "summary": "单身的刘先生（化姓）为追求交友平台单身女主播，三年里坚持当榜一大哥，花了近400万求谈恋爱。未料对方不仅并非单身，还把他拉黑了。刘先生将女主播和平台公司告上法庭索赔。然而，直至庭审结束，刘先生都没有见",
       "heat": {
-        "weibo": 3600,
+        "weibo": 3500,
         "baidu": 10000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 13,
       "sources": [
         {
           "name": "微博",
@@ -32,14 +32,14 @@
       "category": "tech",
       "summary": "5月15日，据华为终端消息，折叠屏旗舰华为Mate X7开启降价，全系直降1000元，优惠后11999元起，并推出至高12期分期免息。",
       "heat": {
-        "weibo": 700,
+        "weibo": 1100,
         "baidu": 10000,
         "zhihu": 0,
         "bilibili": 0,
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 6,
       "sources": [
         {
           "name": "微博",
@@ -64,7 +64,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
@@ -85,7 +85,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 2,
       "sources": [
         {
           "name": "百度",
@@ -106,7 +106,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 10,
       "sources": [
         {
           "name": "百度",
@@ -127,7 +127,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
@@ -148,7 +148,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 6,
       "sources": [
         {
           "name": "百度",
@@ -169,7 +169,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 2,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
@@ -190,7 +190,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
@@ -211,7 +211,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 5,
       "sources": [
         {
           "name": "百度",
@@ -232,7 +232,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 7,
       "sources": [
         {
           "name": "百度",
@@ -253,7 +253,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
@@ -295,7 +295,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 9,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
@@ -316,7 +316,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
@@ -337,7 +337,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 6,
       "sources": [
         {
           "name": "百度",
@@ -358,7 +358,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 7,
       "sources": [
         {
           "name": "百度",
@@ -379,7 +379,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 10,
       "sources": [
         {
           "name": "百度",
@@ -400,7 +400,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
@@ -421,7 +421,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 2,
       "sources": [
         {
           "name": "百度",
@@ -442,7 +442,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 7,
+      "trendVal": 1,
       "sources": [
         {
           "name": "百度",
@@ -463,7 +463,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 8,
+      "trendVal": 4,
       "sources": [
         {
           "name": "百度",
@@ -484,7 +484,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 5,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
@@ -505,7 +505,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 6,
       "sources": [
         {
           "name": "百度",
@@ -526,7 +526,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 1,
+      "trendVal": 10,
       "sources": [
         {
           "name": "百度",
@@ -547,7 +547,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 2,
       "sources": [
         {
           "name": "百度",
@@ -568,7 +568,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 4,
+      "trendVal": 9,
       "sources": [
         {
           "name": "百度",
@@ -589,7 +589,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 6,
+      "trendVal": 3,
       "sources": [
         {
           "name": "百度",
@@ -610,7 +610,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 10,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
@@ -631,7 +631,7 @@
         "douyin": 0
       },
       "trend": "up",
-      "trendVal": 3,
+      "trendVal": 8,
       "sources": [
         {
           "name": "百度",
